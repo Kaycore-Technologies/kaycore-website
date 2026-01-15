@@ -1,0 +1,35 @@
+# Robots.txt for Kaycore Technologies
+# Allow all robots to crawl the site except for specific paths
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json
+Disallow: /.next/
+Disallow: /private/
+Disallow: /temp/
+Disallow: *?*sort=
+Disallow: *?*filter=
+
+# Crawl delay (optional - adjust based on server capacity)
+Crawl-delay: 1
+
+# Sitemap reference
+Sitemap: https://kaycore.com/sitemap.xml
+
+# Specific rules for common bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

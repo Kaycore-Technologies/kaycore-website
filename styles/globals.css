@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+/* Custom global styles */
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+/* Enforcing uniform dark theme across all modes */
+:root[data-theme='light'],
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-primary: #3b82f6;
+  /* Blue 500 */
+  --color-secondary: #ffffff;
+  /* White */
+  --color-accent: #94a3b8;
+  /* Slate 400 */
+  --color-surface: #020617;
+  /* Slate 950 */
+  --color-text: #f8fafc;
+  /* Slate 50 */
+}
+
+/* Ensure body always uses these variables */
+body {
+  @apply antialiased;
+  background-color: var(--color-surface, #020617);
+  color: var(--color-text, #f8fafc);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  @apply transition-colors duration-200;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  min-width: 100%;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@layer utilities {
+  .bg-brand-dark {
+    background-color: #020617;
+  }
+
+  .bg-brand-navy {
+    background-color: #0f3054;
+  }
+
+  .bg-brand-light {
+    background-color: #f8fafc;
+  }
+
+  .text-brand-light {
+    color: #f8fafc;
+  }
+
+  .text-brand-accent {
+    color: #3b82f6;
+  }
+}

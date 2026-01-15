@@ -77,7 +77,7 @@ export default async function Services() {
     slug: typeof service.slug === 'object' && service.slug !== null && 'current' in service.slug ? (service.slug as any).current : service.slug,
   }));
 
-  const services: Service[] = transformedSanityServices.length > 0 ? transformedSanityServices : mockServices;
+  // const services: Service[] = transformedSanityServices.length > 0 ? transformedSanityServices : mockServices;
 
-  return <ServicesContent services={services} />;
+  return <ServicesContent />;
 }

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getRecentNews } from '@/lib/sanity/queries';
 import HomeContent from './HomeContent';
 
@@ -5,38 +6,34 @@ import HomeContent from './HomeContent';
 const mockNewsItems = [
   {
     id: 1,
-    title: 'Kaycore Partners with Leading FinTech for AI Transformation',
+    title: 'Kaycore Releases Framework for EU AI Act Compliance',
     date: 'October 15, 2025',
-    category: 'Press Release',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
-    excerpt: 'Strategic partnership aims to revolutionize fraud detection systems using advanced machine learning models.',
+    category: 'Regulation',
+    image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2670&auto=format&fit=crop',
+    excerpt: 'Our new open-source toolkit helps enterprises map their model inventory to risk categories defined by the latest EU legislation.',
   },
   {
     id: 2,
-    title: 'The Future of Cloud Security: 2026 Trends Report',
+    title: 'Mitigating Hallucinations in Financial RAG Systems',
     date: 'November 2, 2025',
-    category: 'Insights',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=2670&auto=format&fit=crop',
-    excerpt: 'Our experts analyze emerging threats and the zero-trust architectures needed to combat them.',
+    category: 'Research',
+    image: 'https://images.unsplash.com/photo-1639322537228-ad7117a767f1?q=80&w=2670&auto=format&fit=crop',
+    excerpt: 'Case study: How we reduced error rates by 94% for a global wealth management firm using facts-first decoding.',
   },
   {
     id: 3,
-    title: 'Kaycore Expands Operations into APAC Region',
+    title: 'The Rise of Adversarial Attacks on Agentic Workflows',
     date: 'December 10, 2025',
-    category: 'Company News',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop',
-    excerpt: 'New regional headquarters in Singapore will support our growing client base in Asia-Pacific.',
+    category: 'Security',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2670&auto=format&fit=crop',
+    excerpt: 'Detailed analysis of new threat vectors targeting autonomous agents and how semantic firewalls can prevent them.',
   },
 ];
 
-export const metadata = {
-  title: 'Kaycore Technologies - Core Tech Clear Vision',
-  description: 'Innovative technology solutions for modern businesses. Services in web development, cloud infrastructure, and digital transformation.',
-  openGraph: {
-    title: 'Kaycore Technologies - Core Tech Clear Vision',
-    description: 'Innovative technology solutions for modern businesses. Services in web development, cloud infrastructure, and digital transformation.',
-    images: [{ url: '/assets/og-image.jpg' }],
-  },
+export const metadata: Metadata = {
+  title: 'AI Quality Engineering & LLM Testing Services | Kaycore',
+  description: 'Kaycore helps teams validate and trust AI systems with expert AI Quality Engineering, LLM testing, and AI risk validation for production readiness.',
+  keywords: ['AI Quality Engineering', 'AI Testing Services', 'LLM Validation', 'AI Risk Assessment', 'Enterprise AI Reliability'],
 };
 
 export default async function Home() {

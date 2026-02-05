@@ -179,7 +179,7 @@ export default function CaseStudies() {
             Ready to write your success story?
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
-            From strategy to execution, we help you navigate your digital transformation journey with confidence.
+            From strategy to execution, we help you navigate your modernization initiatives with confidence.
           </p>
           <div className="pt-8">
             <Link href="/contact">

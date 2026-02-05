@@ -33,7 +33,7 @@ export default function SentimentAnalyzer() {
             let confidence = 0.5 + Math.random() * 0.2;
             let tone = 'Objective';
 
-            const positiveWords = ['great', 'awesome', 'excellent', 'good', 'happy', 'love', 'growth', 'innovative', 'efficient', 'seamless'];
+            const positiveWords = ['great', 'awesome', 'excellent', 'good', 'happy', 'love', 'growth', 'innovative', 'efficient', 'consistent'];
             const negativeWords = ['bad', 'poor', 'terrible', 'slow', 'fail', 'error', 'hate', 'bug', 'crash', 'difficult'];
 
             const posCount = positiveWords.filter(w => lowerText.includes(w)).length;

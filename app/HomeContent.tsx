@@ -9,33 +9,20 @@ import {
     AnimatedItem,
     TextReveal,
 } from '@/components/animations';
-import { MagneticButton, TiltCard, ParallaxSection } from '@/components/ui';
-import TechStack from '@/components/TechStack';
-import StatsSection from '@/components/StatsSection';
-import NewsSection from '@/components/NewsSection';
-import { ArrowRight } from 'lucide-react';
+import { MagneticButton, ParallaxSection, TiltCard } from '@/components/ui';
+import { ArrowRight, CheckCircle, AlertTriangle, Shield, Search, Zap, Activity, Brain, Lock, Terminal } from 'lucide-react';
 
-import { services, industries, processSteps, partners } from '@/components/company-data';
-
-// --- DATA CONSTANTS ---
-
-// 3. SERVICES (Mandatory) - Imported from @/components/company-data
-
-// 5. INDUSTRIES (New) - Imported from @/components/company-data
-
-// 6. PROCESS (New) - Imported from @/components/company-data
-
-// 7. TRUST BUILDERS / PARTNERS - Imported from @/components/company-data
+import { services, industries } from '@/components/company-data';
 
 export default function HomeContent({ newsItems }: { newsItems: any[] }) {
     return (
-        <div className="bg-background text-foreground font-sans selection:bg-brand-accent selection:text-white">
+        <div className="bg-brand-dark text-slate-50 font-sans selection:bg-brand-accent selection:text-white">
 
             {/* 1. HERO SECTION */}
             <ParallaxSection
                 videoUrl="/assets/videos/hero-main.mp4"
-                className="h-[85vh] sm:h-[95vh]"
-                overlayOpacity={0.5}
+                className="h-[85vh] flex items-center justify-center relative"
+                overlayOpacity={0.7}
             >
                 <div className="relative z-20 text-center space-y-8 max-w-5xl mx-auto px-4">
                     <motion.div
@@ -45,10 +32,10 @@ export default function HomeContent({ newsItems }: { newsItems: any[] }) {
                         className="space-y-6"
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif tracking-tight text-white leading-[1.1]">
-                            <TextReveal text="Engineering Intelligent Systems for Scalable Growth" by="word" />
+                            <TextReveal text="AI Quality Engineering for High-Trust AI Products" by="word" />
                         </h1>
-                        <p className="text-lg sm:text-2xl text-gray-200 font-light tracking-wide max-w-3xl mx-auto">
-                            Your strategic technology partner for building secure, future-ready digital solutions.
+                        <p className="text-lg sm:text-2xl text-slate-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
+                            We help teams ship AI systems that behave reliably, safely, and consistently — in production, not just demos.
                         </p>
                     </motion.div>
 
@@ -56,233 +43,265 @@ export default function HomeContent({ newsItems }: { newsItems: any[] }) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.8 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+                        className="flex flex-col sm:flex-row gap-5 justify-center items-center pt-8"
                     >
                         <Link href="/contact">
-                            <MagneticButton className="bg-white text-[#0A1F44] px-8 py-4 font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
-                                Book a Free Consultation
+                            <MagneticButton className="bg-brand-accent text-white px-8 py-4 font-bold text-lg hover:brightness-110 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_40px_rgba(14,165,233,0.6)] rounded-full">
+                                Talk to an AI Quality Expert
                             </MagneticButton>
                         </Link>
                         <Link href="/services">
-                            <MagneticButton className="border border-white/40 bg-white/5 backdrop-blur-md text-white px-8 py-4 font-semibold text-lg hover:bg-white/10 transition-colors">
-                                Explore Our Services
+                            <MagneticButton className="border border-white/20 bg-white/5 backdrop-blur-md text-white px-8 py-4 font-semibold text-lg hover:bg-white/10 transition-all rounded-full flex items-center gap-2">
+                                View Services <ArrowRight className="w-4 h-4" />
                             </MagneticButton>
                         </Link>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                        className="pt-8 text-xs font-mono text-slate-500 tracking-widest uppercase opacity-60"
+                    >
+                        Founder-led engagements • Zero production incidents
                     </motion.div>
                 </div>
             </ParallaxSection>
 
-            {/* 2. STATS / TRUST SIGNALS (New Placement - High Visibility) */}
-            <StatsSection />
-
-            {/* 3. ABOUT KAYCORE (Purpose) */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background relative overflow-hidden">
-                <div className="mx-auto max-w-4xl text-center relative z-10">
+            {/* 2. WHAT IS AI QUALITY ENGINEERING */}
+            {/* 2. WHAT IS AI QUALITY ENGINEERING */}
+            {/* 2. DEFINITION: WHAT IS AI-QE */}
+            <section className="pt-24 pb-32 px-4 sm:px-6 lg:px-8 bg-brand-dark relative overflow-hidden border-t border-white/5">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent" />
+                <div className="max-w-7xl mx-auto">
                     <ScrollReveal>
-                        <h2 className="text-sm sm:text-base font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Who We Are</h2>
-                        <h3 className="text-3xl sm:text-4xl text-foreground font-bold font-serif mb-8 leading-tight">
-                            We act as the bridge between ambitious business goals and scalable technology execution.
-                        </h3>
-                        <p className="text-xl text-muted-foreground leading-relaxed">
-                            Kaycore Technologies isn't just a vendor; we are a strategic partner dedicated to simplifying complex technology.
-                            We believe in engineering systems that are secure, intelligent, and built for the long haul.
-                        </p>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                            <div>
+                                <h2 className="text-xs font-mono font-bold tracking-[0.2em] text-brand-accent mb-6">
+                                    // DEFINITION_
+                                </h2>
+                                <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif text-white mb-8 leading-tight">
+                                    What is AI Quality Engineering?
+                                </h3>
+                                <p className="text-white text-xl sm:text-2xl font-light leading-relaxed mb-8">
+                                    Systematic validation for <span className="text-brand-accent">probabilistic software</span>.
+                                </p>
+                                <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
+                                    <p>
+                                        Traditional QA asserts that <code>if(x) return y</code>. It fails with LLMs because they are non-deterministic, infinite-state systems.
+                                    </p>
+                                    <p>
+                                        <strong>AI Quality Engineering (AI-QE)</strong> is a new discipline combining data science, adversarial security, and behavioral psychology to bound the uncertainty of generative models. We don&apos;t just check for bugs; we measure reliability, safety, and alignment.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="relative">
+                                <div className="absolute -inset-1 bg-gradient-to-r from-brand-accent/30 to-purple-500/30 rounded-2xl blur-2xl opacity-20" />
+                                <div className="bg-white/5 border border-white/10 rounded-2xl p-2 relative overflow-hidden group">
+                                    <Image
+                                        src="/assets/images/generated/ai_qe_hero_abstract_1770257008010.png"
+                                        alt="Abstract visualization of AI data flow"
+                                        width={800}
+                                        height={600}
+                                        className="rounded-xl w-full h-auto object-cover opacity-90 grayscale mix-blend-screen"
+                                    />
+                                    <div className="absolute bottom-6 left-6 right-6">
+                                        <div className="flex gap-4 p-4 bg-black/60 backdrop-blur-md rounded-lg border border-white/10">
+                                            <div className="text-xs font-mono text-brand-accent">
+                                                <div>&gt; PROBABILITY_BOUND: 99.9%</div>
+                                                <div>&gt; DRIFT_DETECTED: FALSE</div>
+                                                <div>&gt; SAFETY_SCORE: A+</div>
+                                            </div>
+                                        </div>
+                                        <div className="mt-2 text-center">
+                                            <p className="text-[10px] text-slate-500 uppercase tracking-wider font-medium">
+                                                Sample AI Safety Evaluation Output
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ScrollReveal>
                 </div>
             </section>
 
-
-            {/* 4. SERVICES / CAPABILITIES */}
-            <section className="py-24 bg-[#0B1221] relative z-10 border-y border-white/5 overflow-hidden">
-                {/* Radial Gradient Background Effect */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl opacity-30 pointer-events-none">
-                    <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-brand-accent/20 rounded-full blur-[120px] mix-blend-screen" />
-                    <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-blue-600/20 rounded-full blur-[100px] mix-blend-screen" />
+            {/* 3. HOW KAYCORE HELPS (Replaces Risk Factors) */}
+            <section className="py-32 px-4 sm:px-6 lg:px-8 bg-brand-dark border-t border-white/5">
+                <div className="max-w-7xl mx-auto">
+                    <ScrollReveal>
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+                            <div className="lg:col-span-5 order-2 lg:order-1">
+                                <StaggerContainer className="space-y-6">
+                                    {[
+                                        { title: 'Behavioral Testing', desc: 'We test AI behavior, not just software flows. Does it refuse unsafe prompts? Does it stay on topic?' },
+                                        { title: 'Risk-First Validation', desc: 'We map your specific domain risks (e.g. financial advice errors) and test against them aggressively.' },
+                                        { title: 'Human-in-the-Loop', desc: 'Expert red-teamers providing nuances that automated scripts miss.' },
+                                    ].map((item, idx) => (
+                                        <AnimatedItem key={idx}>
+                                            <div className="flex gap-4">
+                                                <div className="bg-brand-accent/20 h-12 w-12 rounded-full flex items-center justify-center text-brand-accent shrink-0 font-bold text-lg">
+                                                    {idx + 1}
+                                                </div>
+                                                <div>
+                                                    <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
+                                                    <p className="text-slate-400 leading-relaxed">{item.desc}</p>
+                                                </div>
+                                            </div>
+                                        </AnimatedItem>
+                                    ))}
+                                </StaggerContainer>
+                            </div>
+                            <div className="lg:col-span-7 order-1 lg:order-2">
+                                <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Our Methodology</h2>
+                                <h3 className="text-3xl sm:text-5xl font-bold font-serif text-white mb-8">
+                                    Certainty in an Uncertain World
+                                </h3>
+                                <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                                    We don&apos;t just run scripts. We act as your adversarial partners, trying to break your system before your users (or regulators) do.
+                                </p>
+                                <div className="h-2 w-24 bg-brand-accent rounded-full" />
+                            </div>
+                        </div>
+                    </ScrollReveal>
                 </div>
+            </section>
 
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-20">
-                    <div className="text-center mb-20">
-                        <h2 className="text-sm sm:text-base font-bold tracking-[0.2em] text-brand-accent uppercase mb-3">Our Capabilities</h2>
-                        <h3 className="text-4xl sm:text-5xl font-bold font-serif text-white">Services & Practice Areas</h3>
-                        <p className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
-                            Comprehensive technology solutions tailored to drive your business forward.
-                        </p>
-                    </div>
+            {/* 4. CORE SERVICES OVERVIEW */}
+            <section className="py-32 bg-[#0B1121] relative border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <ScrollReveal>
+                        <div className="text-center mb-20">
+                            <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Core Services</h2>
+                            <h3 className="text-3xl sm:text-5xl font-bold font-serif text-white mb-6">
+                                AI Quality & Risk Readiness
+                            </h3>
+                            <p className="max-w-2xl mx-auto text-slate-400 text-lg">
+                                We do fewer things, deeply. Specialized validation for high-stakes environments.
+                            </p>
+                        </div>
 
-                    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {services.map((service) => (
-                            <AnimatedItem key={service.id}>
-                                <div className="h-full bg-[#0F1729] rounded-2xl border border-white/5 overflow-hidden hover:border-brand-accent/50 transition-all duration-300 group hover:shadow-2xl hover:shadow-brand-accent/20 hover:-translate-y-1 flex flex-col backdrop-blur-sm">
-                                    <div className="relative h-56 w-full overflow-hidden">
-                                        <div className="absolute inset-0 bg-brand-dark/20 z-10 group-hover:bg-transparent transition-colors duration-300" />
-                                        <Image
-                                            src={service.image}
-                                            alt={service.title}
-                                            fill
-                                            className="object-cover transform group-hover:scale-110 transition-transform duration-700"
-                                        />
-                                    </div>
-                                    <div className="p-8 flex flex-col flex-grow relative">
-                                        <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                                            {/* Abstract decorative icon or shape could go here */}
+                        <div className="space-y-6">
+                            {/* Row 1: Services 1 & 2 */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {services.slice(0, 2).map((service, idx) => (
+                                    <TiltCard key={service.id} className="h-full">
+                                        <div className="bg-white/5 border border-white/10 p-10 rounded-3xl h-full hover:border-brand-accent/30 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] transition-all group relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span className="text-6xl font-mono font-bold text-white">0{idx + 1}</span>
+                                            </div>
+                                            <div className="text-xs font-mono text-brand-accent mb-6">0{idx + 1}</div>
+
+                                            <h4 className="text-2xl font-bold text-white mb-4 pr-12">{service.title}</h4>
+                                            <p className="text-slate-300 leading-relaxed mb-8 text-sm">
+                                                {service.description}
+                                            </p>
+
+                                            <Link href={`/services`} className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-white/20 hover:border-brand-accent pb-0.5 transition-colors">
+                                                Learn More <ArrowRight className="w-3 h-3" />
+                                            </Link>
                                         </div>
-                                        <h4 className="text-2xl font-bold font-serif text-white mb-4 group-hover:text-brand-accent transition-colors">
-                                            {service.title}
-                                        </h4>
-                                        <p className="text-gray-400 leading-relaxed mb-8 flex-grow">
-                                            {service.description}
+                                    </TiltCard>
+                                ))}
+                            </div>
+
+                            {/* Row 2: Services 3 & 4 */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {services.slice(2, 4).map((service, idx) => (
+                                    <TiltCard key={service.id} className="h-full">
+                                        <div className="bg-white/5 border border-white/10 p-10 rounded-3xl h-full hover:border-brand-accent/30 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] transition-all group relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                                                <span className="text-6xl font-mono font-bold text-white">0{idx + 3}</span>
+                                            </div>
+                                            <div className="text-xs font-mono text-brand-accent mb-6">0{idx + 3}</div>
+
+                                            <h4 className="text-2xl font-bold text-white mb-4 pr-12">{service.title}</h4>
+                                            <p className="text-slate-300 leading-relaxed mb-8 text-sm">
+                                                {service.description}
+                                            </p>
+
+                                            <Link href={`/services`} className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-white/20 hover:border-brand-accent pb-0.5 transition-colors">
+                                                Learn More <ArrowRight className="w-3 h-3" />
+                                            </Link>
+                                        </div>
+                                    </TiltCard>
+                                ))}
+                            </div>
+
+                            {/* Row 3: Service 5 (Anchor) */}
+                            <div className="max-w-2xl mx-auto w-full">
+                                <TiltCard className="h-full">
+                                    <div className="bg-gradient-to-br from-white/5 to-brand-accent/5 border border-white/10 p-10 rounded-3xl h-full hover:border-brand-accent/30 hover:shadow-[0_0_30px_rgba(14,165,233,0.1)] transition-all group relative overflow-hidden text-center md:text-left">
+                                        <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity hidden md:block">
+                                            <span className="text-6xl font-mono font-bold text-white">05</span>
+                                        </div>
+                                        <div className="text-xs font-mono text-brand-accent mb-6">05</div>
+
+                                        <h4 className="text-2xl font-bold text-white mb-4">Regulated & Healthcare AI QA</h4>
+                                        <p className="text-slate-400 leading-relaxed mb-8 text-sm">
+                                            {services[4].description}
                                         </p>
-                                        <Link href="/services" className="inline-flex items-center text-sm font-bold text-white group-hover:text-brand-accent transition-colors mt-auto">
-                                            Learn More <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+
+                                        <Link href={`/services`} className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-white/20 hover:border-brand-accent pb-0.5 transition-colors">
+                                            Learn More <ArrowRight className="w-3 h-3" />
                                         </Link>
                                     </div>
-                                </div>
-                            </AnimatedItem>
-                        ))}
-                    </StaggerContainer>
-                </div>
-            </section>
-
-            {/* 5. WHY KAYCORE */}
-            <ParallaxSection
-                videoUrl="/assets/videos/hero-secondary.mp4"
-                className="h-[60vh]"
-                overlayOpacity={0.8}
-            >
-                <div className="text-center text-white max-w-4xl mx-auto px-4">
-                    <h2 className="text-3xl sm:text-5xl font-bold mb-8">Why Partner With Us?</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left sm:text-center">
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-blue-200">Business-First Engineering</h3>
-                            <p className="text-white/80">We prioritize ROI and business outcomes over code for code's sake.</p>
-                        </div>
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-blue-200">Founder-Led Mindset</h3>
-                            <p className="text-white/80">We work with the agility of a startup and the discipline of an enterprise.</p>
-                        </div>
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-blue-200">Scalable & Secure</h3>
-                            <p className="text-white/80">Security and scalability are baked into our architecture from day one.</p>
-                        </div>
-                    </div>
-                </div>
-            </ParallaxSection>
-
-            {/* 6. INDUSTRIES */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#0B1121] via-[#101E35] to-[#050C1F] relative overflow-hidden">
-                {/* Decorative background elements */}
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay"></div>
-                <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand-accent/10 rounded-full blur-[150px] mix-blend-screen pointer-events-none" />
-
-                <div className="mx-auto max-w-7xl relative z-10">
-                    <ScrollReveal>
-                        <div className="text-center mb-16">
-                            <h2 className="text-sm sm:text-base font-bold tracking-[0.2em] text-cyan-400 uppercase mb-3">Industries</h2>
-                            <h3 className="text-4xl sm:text-5xl font-bold font-serif text-white">Deep Domain Expertise</h3>
-                        </div>
-                    </ScrollReveal>
-                    <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                        {industries.map((ind) => (
-                            <AnimatedItem key={ind.name}>
-                                <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-cyan-400/50 transition-all duration-300 group hover:shadow-[0_0_30px_rgba(34,211,238,0.15)] hover:-translate-y-1 h-full flex flex-col backdrop-blur-md">
-                                    <div className="relative h-48 w-full overflow-hidden">
-                                        <div className="absolute inset-0 bg-slate-900/30 z-10 group-hover:bg-transparent transition-colors duration-300" />
-                                        <Image
-                                            src={ind.image}
-                                            alt={ind.name}
-                                            fill
-                                            className="object-cover transform group-hover:scale-110 transition-transform duration-700 saturate-100 group-hover:saturate-120"
-                                        />
-                                    </div>
-                                    <div className="p-6 text-center flex flex-col flex-grow bg-gradient-to-b from-transparent to-[#020617]/80">
-                                        <h4 className="font-bold font-serif text-lg text-white mb-3 group-hover:text-cyan-400 transition-colors leading-tight">{ind.name}</h4>
-                                        <p className="text-sm text-gray-300 leading-relaxed">{ind.description}</p>
-                                    </div>
-                                </div>
-                            </AnimatedItem>
-                        ))}
-                    </StaggerContainer>
-                </div>
-            </section>
-
-            {/* 7. PROCESS */}
-            <section className="py-24 bg-background text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-premium-gradient opacity-90" />
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-                    <ScrollReveal>
-                        <div className="text-center mb-16">
-                            <h2 className="text-sm sm:text-base font-bold tracking-[0.2em] text-brand-accent uppercase mb-3">Our Process</h2>
-                            <h3 className="text-4xl sm:text-5xl font-bold font-serif">How We Work</h3>
-                        </div>
-                    </ScrollReveal>
-
-                    <div className="relative">
-                        <div className="hidden lg:block absolute top-12 left-0 w-full h-px bg-white/10" />
-                        <StaggerContainer className="grid grid-cols-1 lg:grid-cols-5 gap-8 relative z-10">
-                            {processSteps.map((step) => (
-                                <AnimatedItem key={step.num}>
-                                    <div className="text-center group">
-                                        <div className="w-24 h-24 mx-auto bg-brand-dark border border-white/10 rounded-full flex items-center justify-center text-2xl font-bold font-serif mb-6 group-hover:border-brand-accent group-hover:bg-brand-accent/10 transition-all duration-300 relative z-20 shadow-2xl">
-                                            {step.num}
-                                        </div>
-                                        <h4 className="text-xl font-bold font-serif mb-3">{step.title}</h4>
-                                        <p className="text-white/60 text-sm">{step.desc}</p>
-                                    </div>
-                                </AnimatedItem>
-                            ))}
-                        </StaggerContainer>
-                    </div>
-                </div>
-            </section>
-
-            {/* 8. NEWS / INSIGHTS (New Section) */}
-            <NewsSection newsItems={newsItems} />
-
-            {/* 9. TRUST BUILDERS / PARTNERS */}
-            <section className="py-20 bg-background border-t border-border overflow-hidden">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center mb-10">
-                    <p className="text-sm font-bold text-muted-foreground uppercase tracking-[0.2em]">
-                        Trusted By Leading Brands
-                    </p>
-                </div>
-                <div className="relative flex overflow-x-hidden">
-                    <div className="animate-marquee whitespace-nowrap flex gap-16 md:gap-24 items-center opacity-80 hover:opacity-100 transition-opacity">
-                        {partners.map((partner) => (
-                            <div key={`p1-${partner.id}`} className="flex items-center justify-center bg-white h-24 w-48 rounded-[50%] px-6 shadow-lg hover:scale-105 transition-transform">
-                                <div className="relative h-12 w-32">
-                                    <Image src={partner.imageUrl} alt={partner.name} fill className="object-contain" />
-                                </div>
+                                </TiltCard>
                             </div>
-                        ))}
-                        {partners.map((partner) => (
-                            <div key={`p2-${partner.id}`} className="flex items-center justify-center bg-white h-24 w-48 rounded-[50%] px-6 shadow-lg hover:scale-105 transition-transform">
-                                <div className="relative h-12 w-32">
-                                    <Image src={partner.imageUrl} alt={partner.name} fill className="object-contain" />
-                                </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* 5. INDUSTRIES */}
+            <section className="py-32 bg-brand-dark border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif">Industries We Serve</h2>
+                        <p className="text-slate-400 mt-4 max-w-2xl mx-auto">tailored validation frameworks for high-stakes environments.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {industries.map((ind, idx) => (
+                            <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-xl text-center">
+                                <h4 className="text-white font-bold text-lg mb-2">{ind.name}</h4>
+                                <p className="text-sm text-slate-400">{ind.description}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* 10. CALL TO ACTION */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background text-center">
-                <ScrollReveal>
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-4xl sm:text-5xl font-bold font-serif text-brand-dark dark:text-white mb-6">Let’s Build Technology That Works for You</h2>
-                        <p className="text-xl text-muted-foreground mb-10">
-                            Schedule a free consultation to discuss your vision, challenges, and how we can help you scale.
+            {/* 6. FINAL CTA */}
+            <section className="py-32 relative overflow-hidden">
+                <div className="absolute inset-0 bg-brand-accent/10" />
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
+                <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                    <ScrollReveal>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif text-white mb-6 leading-tight">
+                            Ship with confidence, <br /> not crossed fingers.
+                        </h2>
+                        <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+                            Stop worrying about hallucinations and regulatory fines. Let&apos;s build a validation strategy that scales.
                         </p>
-                        <Link href="/contact">
-                            <MagneticButton className="bg-brand-accent text-white px-10 py-5 font-bold text-lg hover:bg-brand-accent/80 transition-colors shadow-2xl hover:shadow-brand-accent/40 border border-brand-accent/20">
-                                Schedule a Free Call
-                            </MagneticButton>
-                        </Link>
-                    </div>
-                </ScrollReveal>
+                        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                            <Link href="/contact">
+                                <MagneticButton className="bg-brand-accent text-white px-10 py-5 font-bold text-lg rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_40px_rgba(14,165,233,0.6)]">
+                                    Talk to an AI Quality Expert
+                                </MagneticButton>
+                            </Link>
+                            <Link href="/contact">
+                                <MagneticButton className="border border-white/10 text-white px-10 py-5 font-semibold text-lg hover:bg-white/5 transition-all rounded-full">
+                                    Request AI Risk Assessment
+                                </MagneticButton>
+                            </Link>
+                        </div>
+                        <p className="mt-8 text-slate-500 text-sm">
+                            No sales pressure. Just a conversation about your AI quality challenges.
+                        </p>
+                    </ScrollReveal>
+                </div>
             </section>
 
-            <TechStack />
         </div>
     );
 }

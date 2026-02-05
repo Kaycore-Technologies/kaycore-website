@@ -13,14 +13,20 @@ const config: Config = {
         serif: ['var(--font-playfair)', 'serif'],
       },
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
+        primary: {
+          DEFAULT: '#0F172A', // Slate 900
+          foreground: '#F8FAFC', // Slate 50
+        },
+        secondary: {
+          DEFAULT: '#64748B', // Slate 500
+          foreground: '#F1F5F9', // Slate 100
+        },
         brand: {
-          dark: '#020617', // Slate 950 - Deep Navy
-          light: '#f8fafc', // Slate 50
-          accent: '#3b82f6', // Blue 500
-          purple: '#8b5cf6', // Violet 500
-          glow: '#6ee2f5', // Cyan 300
+          dark: '#020617', // Slate 950 - Deepest Navy
+          light: '#F8FAFC', // Slate 50 - Crisp White
+          accent: '#0EA5E9', // Sky 500 - Trustworthy Blue (calmer than Blue 500)
+          muted: '#94A3B8', // Slate 400
+          border: '#1E293B', // Slate 800
         },
       },
       backgroundImage: {

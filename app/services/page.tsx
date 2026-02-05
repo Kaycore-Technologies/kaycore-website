@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getAllServices } from '@/lib/sanity/queries';
 import ServicesContent from './ServicesContent';
 
@@ -32,7 +33,7 @@ const mockServices: Service[] = [
     id: 3,
     title: 'Cloud & DevOps',
     emoji: '☁️',
-    description: 'Seamless cloud migration, CI/CD pipeline automation, and scalable infrastructure architecture.',
+    description: 'Zero-downtime cloud migration, CI/CD pipeline automation, and scalable infrastructure architecture.',
     features: ['Cloud Migration', 'CI/CD Automation', 'Scalable Architecture', 'Infrastructure as Code'],
     slug: 'cloud-devops',
   },
@@ -54,13 +55,9 @@ const mockServices: Service[] = [
   },
 ];
 
-export const metadata = {
-  title: 'Services | Kaycore Technologies',
-  description: 'Enterprise-grade services for cloud, data, AI, and software development.',
-  openGraph: {
-    title: 'Services | Kaycore Technologies',
-    description: 'Enterprise-grade services for cloud, data, AI, and software development.',
-  },
+export const metadata: Metadata = {
+  title: 'AI Testing & AI Quality Engineering Services | Kaycore',
+  description: 'Explore Kaycore’s AI Quality Engineering services including AI risk audits, LLM testing, AI QA automation, and ongoing AI quality retainers.',
 };
 
 export default async function Services() {

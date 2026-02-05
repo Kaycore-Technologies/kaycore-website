@@ -19,12 +19,20 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kaycore Technologies - Core Tech Clear Vision',
+    default: 'Kaycore Technologies | AI Quality Engineering & Validation',
     template: '%s | Kaycore Technologies',
   },
   description:
-    'Innovative technology solutions for modern businesses. Services in web development, cloud infrastructure, and digital transformation.',
-  keywords: ['Technology Consulting', 'Web Development', 'Cloud Infrastructure', 'Digital Transformation', 'AI Solutions', 'Kaycore'],
+    'The enterprise standard for AI Quality Engineering. We validate, secure, and optimize AI systems for reliability, compliance, and business impact.',
+  keywords: [
+    'AI Quality Engineering',
+    'AI Validation',
+    'LLM Testing',
+    'AI Governance',
+    'Machine Learning Security',
+    'Kaycore',
+    'Enterprise AI',
+  ],
   authors: [{ name: 'Kaycore Technologies' }],
   creator: 'Kaycore Technologies',
   metadataBase: new URL('https://www.kaycore.tech'),
@@ -32,22 +40,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaycore.tech',
-    title: 'Kaycore Technologies - Core Tech Clear Vision',
-    description: 'Innovative technology solutions for modern businesses.',
+    title: 'Kaycore Technologies | AI Quality Engineering & Validation',
+    description: 'The enterprise standard for AI Quality Engineering. Ensuring your AI systems are safe, reliable, and compliant.',
     siteName: 'Kaycore Technologies',
     images: [
       {
-        url: '/assets/og-image.jpg', // Ensure this image exists
+        url: '/assets/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kaycore Technologies',
+        alt: 'Kaycore Technologies - AI Quality Engineering',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaycore Technologies',
-    description: 'Innovative technology solutions for modern businesses.',
+    title: 'Kaycore Technologies | AI Quality Engineering',
+    description: 'We validate and secure AI systems for enterprise reliability.',
     images: ['/assets/og-image.jpg'],
     creator: '@kaycoretech',
   },

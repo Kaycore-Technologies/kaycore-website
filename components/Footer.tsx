@@ -4,29 +4,16 @@ import { Twitter, Linkedin, Github, Instagram, MapPin } from 'lucide-react';
 /**
  * Footer component with 4-column layout (IT Style)
  */
+import { services, industries } from '@/components/company-data';
+
+/**
+ * Footer component with 4-column layout (IT Style)
+ */
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const services = [
-    'Cloud & Infrastructure',
-    'AI & Cognitive Tech',
-    'Data & Intelligence',
-    'Product Engineering',
-    'Quality Engineering',
-    'Enterprise Modernization'
-  ];
-
-  const industries = [
-    'Healthcare',
-    'FinTech',
-    'Retail & E-commerce',
-    'Marketing & Sales',
-    'Manufacturing',
-    'Education'
-  ];
-
   return (
-    <footer className="bg-[#020617] text-white mt-20 border-t border-white/10 font-light">
+    <footer className="bg-brand-dark text-slate-300 mt-20 border-t border-brand-border font-light">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
 
         {/* 4-Column Layout */}
@@ -35,16 +22,16 @@ export function Footer() {
           {/* Column 1: Services */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-6 border-b border-brand-accent/30 hover:border-brand-accent inline-block pb-2 transition-colors">
-              Services
+              Capabilities
             </h4>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.id}>
                   <Link
                     href="/services"
-                    className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block"
+                    className="text-slate-400 hover:text-brand-accent hover:translate-x-1 transition-all duration-300 text-sm block"
                   >
-                    {service}
+                    {service.title}
                   </Link>
                 </li>
               ))}
@@ -54,16 +41,16 @@ export function Footer() {
           {/* Column 2: Industries */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-6 border-b border-brand-accent/30 hover:border-brand-accent inline-block pb-2 transition-colors">
-              Industries
+              Sectors
             </h4>
             <ul className="space-y-3">
               {industries.map((industry) => (
-                <li key={industry}>
+                <li key={industry.name}>
                   <Link
-                    href="/services"
-                    className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block"
+                    href="/industries"
+                    className="text-slate-400 hover:text-brand-accent hover:translate-x-1 transition-all duration-300 text-sm block"
                   >
-                    {industry}
+                    {industry.name}
                   </Link>
                 </li>
               ))}
@@ -77,8 +64,6 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li><Link href="/about" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">About Us</Link></li>
-              <li><Link href="/careers" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">Careers</Link></li>
-              <li><Link href="/blog" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">Blog</Link></li>
               <li><Link href="/privacy" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">Privacy Policy</Link></li>
               <li><Link href="/terms" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">Terms of Service</Link></li>
               <li><Link href="/cookies" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-300 text-sm block">Cookie Policy</Link></li>

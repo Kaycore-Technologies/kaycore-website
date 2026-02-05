@@ -8,7 +8,7 @@ import { Navigation } from './Navigation';
  */
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-[#020617]/80 backdrop-blur-md border-b border-white/10 shadow-sm">
+    <header className="sticky top-0 z-50 bg-brand-dark/90 backdrop-blur-xl border-b border-brand-border/50 shadow-sm supports-[backdrop-filter]:bg-brand-dark/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Kaycore Logo */}

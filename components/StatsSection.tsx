@@ -5,31 +5,17 @@ import { useRef, useEffect, useState } from 'react';
 
 import { companyStats } from '@/components/company-data';
 
-const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
-    // Using framer-motion spring for smooth counting
-    const springValue = useSpring(0, {
-        stiffness: 50,
-        damping: 20,
-        duration: 2000
-    });
-
-    // Transform the spring value to a rounded integer string
-    const displayValue = useTransform(springValue, (latest) => Math.round(latest).toString());
-
-    useEffect(() => {
-        if (isInView) {
-            springValue.set(value);
-        }
-    }, [isInView, value, springValue]);
-
+// Text-based stat component (Qualified Claims)
+const StatItem = ({ value, label }: { value: string; label: string }) => {
     return (
-        <span ref={ref} className="font-bold text-5xl md:text-6xl text-brand-accent flex items-baseline justify-center">
-            <motion.span>{displayValue}</motion.span>
-            <span>{suffix}</span>
-        </span>
+        <div className="space-y-2 p-4">
+            <div className="font-bold text-3xl md:text-4xl text-brand-accent flex items-center justify-center min-h-[3rem]">
+                {value}
+            </div>
+            <p className="text-white/60 font-medium tracking-wide uppercase text-xs md:text-sm max-w-[200px] mx-auto leading-relaxed">
+                {label}
+            </p>
+        </div>
     );
 };
 
@@ -45,14 +31,8 @@ export default function StatsSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: idx * 0.1 }}
                             viewport={{ once: true }}
-                            className="space-y-2 p-4"
                         >
-                            <div className="flex justify-center items-baseline">
-                                <Counter value={stat.value} suffix={stat.suffix} />
-                            </div>
-                            <p className="text-white/60 font-medium tracking-wide uppercase text-sm">
-                                {stat.label}
-                            </p>
+                            <StatItem value={stat.value as string} label={stat.label} />
                         </motion.div>
                     ))}
                 </div>

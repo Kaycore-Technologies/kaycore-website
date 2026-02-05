@@ -4,15 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 
-
 const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'AI Quality Engineering', href: '/ai-quality-engineering' },
   { label: 'Services', href: '/services' },
-  { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Labs', href: '/demos' },
+  { label: 'Industries', href: '/industries' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 

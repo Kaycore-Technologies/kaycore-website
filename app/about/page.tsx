@@ -1,12 +1,9 @@
+import type { Metadata } from 'next';
 import AboutContent from './AboutContent';
 
-export const metadata = {
-  title: 'About Us | Kaycore Technologies',
-  description: 'Learn about our mission, vision, and the expert team driving digital transformation at Kaycore Technologies.',
-  openGraph: {
-    title: 'About Us | Kaycore Technologies',
-    description: 'Learn about our mission, vision, and the expert team driving digital transformation at Kaycore Technologies.',
-  },
+export const metadata: Metadata = {
+  title: 'About Kaycore | AI Quality Engineering Specialists',
+  description: 'Kaycore is a founder-led AI Quality Engineering firm helping companies test, validate, and trust AI systems where failure is expensive.',
 };
 
 export default function About() {

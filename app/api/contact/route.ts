@@ -92,11 +92,12 @@ export async function POST(request: NextRequest) {
       });
 
       console.log('Email sent successfully');
-    } catch (emailError) {
+    } catch (emailError: any) {
       console.error('Failed to send email:', emailError);
-      // We don't fail the response here to allow the user to feel efficient, 
-      // but you should monitor logs. Or uncomment the next line to error out.
-      // throw emailError; 
+      return NextResponse.json(
+        { error: `Email delivery failed: ${emailError.message}` },
+        { status: 500 }
+      );
     }
 
     // Return success response

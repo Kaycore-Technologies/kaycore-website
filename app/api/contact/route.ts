@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 interface ContactFormData {
   name: string;
   email: string;
-  subject: string;
+  company?: string;
+  useCase: string;
+  situation?: string;
+  timeline: string;
   message: string;
 }
 
@@ -12,7 +15,7 @@ export async function POST(request: NextRequest) {
     const body: ContactFormData = await request.json();
 
     // Validate required fields
-    if (!body.name || !body.email || !body.subject || !body.message) {
+    if (!body.name || !body.email || !body.useCase || !body.timeline || !body.message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -32,9 +35,9 @@ export async function POST(request: NextRequest) {
     console.log('=== NEW CONTACT FORM SUBMISSION ===');
     console.log(`Name: ${body.name}`);
     console.log(`Email: ${body.email}`);
+    console.log(`UseCase: ${body.useCase}`);
 
     // Configure Email Transporter (Microsoft 365 / Outlook)
-    // Note: User must verify 'nodemailer' is installed.
     const nodemailer = require('nodemailer');
 
     const transporter = nodemailer.createTransport({
@@ -42,8 +45,8 @@ export async function POST(request: NextRequest) {
       port: 587,
       secure: false, // TLS
       auth: {
-        user: process.env.EMAIL_USER, // Your Microsoft 365 Email
-        pass: process.env.EMAIL_PASS, // Your Microsoft 365 Password or App Password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
       tls: {
         ciphers: 'SSLv3'
@@ -54,15 +57,18 @@ export async function POST(request: NextRequest) {
       // Send notification to Admin (You)
       await transporter.sendMail({
         from: `"Kaycore Website" <${process.env.EMAIL_USER}>`,
-        to: "admin@kaycore.com", // Destination email
+        to: "admin@kaycore.com",
         replyTo: body.email,
-        subject: `[New Lead] ${body.subject} - from ${body.name}`,
+        subject: `[New Lead] ${body.useCase} - from ${body.name}`,
         text: `
           New Contact Form Submission
           
           Name: ${body.name}
           Email: ${body.email}
-          Subject: ${body.subject}
+          Company: ${body.company || 'Not specified'}
+          Use Case: ${body.useCase}
+          Situation: ${body.situation || 'Not specified'}
+          Timeline: ${body.timeline}
           
           Message:
           ${body.message}
@@ -74,7 +80,11 @@ export async function POST(request: NextRequest) {
           <h3>New Contact Form Submission</h3>
           <p><strong>Name:</strong> ${body.name}</p>
           <p><strong>Email:</strong> ${body.email}</p>
-          <p><strong>Subject:</strong> ${body.subject}</p>
+          <p><strong>Company:</strong> ${body.company || 'Not specified'}</p>
+          <hr/>
+          <p><strong>Use Case:</strong> ${body.useCase}</p>
+          <p><strong>Situation:</strong> ${body.situation || 'Not specified'}</p>
+          <p><strong>Timeline:</strong> ${body.timeline}</p>
           <br/>
           <p><strong>Message:</strong></p>
           <p style="background: #f4f4f4; padding: 15px; border-left: 4px solid #007bff;">${body.message.replace(/\n/g, '<br>')}</p>

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 interface ContactFormData {
   name: string;
@@ -9,6 +10,8 @@ interface ContactFormData {
   timeline: string;
   message: string;
 }
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -31,57 +34,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log the form data (server-side confirmation)
-    console.log('=== NEW CONTACT FORM SUBMISSION ===');
-    console.log(`Name: ${body.name}`);
-    console.log(`Email: ${body.email}`);
-    console.log(`UseCase: ${body.useCase}`);
-
-    // Configure Email Transporter (Microsoft 365 / Outlook)
-    const nodemailer = require('nodemailer');
-
-    let transporter;
-    let isTestMode = false;
-
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      transporter = nodemailer.createTransport({
-        host: 'smtp.office365.com',
-        port: 587,
-        secure: false, // TLS
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-        tls: {
-          ciphers: 'SSLv3'
-        }
-      });
-    } else if (process.env.NODE_ENV === 'development') {
-      console.log('Using Ethereal Email for local testing');
-      const testAccount = await nodemailer.createTestAccount();
-      transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
-      isTestMode = true;
-    } else {
-      console.error('Server Error: Missing email configuration (EMAIL_USER or EMAIL_PASS)');
+    if (!process.env.RESEND_API_KEY) {
+      console.error('Server Error: Missing RESEND_API_KEY');
       return NextResponse.json(
-        { error: 'Server configuration error: Email credentials not set.' },
+        { error: 'Server configuration error: Email service not configured.' },
         { status: 500 }
       );
     }
 
     try {
-      // Send notification to Admin (You)
-      const info = await transporter.sendMail({
-        from: `"Kaycore Website" <${process.env.EMAIL_USER || 'test@ethereal.email'}>`,
-        to: "admin@kaycore.com",
+      // Send notification to Admin via Resend
+      const { data, error } = await resend.emails.send({
+        from: 'Kaycore Website <admin@kaycore.com>',
+        to: ['admin@kaycore.com'],
         replyTo: body.email,
         subject: `[New Lead] ${body.useCase} - from ${body.name}`,
         text: `
@@ -101,26 +66,55 @@ export async function POST(request: NextRequest) {
           Sent from kaycore.com contact form
         `,
         html: `
-          <h3>New Contact Form Submission</h3>
-          <p><strong>Name:</strong> ${body.name}</p>
-          <p><strong>Email:</strong> ${body.email}</p>
-          <p><strong>Company:</strong> ${body.company || 'Not specified'}</p>
-          <hr/>
-          <p><strong>Use Case:</strong> ${body.useCase}</p>
-          <p><strong>Situation:</strong> ${body.situation || 'Not specified'}</p>
-          <p><strong>Timeline:</strong> ${body.timeline}</p>
-          <br/>
-          <p><strong>Message:</strong></p>
-          <p style="background: #f4f4f4; padding: 15px; border-left: 4px solid #007bff;">${body.message.replace(/\n/g, '<br>')}</p>
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+            <h2 style="color: #030712; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">📫 New Contact Form Submission</h2>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb; width: 140px;"><strong>Name:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">${body.name}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><strong>Email:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><a href="mailto:${body.email}" style="color: #2563eb; text-decoration: none;">${body.email}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><strong>Company:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">${body.company || '<span style="color: #9ca3af; font-style: italic;">Not specified</span>'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><strong>Use Case:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><span style="background-color: #e0e7ff; color: #3730a3; padding: 4px 10px; border-radius: 9999px; font-size: 13px; font-weight: 500;">${body.useCase}</span></td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><strong>Timeline:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">${body.timeline}</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;"><strong>Situation:</strong></td>
+                <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">${body.situation || '<span style="color: #9ca3af; font-style: italic;">Not specified</span>'}</td>
+              </tr>
+            </table>
+
+            <div style="margin-top: 30px;">
+              <strong style="display: block; margin-bottom: 10px; color: #4b5563;">Message Details:</strong>
+              <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #1e293b;">${body.message}</div>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 12px; color: #9ca3af; text-align: center; border-top: 1px solid #e5e7eb; padding-top: 20px;">
+              This email was automatically generated by the Kaycore Technologies website.
+            </p>
+          </div>
         `,
       });
 
-      console.log('Email sent successfully');
-      if (isTestMode) {
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      if (error) {
+        throw new Error(error.message);
       }
+
+      console.log('Email sent successfully via Resend:', data);
     } catch (emailError: any) {
-      console.error('Failed to send email:', emailError);
+      console.error('Failed to send email via Resend:', emailError);
       return NextResponse.json(
         { error: `Email delivery failed: ${emailError.message}` },
         { status: 500 }
@@ -138,7 +132,6 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Error processing contact form:', error);
-
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

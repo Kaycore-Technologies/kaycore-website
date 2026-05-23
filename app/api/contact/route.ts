@@ -40,23 +40,47 @@ export async function POST(request: NextRequest) {
     // Configure Email Transporter (Microsoft 365 / Outlook)
     const nodemailer = require('nodemailer');
 
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
-      port: 587,
-      secure: false, // TLS
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        ciphers: 'SSLv3'
-      }
-    });
+    let transporter;
+    let isTestMode = false;
+
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      transporter = nodemailer.createTransport({
+        host: 'smtp.office365.com',
+        port: 587,
+        secure: false, // TLS
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+        tls: {
+          ciphers: 'SSLv3'
+        }
+      });
+    } else if (process.env.NODE_ENV === 'development') {
+      console.log('Using Ethereal Email for local testing');
+      const testAccount = await nodemailer.createTestAccount();
+      transporter = nodemailer.createTransport({
+        host: 'smtp.ethereal.email',
+        port: 587,
+        secure: false,
+        auth: {
+          user: testAccount.user,
+          pass: testAccount.pass,
+        },
+      });
+      isTestMode = true;
+    } else {
+      console.error('Server Error: Missing email configuration (EMAIL_USER or EMAIL_PASS)');
+      return NextResponse.json(
+        { error: 'Server configuration error: Email credentials not set.' },
+        { status: 500 }
+      );
+    }
 
     try {
       // Send notification to Admin (You)
-      await transporter.sendMail({
-        from: `"Kaycore Website" <${process.env.EMAIL_USER}>`,
+      const info = await transporter.sendMail({
+        from: `"Kaycore Website" <${process.env.EMAIL_USER || 'test@ethereal.email'}>`,
         to: "admin@kaycore.com",
         replyTo: body.email,
         subject: `[New Lead] ${body.useCase} - from ${body.name}`,
@@ -92,6 +116,9 @@ export async function POST(request: NextRequest) {
       });
 
       console.log('Email sent successfully');
+      if (isTestMode) {
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      }
     } catch (emailError: any) {
       console.error('Failed to send email:', emailError);
       return NextResponse.json(

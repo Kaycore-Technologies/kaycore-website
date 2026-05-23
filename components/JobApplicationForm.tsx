@@ -36,13 +36,37 @@ export default function JobApplicationForm({ defaultPosition = '', positions }: 
         }
     };
 
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setStatus('submitting');
+        if (!formData.name || !formData.email || !formData.position || !formData.resume) {
+            setErrorMessage('Please fill in all required fields and upload your resume.');
+            return;
+        }
 
-        // Simulate API call
-        setTimeout(() => {
-            console.log('Application submitted:', formData);
+        setStatus('submitting');
+        setErrorMessage(null);
+
+        const data = new FormData();
+        data.append('name', formData.name);
+        data.append('email', formData.email);
+        data.append('position', formData.position);
+        data.append('coverLetter', formData.coverLetter);
+        data.append('resume', formData.resume);
+
+        try {
+            const response = await fetch('/api/apply', {
+                method: 'POST',
+                body: data,
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Something went wrong');
+            }
+
             setStatus('success');
             // Reset form
             setFormData({
@@ -53,7 +77,11 @@ export default function JobApplicationForm({ defaultPosition = '', positions }: 
                 resume: null
             });
             setFileName('');
-        }, 1500);
+        } catch (err: any) {
+            console.error('Job application submission error:', err);
+            setErrorMessage(err.message || 'Failed to submit application. Please try again.');
+            setStatus('error');
+        }
     };
 
     if (status === 'success') {
@@ -165,6 +193,13 @@ export default function JobApplicationForm({ defaultPosition = '', positions }: 
                     placeholder="Tell us why you'd be a great fit..."
                 />
             </div>
+
+            {errorMessage && (
+                <div className="flex items-center gap-2 text-red-500 text-xs justify-center font-medium bg-red-500/10 border border-red-500/20 py-2.5 px-4 rounded-xl">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                </div>
+            )}
 
             <button
                 type="submit"

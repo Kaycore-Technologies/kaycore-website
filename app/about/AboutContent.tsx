@@ -1,227 +1,272 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {
-    ScrollReveal,
-    StaggerContainer,
-    AnimatedItem,
-} from '@/components/animations';
-import { MagneticButton, ParallaxSection } from '@/components/ui';
-import {
-    ArrowRight,
-    Target,
-    Users,
-    ShieldCheck,
-    Zap,
-    Award,
-    Briefcase
-} from 'lucide-react';
+import { SectionHeader, GlassCard, GlowButton } from '@/components/ui';
+import { LeadFormCTA } from '@/components/LeadFormCTA';
+import { ShieldCheck, Target, Users, Zap, CheckCircle2 } from 'lucide-react';
+import Image from 'next/image';
+
+const values = [
+  {
+    icon: ShieldCheck,
+    title: 'Uncompromising Quality',
+    description: 'We treat 95% accuracy as a starting point, not a goal. Reliability is our ultimate metric.'
+  },
+  {
+    icon: Zap,
+    title: 'AI-First Mindset',
+    description: 'We leverage AI not just to test software, but to rethink how engineering teams ship products.'
+  },
+  {
+    icon: Users,
+    title: 'Senior Talent Only',
+    description: 'No junior hand-offs. You work directly with battle-tested quality engineering architects.'
+  },
+  {
+    icon: Target,
+    title: 'Commercial Focus',
+    description: 'We align our QA strategy with your business goals, ensuring every test drives revenue predictability.'
+  }
+];
 
 export default function AboutContent() {
-    return (
-        <div className="bg-brand-dark text-slate-50 font-sans selection:bg-brand-accent selection:text-white">
+  return (
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white">
+      <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
+      <div className="orb orb-purple w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none" />
 
-            {/* 1. HERO SECTION */}
-            <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] flex items-center">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-accent/10 blur-[120px] rounded-full" />
-                    <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/10 blur-[120px] rounded-full" />
-                </div>
-
-                <div className="max-w-5xl mx-auto w-full relative z-10 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-white mb-8 leading-tight">
-                            Built for the <span className="text-brand-accent">High Stakes</span>.
-                        </h1>
-                        <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed font-light mb-10 max-w-3xl mx-auto">
-                            Kaycore was founded on a simple premise: <span className="text-white font-medium">AI is too dangerous to be built by generalists.</span> We are a specialized engineering firm, not a staffing agency.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* 2. WHY WE EXIST (THE GAP) */}
-            <section className="py-32 bg-[#0B1121] border-y border-white/5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            <div>
-                                <h2 className="text-sm font-bold tracking-[0.2em] text-purple-400 uppercase mb-4">The Gap</h2>
-                                <h3 className="text-3xl sm:text-4xl font-bold font-serif text-white mb-6">
-                                    Why We Exist
-                                </h3>
-                                <div className="space-y-6 text-slate-400 text-lg leading-relaxed">
-                                    <p>
-                                        The market is flooded with agencies treating LLMs like simple APIs. That works for toy apps, but not for critical systems managing financial data or patient health.
-                                    </p>
-                                    <p>
-                                        We exist to close the <strong>Confidence Gap</strong>. We bring the rigor of aerospace engineering to the chaos of generative AI.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-brand-accent/20 blur-[100px] rounded-full" />
-                                <div className="relative z-10 bg-white/5 border border-white/10 p-8 rounded-2xl">
-                                    <h4 className="text-white font-bold text-xl mb-6">The Kaycore Standard</h4>
-                                    <ul className="space-y-4">
-                                        {[
-                                            'We do not maximize hours; we maximize reliability.',
-                                            'We do not "staff" projects; we lead them.',
-                                            'We treat "95% accuracy" as a failure.',
-                                            'We build systems we would trust with our own money.'
-                                        ].map((item, i) => (
-                                            <li key={i} className="flex gap-4 items-start text-slate-300">
-                                                <ShieldCheck className="w-5 h-5 text-green-400 shrink-0 mt-1" />
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* 3. OUR STANCE (NOT A BODY SHOP) */}
-            <section className="py-32 px-4 sm:px-6 lg:px-8 bg-brand-dark">
-                <div className="max-w-4xl mx-auto text-center">
-                    <ScrollReveal>
-                        <div className="inline-block p-4 rounded-full bg-red-500/10 border border-red-500/20 mb-8">
-                            <Users className="w-6 h-6 text-red-500" />
-                        </div>
-                        <h2 className="text-3xl sm:text-5xl font-bold font-serif text-white mb-8">
-                            We Are Not A "Body Shop"
-                        </h2>
-                        <p className="text-xl text-slate-300 leading-relaxed mb-12">
-                            If you are looking for "5 React devs at $XX/hour" to augment your staff, <span className="text-white font-bold">we are not the right fit</span>.
-                        </p>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                            <div className="bg-white/5 p-8 rounded-2xl border border-white/10 opacity-50">
-                                <h4 className="font-bold text-slate-500 mb-2 uppercase tracking-wide">Staff Augmentation</h4>
-                                <ul className="space-y-3 text-slate-600">
-                                    <li>• Selling hours, not outcomes</li>
-                                    <li>• "I did what the ticket said"</li>
-                                    <li>• No skin in the game</li>
-                                    <li>• High turnover, low context</li>
-                                </ul>
-                            </div>
-                            <div className="bg-brand-accent/10 p-8 rounded-2xl border border-brand-accent/30">
-                                <h4 className="font-bold text-brand-accent mb-2 uppercase tracking-wide">Kaycore Partnership</h4>
-                                <ul className="space-y-3 text-white">
-                                    <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-brand-accent mt-1" /> Owning the risk outcome</li>
-                                    <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-brand-accent mt-1" /> "This ticket is unsafe, here's why"</li>
-                                    <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-brand-accent mt-1" /> Reputation tied to success</li>
-                                    <li className="flex gap-2"><CheckCircle className="w-4 h-4 text-brand-accent mt-1" /> Deep, persistent domain knowledge</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* 4. FOUNDER LED */}
-            <section className="py-32 bg-white/5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                            {/* Founder Image */}
-                            <div className="lg:col-span-5 relative h-[500px] rounded-2xl overflow-hidden bg-slate-800">
-                                <Image
-                                    src="/assets/images/about/founder-kulish.jpg"
-                                    alt="Kulish Kulshrestha - Founder & Lead Architect"
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                <div className="absolute bottom-8 left-8">
-                                    <h4 className="text-white font-bold text-xl mb-1">Kulish Kulshrestha</h4>
-                                    <p className="text-slate-400">Founder & Lead Architect</p>
-                                </div>
-                            </div>
-                            <div className="lg:col-span-7">
-                                <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Leadership</h2>
-                                <h3 className="text-3xl sm:text-4xl font-bold font-serif text-white mb-6">
-                                    Founder-Led Accountability
-                                </h3>
-
-                                {/* Credibility Strip */}
-                                <ul className="space-y-2 text-slate-300 mb-6">
-                                    <li>10+ years building and validating production-grade systems</li>
-                                    <li>Specialized in AI reliability, risk analysis, and failure modes</li>
-                                    <li>Directly accountable for system risk, reliability, and production readiness</li>
-                                </ul>
-
-                                <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                                    At Kaycore, you are not handed off to a junior account manager. Our leadership is technically active and deeply involved in architectural decisions.
-                                </p>
-                                <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                                    When we say "we will fix it", it is not a ticket in a backlog. It is direct accountability from the engineers who design and validate the system.
-                                </p>
-
-                                {/* Quote */}
-                                <p className="text-slate-400 italic border-l-2 border-brand-accent/50 pl-4 mb-8">
-                                    "I don't ask whether an AI works. I ask how it fails—and whether we detect it in time."
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-8 pt-6 border-t border-white/10">
-                                    <div>
-                                        <div className="text-2xl font-bold text-white mb-1">100+</div>
-                                        <div className="text-sm text-slate-500">Model Evaluations & Validations</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-white mb-1">Clean Record</div>
-                                        <div className="text-sm text-slate-500">No Reported Regulatory Actions</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* 5. CTA */}
-            <section className="py-32 text-center">
-                <div className="max-w-3xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-white mb-6">Ready for a Real Partner?</h2>
-                    <p className="text-slate-400 mb-8">
-                        Let's build something that survives the real world.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                        <Link href="/contact">
-                            <MagneticButton className="bg-white text-[#020617] font-bold px-10 py-5 rounded-full hover:shadow-lg transition-all">
-                                Talk to an AI Quality Expert
-                            </MagneticButton>
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
+      {/* Hero — center-aligned, matching Home/Services/Industries pattern */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="relative z-10 text-center space-y-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
+          >
+            <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">About Kaycore</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold mb-8 leading-tight tracking-tight">
+              Built for the <span className="text-gradient">High Stakes.</span>
+            </h1>
+            <p className="text-xl text-gray-300 font-light leading-relaxed max-w-3xl">
+              Kaycore was founded on a simple premise: AI is too dangerous to be built by generalists. We exist to close the Confidence Gap. We bring the rigor of aerospace engineering to the chaos of generative AI.
+            </p>
+          </motion.div>
         </div>
-    );
-}
+      </section>
 
-function CheckCircle({ className }: { className?: string }) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-            <path d="m9 11 3 3L22 4" />
-        </svg>
-    )
+      <div className="section-divider" />
+
+      {/* We Are Not A Body Shop */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="py-24 lg:py-32 relative z-10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">The Kaycore Difference</h2>
+            <h3 className="text-4xl md:text-5xl font-display font-bold text-white">We Are Not A Body Shop</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Negative Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="p-8 lg:p-10 rounded-3xl border border-red-500/20 bg-red-950/10 h-full relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
+                <h4 className="text-2xl font-bold text-red-200 mb-6 flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">×</span>
+                  Staff Augmentation
+                </h4>
+                <ul className="space-y-4 text-gray-400 text-lg">
+                  <li className="flex gap-4 items-start">
+                    <span className="text-red-500/50 mt-1">•</span>
+                    <span>Selling hours, not outcomes.</span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-red-500/50 mt-1">•</span>
+                    <span>&quot;I did what the ticket said.&quot;</span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-red-500/50 mt-1">•</span>
+                    <span>No skin in the game.</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Positive Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+              <div className="p-8 lg:p-10 rounded-3xl border border-cyan-500/30 bg-cyan-950/20 h-full relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-bl from-cyan-500/10 to-transparent pointer-events-none" />
+                <h4 className="text-2xl font-bold text-cyan-300 mb-6 flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">✓</span>
+                  Kaycore Partnership
+                </h4>
+                <ul className="space-y-4 text-white text-lg">
+                  <li className="flex gap-4 items-start">
+                    <span className="text-cyan-400 mt-1">✦</span>
+                    <span>Owning the risk outcome.</span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-cyan-400 mt-1">✦</span>
+                    <span>Reputation tied to success.</span>
+                  </li>
+                  <li className="flex gap-4 items-start">
+                    <span className="text-cyan-400 mt-1">✦</span>
+                    <span>Deep, persistent domain knowledge.</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Values */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="py-24 lg:py-32 relative z-10 bg-white/[0.02] border-y border-white/5"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Our Values"
+            title="What Drives"
+            highlight="Our Engineering"
+            description="Core principles that guide every test we write and every strategy we build."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {values.map((val, idx) => {
+              const Icon = val.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                >
+                  <GlassCard className="p-8 lg:p-10 h-full flex flex-col sm:flex-row items-start gap-6 hover:border-brand-accent/40 transition-all duration-500 group relative overflow-hidden">
+                    {/* Abstract Hover Glow */}
+                    <div className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-bl from-cyan-400/20 to-purple-500/0 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    
+                    {/* Advanced Icon Container */}
+                    <div className="w-16 h-16 shrink-0 rounded-2xl relative flex items-center justify-center border border-white/10 shadow-[0_0_20px_rgba(14,165,233,0.1)] overflow-hidden group-hover:scale-105 transition-all duration-500">
+                      <div className="absolute inset-0 bg-[#030712] opacity-80" />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/60 to-purple-900/20 mix-blend-screen" />
+                      <div className="absolute inset-[-50%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_270deg,rgba(139,92,246,0.3)_360deg)]" />
+                      <div className="absolute inset-[1px] bg-[#030712] rounded-[15px]" />
+                      <Icon className="w-6 h-6 text-cyan-300 relative z-10 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+                    </div>
+                    
+                    <div className="relative z-10">
+                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{val.title}</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">{val.description}</p>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Leadership */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="py-24 lg:py-32 relative z-10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Leadership</h2>
+            <h3 className="text-4xl md:text-5xl font-display font-bold text-white">
+              Founder-Led Accountability
+            </h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Founder 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
+                    <Image 
+                        src="/images/team/kulish.jpg" 
+                        alt="Kulish Kulshrestha - Founder & Lead Architect"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 500px"
+                        className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+                </div>
+                <h4 className="text-white font-bold text-3xl mb-1">Kulish Kulshrestha</h4>
+                <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Founder & Lead Architect</p>
+                <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                    <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
+                </blockquote>
+                <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                    With over a decade of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
+                </p>
+            </motion.div>
+            
+            {/* Founder 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            >
+                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
+                    <Image 
+                        src="/images/team/ayushi.jpg" 
+                        alt="Dr. Ayushi Shukla - Co-founder, Kaycore Technologies"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 500px"
+                        className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+                </div>
+                <h4 className="text-white font-bold text-3xl mb-1">Dr. Ayushi Shukla</h4>
+                <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Co-founder, Kaycore Technologies</p>
+                <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                    <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
+                </blockquote>
+                <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                    Dr. Shukla brings nearly a decade of frontline clinical experience to Kaycore&apos;s healthcare initiatives. Having served in leading institutions such as Manipal and Kailash Hospitals, she experienced firsthand the administrative burnout and systemic inefficiencies plaguing modern medicine. Her mission is to harness AI to reduce physician cognitive load, eliminate documentation friction, and ultimately return the focus of healthcare back to the patient.
+                </p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA */}
+      <LeadFormCTA 
+        title="Ready for a Real Partner?"
+        description="Let's build something that survives the real world. Talk to our engineers today and let us engineer custom risk protocols for your application."
+      />
+
+    </div>
+  );
 }

@@ -1,12 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  ArrowRight,
-  CheckCircle2,
-  AlertCircle
-} from 'lucide-react';
-import { MagneticButton } from '@/components/ui';
+import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface FormData {
   name: string;
@@ -22,7 +17,7 @@ interface FormErrors {
   name?: string;
   email?: string;
   useCase?: string;
-  situation?: string; // Although optional, good to have type safety
+  situation?: string;
   timeline?: string;
   message?: string;
 }
@@ -43,67 +38,36 @@ export default function ClientContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Email validation regex
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Form validation
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Work Email is required';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-
-    if (!formData.useCase.trim()) {
-      newErrors.useCase = 'Please describe your use case';
-    }
-
-    if (!formData.timeline) {
-      newErrors.timeline = 'Please select a timeline';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
-    }
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Work Email is required';
+    else if (!validateEmail(formData.email)) newErrors.email = 'Please enter a valid email';
+    if (!formData.useCase.trim()) newErrors.useCase = 'Please describe your use case';
+    if (!formData.timeline) newErrors.timeline = 'Please select a timeline';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    else if (formData.message.trim().length < 10) newErrors.message = 'Message must be at least 10 characters long';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    // Clear error for this field when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: undefined,
-      }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -111,25 +75,14 @@ export default function ClientContactForm() {
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         setSubmitStatus('success');
         setSubmitMessage('Request received. We will review your engineering needs and reply within 24 hours.');
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          useCase: '',
-          situation: '',
-          timeline: '',
-          message: '',
-        });
-        // Clear success message after 5 seconds
+        setFormData({ name: '', email: '', company: '', useCase: '', situation: '', timeline: '', message: '' });
         setTimeout(() => setSubmitStatus('idle'), 8000);
       } else {
         setSubmitStatus('error');
@@ -143,29 +96,29 @@ export default function ClientContactForm() {
     }
   };
 
+  const inputClasses = "w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:bg-white/[0.05] transition-all duration-300";
+  const errorClasses = "border-red-500/50 focus:border-red-500/50";
+
   return (
-    <div className="bg-transparent">
-      {/* Status Messages */}
+    <div className="relative z-10">
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg flex gap-3 items-start">
+        <div className="mb-8 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex gap-3 items-start">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
-          <p className="text-emerald-400 font-semibold text-sm">{submitMessage}</p>
+          <p className="text-emerald-400 font-medium">{submitMessage}</p>
         </div>
       )}
 
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-rose-500/10 border border-rose-500/30 rounded-lg flex gap-3 items-start">
-          <AlertCircle className="w-5 h-5 text-rose-400 mt-0.5 shrink-0" />
-          <p className="text-rose-400 font-semibold text-sm">{submitMessage}</p>
+        <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex gap-3 items-start">
+          <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
+          <p className="text-red-400 font-medium">{submitMessage}</p>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Name Field */}
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+            <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
               Full Name *
             </label>
             <input
@@ -175,17 +128,13 @@ export default function ClientContactForm() {
               value={formData.name}
               onChange={handleChange}
               placeholder="Jane Doe"
-              className={`w-full px-4 py-3 rounded-xl border ${errors.name
-                ? 'border-rose-500 focus:border-rose-500'
-                : 'border-white/10 focus:border-brand-accent/50'
-                } bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300`}
+              className={`${inputClasses} ${errors.name ? errorClasses : ''}`}
             />
-            {errors.name && <p className="text-rose-400 text-xs mt-1 ml-1">{errors.name}</p>}
+            {errors.name && <p className="text-red-400 text-xs mt-2 ml-1">{errors.name}</p>}
           </div>
 
-          {/* Email Field */}
           <div>
-            <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+            <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
               Work Email *
             </label>
             <input
@@ -195,18 +144,14 @@ export default function ClientContactForm() {
               value={formData.email}
               onChange={handleChange}
               placeholder="jane@company.com"
-              className={`w-full px-4 py-3 rounded-xl border ${errors.email
-                ? 'border-rose-500 focus:border-rose-500'
-                : 'border-white/10 focus:border-brand-accent/50'
-                } bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300`}
+              className={`${inputClasses} ${errors.email ? errorClasses : ''}`}
             />
-            {errors.email && <p className="text-rose-400 text-xs mt-1 ml-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-400 text-xs mt-2 ml-1">{errors.email}</p>}
           </div>
         </div>
 
-        {/* Company Field */}
         <div>
-          <label htmlFor="company" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+          <label htmlFor="company" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
             Company Name
           </label>
           <input
@@ -216,13 +161,12 @@ export default function ClientContactForm() {
             value={formData.company}
             onChange={handleChange}
             placeholder="Acme Corp"
-            className={`w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300`}
+            className={inputClasses}
           />
         </div>
 
-        {/* Use Case Field */}
         <div>
-          <label htmlFor="useCase" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+          <label htmlFor="useCase" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
             What are you building or validating? *
           </label>
           <input
@@ -232,17 +176,13 @@ export default function ClientContactForm() {
             value={formData.useCase}
             onChange={handleChange}
             placeholder="e.g. Healthcare Chatbot, Financial Risk Model..."
-            className={`w-full px-4 py-3 rounded-xl border ${errors.useCase
-              ? 'border-rose-500 focus:border-rose-500'
-              : 'border-white/10 focus:border-brand-accent/50'
-              } bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300`}
+            className={`${inputClasses} ${errors.useCase ? errorClasses : ''}`}
           />
-          {errors.useCase && <p className="text-rose-400 text-xs mt-1 ml-1">{errors.useCase}</p>}
+          {errors.useCase && <p className="text-red-400 text-xs mt-2 ml-1">{errors.useCase}</p>}
         </div>
 
-        {/* Situation Field */}
         <div>
-          <label htmlFor="situation" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+          <label htmlFor="situation" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
             What describes your situation?
           </label>
           <div className="relative">
@@ -251,29 +191,23 @@ export default function ClientContactForm() {
               name="situation"
               value={formData.situation}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl border ${errors.situation
-                ? 'border-rose-500 focus:border-rose-500'
-                : 'border-white/10 focus:border-brand-accent/50'
-                } bg-white/5 text-white focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300 appearance-none cursor-pointer`}
+              className={`${inputClasses} appearance-none cursor-pointer ${errors.situation ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-slate-900 text-slate-500">Select your status...</option>
-              <option value="pre-production" className="bg-slate-900">Pre-Production / MVP Validation</option>
-              <option value="production" className="bg-slate-900">Preparing for Production Release</option>
-              <option value="incident" className="bg-slate-900">Post-Incident or Near Miss</option>
-              <option value="compliance" className="bg-slate-900">Regulatory or Compliance Readiness Review</option>
-              <option value="monitoring" className="bg-slate-900">Ongoing Monitoring & Risk Management</option>
-              <option value="strengthening" className="bg-slate-900">Replacing or Strengthening Existing QA</option>
-              <option value="unsure" className="bg-slate-900">Not Sure — Need Expert Guidance</option>
+              <option value="" disabled className="bg-[#030712] text-gray-500">Select your status...</option>
+              <option value="preparing-release" className="bg-[#030712]">Preparing for release</option>
+              <option value="regression-automation" className="bg-[#030712]">Regression test automation</option>
+              <option value="llm-validation" className="bg-[#030712]">LLM-generated feature validation</option>
+              <option value="ongoing-support" className="bg-[#030712]">Ongoing QA support</option>
+              <option value="unsure" className="bg-[#030712]">Not sure - need guidance</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
             </div>
           </div>
         </div>
 
-        {/* Timeline Field */}
         <div>
-          <label htmlFor="timeline" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+          <label htmlFor="timeline" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
             Estimated Timeline *
           </label>
           <div className="relative">
@@ -282,26 +216,22 @@ export default function ClientContactForm() {
               name="timeline"
               value={formData.timeline}
               onChange={handleChange}
-              className={`w-full px-4 py-3 rounded-xl border ${errors.timeline
-                ? 'border-rose-500 focus:border-rose-500'
-                : 'border-white/10 focus:border-brand-accent/50'
-                } bg-white/5 text-white focus:outline-none focus:ring-1 focus:ring-brand-accent/50 transition-all duration-300 appearance-none cursor-pointer`}
+              className={`${inputClasses} appearance-none cursor-pointer ${errors.timeline ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-slate-900 text-slate-500">Select a timeline...</option>
-              <option value="immediate" className="bg-slate-900">Immediate (&lt; 4 weeks)</option>
-              <option value="quarter" className="bg-slate-900">This Quarter (1-3 months)</option>
-              <option value="planning" className="bg-slate-900">Exploratory / Budgeting</option>
+              <option value="" disabled className="bg-[#030712] text-gray-500">Select a timeline...</option>
+              <option value="immediate" className="bg-[#030712]">Immediate (&lt; 4 weeks)</option>
+              <option value="quarter" className="bg-[#030712]">This Quarter (1-3 months)</option>
+              <option value="planning" className="bg-[#030712]">Exploratory / Budgeting</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
             </div>
           </div>
-          {errors.timeline && <p className="text-rose-400 text-xs mt-1 ml-1">{errors.timeline}</p>}
+          {errors.timeline && <p className="text-red-400 text-xs mt-2 ml-1">{errors.timeline}</p>}
         </div>
 
-        {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 ml-1">
+          <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
             Additional Context *
           </label>
           <textarea
@@ -311,42 +241,33 @@ export default function ClientContactForm() {
             onChange={handleChange}
             placeholder="Tell us about your specific risk concerns or engineering challenges..."
             rows={4}
-            className={`w-full px-4 py-3 rounded-xl border ${errors.message
-              ? 'border-rose-500 focus:border-rose-500'
-              : 'border-white/10 focus:border-brand-accent/50'
-              } bg-white/5 text-white placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-brand-accent/50 border-brand-accent/50 resize-none transition-all duration-300`}
+            className={`${inputClasses} resize-none ${errors.message ? errorClasses : ''}`}
           />
-          {errors.message && <p className="text-rose-400 text-xs mt-1 ml-1">{errors.message}</p>}
+          {errors.message && <p className="text-red-400 text-xs mt-2 ml-1">{errors.message}</p>}
         </div>
 
-        {/* Submit Button */}
-        <div className="space-y-4">
-          <MagneticButton
+        <div className="pt-4 space-y-4">
+          <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-white text-[#020617] font-bold py-4 px-6 rounded-xl hover:bg-gray-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex justify-center items-center gap-2"
+            className="w-full relative group overflow-hidden px-8 py-4 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed
+                       bg-white text-[#030712] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
           >
-            {isSubmitting ? 'Sending Request...' : (
-              <>
-                Talk to an AI Quality Expert <ArrowRight className="w-4 h-4" />
-              </>
-            )}
-          </MagneticButton>
-
-          <p className="text-xs text-slate-500 text-center uppercase tracking-widest">
-            Owner-led Review • No Sales Agents
-          </p>
-        </div>
-
-        <div className="border-t border-white/5 pt-4">
-          <p className="text-xs text-slate-600 text-center flex items-center justify-center gap-2 mb-2">
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            Typical response: within 24 hours (business days)
-          </p>
-          <p className="text-[10px] text-slate-700 text-center leading-relaxed px-4">
-            Disclaimer: We provide technical validation and compliance readiness support.
-            We do not issue government regulatory approvals or medical certifications.
-          </p>
+            <div className="flex items-center justify-center gap-2">
+               <span>{isSubmitting ? 'Sending Request...' : 'Talk to an AI Quality Expert'}</span>
+               {!isSubmitting && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+            </div>
+          </button>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
+            <p className="text-xs text-gray-500 font-mono tracking-widest uppercase">
+              Owner-led Review • No Sales Agents
+            </p>
+            <p className="text-xs text-gray-500 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Reply within 24h
+            </p>
+          </div>
         </div>
       </form>
     </div>

@@ -233,21 +233,43 @@ npm run format:check
 - ✅ **Utility functions** (cn, delay, getEnv)
 - ✅ **Git repository** initialized
 
-## Next Steps
+## Next Steps & Environment Setup
 
-1. **Start development server:**
+1. **Environment Variables**:
+   To run the project locally, you must provide environment variables for the Sanity CMS integration. Create a `.env.local` file in the root directory:
+   ```env
+   # Sanity CMS Configuration (Required)
+   NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id_here
+   NEXT_PUBLIC_SANITY_DATASET=production
+
+   # Sanity API Token (Optional, required only for write access/previews)
+   # SANITY_API_TOKEN=your_api_token_here
+   ```
+
+2. **Start development server:**
    ```bash
    npm run dev
    ```
    Visit http://localhost:2025
 
-2. **Create new components** in `components/` directory
+3. **Create new components** in `components/` directory
+4. **Add new routes** following App Router conventions in `app/` directory
+5. **Define CMS content models** in `cms/schemas.ts`
 
-3. **Add new routes** following App Router conventions in `app/` directory
+## Deployment Steps (Vercel)
 
-4. **Define CMS content models** in `cms/schemas.ts`
+This project is optimized for deployment on Vercel or any standard Node.js hosting platform.
 
-5. **Add environment variables** in `.env.local`
+1. **Production Build locally**
+   ```bash
+   npm run build
+   ```
+2. **Deploy on Vercel**
+   - Push your code to a Git repository (GitHub, GitLab, etc.).
+   - Import the project into Vercel.
+   - Ensure the Build Command is set to `npm run build` and the Output Directory is `.next`.
+   - Add the required Environment Variables (`NEXT_PUBLIC_SANITY_PROJECT_ID` & `NEXT_PUBLIC_SANITY_DATASET`) in the Vercel project settings.
+   - Deploy.
 
 ## Build Status
 
@@ -255,4 +277,4 @@ npm run format:check
 
 ---
 
-Created: December 11, 2025
+Updated: May 2026

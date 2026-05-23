@@ -1,11 +1,7 @@
-/**
- * Page Sections Barrel Export
- * 
- * Centralized access to all reusable page sections
- * 
- * @example
- * import { HeroSection } from '@/components/sections';
- */
-
 export { HeroSection } from './HeroSection';
-export type { HeroSectionProps } from '@/lib/types';
+export { ServicesPreview } from './ServicesPreview';
+export { AICapabilities } from './AICapabilities';
+export { WhyKaycore } from './WhyKaycore';
+export { ProcessSection } from './ProcessSection';
+export { CTASection } from './CTASection';
+export { IntroVideoSection } from './IntroVideoSection';

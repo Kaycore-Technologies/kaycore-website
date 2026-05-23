@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Inter } from 'next/font/google';
+import { Inter, Outfit, JetBrains_Mono } from 'next/font/google';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { ChatBot } from '@/components/ChatBot';
 import '@/styles/globals.css';
-
 
 const inter = Inter({
   variable: '--font-inter',
@@ -11,27 +11,36 @@ const inter = Inter({
   display: 'swap',
 });
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
+const outfit = Outfit({
+  variable: '--font-outfit',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: '--font-jetbrains',
   subsets: ['latin'],
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kaycore Technologies | AI Quality Engineering & Validation',
+    default: 'Kaycore Technologies | AI-Powered QA & Test Automation',
     template: '%s | Kaycore Technologies',
   },
   description:
-    'The enterprise standard for AI Quality Engineering. We validate, secure, and optimize AI systems for reliability, compliance, and business impact.',
+    'Kaycore Technologies delivers AI-powered QA services, test automation, and dedicated QA teams. Enterprise-grade quality engineering for SaaS, Fintech, Healthcare & AI startups.',
   keywords: [
-    'AI Quality Engineering',
-    'AI Validation',
-    'LLM Testing',
-    'AI Governance',
-    'Machine Learning Security',
-    'Kaycore',
-    'Enterprise AI',
+    'AI QA services',
+    'Test automation company',
+    'AI testing solutions',
+    'Offshore QA team',
+    'Healthcare QA testing',
+    'API automation',
+    'Performance testing',
+    'QA consulting',
+    'Dedicated QA teams',
+    'AI test automation',
   ],
   authors: [{ name: 'Kaycore Technologies' }],
   creator: 'Kaycore Technologies',
@@ -40,22 +49,24 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaycore.tech',
-    title: 'Kaycore Technologies | AI Quality Engineering & Validation',
-    description: 'The enterprise standard for AI Quality Engineering. Ensuring your AI systems are safe, reliable, and compliant.',
+    title: 'Kaycore Technologies | AI-Powered QA & Test Automation',
+    description:
+      'Enterprise-grade AI QA services, test automation, and dedicated QA teams. Ship faster. Break nothing.',
     siteName: 'Kaycore Technologies',
     images: [
       {
         url: '/assets/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kaycore Technologies - AI Quality Engineering',
+        alt: 'Kaycore Technologies - AI-Powered Quality Engineering',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaycore Technologies | AI Quality Engineering',
-    description: 'We validate and secure AI systems for enterprise reliability.',
+    title: 'Kaycore Technologies | AI-Powered QA & Test Automation',
+    description:
+      'AI-powered QA services, test automation, and dedicated QA teams for enterprise software.',
     images: ['/assets/og-image.jpg'],
     creator: '@kaycoretech',
   },
@@ -76,19 +87,18 @@ export default function RootLayout({
     name: 'Kaycore Technologies',
     url: 'https://www.kaycore.tech',
     logo: 'https://www.kaycore.tech/assets/logo.png',
-    description: 'Innovative technology solutions for modern businesses.',
+    description:
+      'AI-powered QA services, test automation, and dedicated QA teams for enterprise software teams.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '250 Vesey Street',
-      addressLocality: 'New York',
-      addressRegion: 'NY',
-      postalCode: '10281',
-      addressCountry: 'US',
+      addressLocality: 'Bengaluru',
+      addressRegion: 'KA',
+      addressCountry: 'IN',
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-555-123-4567',
       contactType: 'customer service',
+      email: 'contact@kaycore.tech',
     },
     sameAs: [
       'https://twitter.com/kaycoretech',
@@ -97,9 +107,9 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-[#020617] text-slate-50 transition-colors font-sans`}
+        className={`${inter.variable} ${outfit.variable} ${jetbrains.variable} antialiased flex flex-col min-h-screen bg-[#030712] text-gray-50 font-sans`}
       >
         <script
           type="application/ld+json"
@@ -110,6 +120,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ChatBot />
       </body>
     </html>
   );

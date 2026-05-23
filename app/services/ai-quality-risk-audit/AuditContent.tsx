@@ -18,7 +18,9 @@ import {
     Clock,
     FileCheck,
     Search,
-    Users
+    Users,
+    XCircle,
+    FileText
 } from 'lucide-react';
 
 export default function AuditContent() {
@@ -26,7 +28,7 @@ export default function AuditContent() {
         <div className="bg-brand-dark text-slate-50 font-sans selection:bg-brand-accent selection:text-white">
 
             {/* 1. HERO SECTION */}
-            <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] flex items-center">
+            <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[70vh] flex items-center">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full" />
                     <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-accent/5 blur-[120px] rounded-full" />
@@ -40,190 +42,156 @@ export default function AuditContent() {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-bold tracking-wider uppercase text-xs mb-8">
                             <Shield className="w-4 h-4" />
-                            Entry-Level Engagement
+                            RISK_ASSESSMENT
                         </div>
                         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-white mb-8 leading-tight">
-                            Is Your AI Ready for the <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-brand-accent">Real World?</span>
+                            Launch with <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-400">Evidence</span>, Not Hope.
                         </h1>
                         <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed font-light mb-10 max-w-2xl mx-auto">
-                            A comprehensive, independent assessment of your AI systems. We identify "silent" failure modes, security gaps, and compliance risks <span className="text-white font-medium">before</span> you deploy.
+                            Fixed-cost. 2 Weeks. Full architectural dissection to catch security gaps and reliability risks before you scale.
                         </p>
-                        <Link href="/contact">
-                            <MagneticButton className="bg-brand-accent text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] transition-all text-lg">
-                                Talk to an AI Quality Expert
-                            </MagneticButton>
-                        </Link>
+                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                            <Link href="/contact">
+                                <MagneticButton className="bg-brand-accent text-white font-bold px-10 py-5 rounded-full hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] transition-all text-lg">
+                                    Request Readiness Review
+                                </MagneticButton>
+                            </Link>
+                            <Link href="/services/ai-qa-automation">
+                                <MagneticButton className="bg-white/5 text-white font-bold px-8 py-5 rounded-full hover:bg-white/10 transition-all border border-white/10">
+                                    Explore Automation
+                                </MagneticButton>
+                            </Link>
+                        </div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* 2. THE PROBLEM (WHEN TO AUDIT) */}
-            <section className="py-32 bg-[#0B1121] border-y border-white/5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            <div>
-                                <h2 className="text-sm font-bold tracking-[0.2em] text-blue-400 uppercase mb-4">Triggers</h2>
-                                <h3 className="text-3xl sm:text-4xl font-bold font-serif text-white mb-6">
-                                    When Should You Run This Audit?
-                                </h3>
-                                <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                                    Most teams call us when they move from "cool demo" to "production deployment." The stakes change when real users (and real money) are involved.
-                                </p>
-                                <ul className="space-y-4">
-                                    {[
-                                        'Pre-Launch Validation (Go/No-Go Decision)',
-                                        'Investor Due Diligence Preparation',
-                                        'EU AI Act / ISO 42001 Compliance Check',
-                                        'After a "Near Miss" or Security Incident'
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex gap-4 items-center text-slate-300">
-                                            <CheckCircle className="w-5 h-5 text-brand-accent shrink-0" />
+            {/* 2. WHO & DELIVERABLES */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0B1121] border-y border-white/5">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    {/* LEFT: Who it's for */}
+                    <div>
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">Who This Is For</h3>
+                        <h2 className="text-3xl font-bold text-white mb-6">CTOs & Founders Pre-Launch</h2>
+                        <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                            You are about to move from prototype to production. You need to know if your system will survive real users and regulatory scrutiny.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                'Preparing for SOC2 or ISO 42001 certification',
+                                'Needs independent verification for investors/board',
+                                'Concerned about prompt injection or data leakage'
+                            ].map((item, i) => (
+                                <li key={i} className="flex gap-4 items-center text-slate-300">
+                                    <CheckCircle className="w-5 h-5 text-blue-400 shrink-0" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* RIGHT: Deliverables */}
+                    <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-blue-400 uppercase mb-6">What We Deliver</h3>
+                        <ul className="space-y-6">
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><FileText className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Risk Severity Report</strong>
+                                    <span className="text-slate-300 text-sm">Detailed breakdown of failure modes (Silent, Safety, Security).</span>
+                                </div>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Shield className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Red-Teaming Logs</strong>
+                                    <span className="text-slate-300 text-sm">Evidence of successful jailbreaks and injection attacks on your current model.</span>
+                                </div>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><CheckCircle className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Remediation Backlog</strong>
+                                    <span className="text-slate-300 text-sm">Prioritized JIRA/Linear tickets to fix critical issues.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. BOUNDARIES (WHAT WE DON'T DO) */}
+            <section className="py-16 px-4 bg-brand-dark border-b border-white/5">
+                <div className="max-w-4xl mx-auto bg-blue-900/10 border border-blue-500/20 p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
+                    <div className="bg-blue-500/20 p-4 rounded-full text-blue-400 shrink-0">
+                        <XCircle className="w-8 h-8" />
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2">What We DO NOT Do</h4>
+                        <p className="text-slate-300">
+                            We do not provide legal advice or issue government certifications (e.g., FDA approval). We provide the <span className="text-white font-bold">technical evidence</span> your legal team needs to sign off.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* 4. PROCESS */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-dark">
+                <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold font-serif text-white mb-6">Fixed 2-Week Sprint</h2>
+                        <div className="flex items-center justify-center gap-2 text-slate-400">
+                            <Clock className="w-4 h-4" />
+                            <span>Duration: 10 Business Days</span>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                        {[
+                            {
+                                step: 'Week 1',
+                                title: 'Attack Phase',
+                                items: ['Architecture Review', 'Initial Red-Teaming', 'Vulnerability Scanning']
+                            },
+                            {
+                                step: 'Week 2',
+                                title: 'Analysis',
+                                items: ['Risk Grading', 'Compliance Mapping', 'Remediation Roadmap']
+                            },
+                            {
+                                step: 'Day 10',
+                                title: 'Handover',
+                                items: ['Executive Briefing', 'Go/No-Go Recommendation', 'Report Delivery']
+                            },
+                        ].map((phase, idx) => (
+                            <div key={idx} className="bg-[#020617] border border-white/10 p-8 rounded-3xl h-full shadow-xl">
+                                <div className="text-xl font-bold text-brand-accent mb-4">{phase.step}</div>
+                                <h4 className="text-xl font-bold text-white mb-4">{phase.title}</h4>
+                                <ul className="space-y-3">
+                                    {phase.items.map((item, i) => (
+                                        <li key={i} className="flex gap-3 text-slate-400 text-sm">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" />
                                             {item}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center text-center">
-                                    <AlertTriangle className="w-10 h-10 text-red-400 mb-4" />
-                                    <h4 className="font-bold text-white mb-2">Silent Failures</h4>
-                                    <p className="text-xs text-slate-400">Models degrading without throwing errors.</p>
-                                </div>
-                                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center text-center translate-y-8">
-                                    <Users className="w-10 h-10 text-brand-accent mb-4" />
-                                    <h4 className="font-bold text-white mb-2">Bias & Fairness</h4>
-                                    <p className="text-xs text-slate-400">Discriminatory outputs affecting specific groups.</p>
-                                </div>
-                                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center text-center">
-                                    <Search className="w-10 h-10 text-purple-400 mb-4" />
-                                    <h4 className="font-bold text-white mb-2">Data Leakage</h4>
-                                    <p className="text-xs text-slate-400">PII or trade secrets appearing in outputs.</p>
-                                </div>
-                                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 flex flex-col items-center text-center translate-y-8">
-                                    <FileCheck className="w-10 h-10 text-green-400 mb-4" />
-                                    <h4 className="font-bold text-white mb-2">Regulatory Gaps</h4>
-                                    <p className="text-xs text-slate-400">Missing documentation for compliance.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* 3. ENGAGEMENT MODEL (2 WEEKS) */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-dark">
-                <div className="max-w-5xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">The Process</h2>
-                        <h3 className="text-3xl sm:text-5xl font-bold font-serif text-white">
-                            2-Week Fixed Engagement
-                        </h3>
-                        <p className="text-slate-400 mt-4">Low friction, high impact. We get in, diagnose, and give you the roadmap.</p>
+                        ))}
                     </div>
-
-                    <div className="relative">
-                        {/* Connecting Line */}
-                        <div className="absolute bg-white/10 h-1 w-full top-12 left-0 hidden md:block" />
-
-                        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                            {[
-                                {
-                                    step: 'Week 1',
-                                    title: 'Discovery & Attack',
-                                    items: ['Architecture Review', 'Initial Red-Teaming', 'Staff Interviews']
-                                },
-                                {
-                                    step: 'Week 2',
-                                    title: 'Analysis & Scoring',
-                                    items: ['Risk Grading', 'Compliance Mapping', 'Report Generation']
-                                },
-                                {
-                                    step: 'Day 14',
-                                    title: 'Executive Briefing',
-                                    items: ['Stakeholder Presentation', 'Go/No-Go Recommendation', 'Remediation Roadmap']
-                                },
-                            ].map((phase, idx) => (
-                                <AnimatedItem key={idx}>
-                                    <div className="bg-[#020617] border border-white/10 p-8 rounded-3xl h-full shadow-xl">
-                                        <div className="w-24 h-24 bg-brand-dark border-4 border-[#020617] rounded-full flex items-center justify-center text-brand-accent font-bold text-xl mb-6 mx-auto md:mx-0 relative z-20 shadow-lg">
-                                            {phase.step}
-                                        </div>
-                                        <h4 className="text-xl font-bold text-white mb-4 text-center md:text-left">{phase.title}</h4>
-                                        <ul className="space-y-3">
-                                            {phase.items.map((item, i) => (
-                                                <li key={i} className="flex gap-3 text-slate-400 text-sm">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" />
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </AnimatedItem>
-                            ))}
-                        </StaggerContainer>
-                    </div>
-                </div>
-            </section>
-
-            {/* 4. DELIVERABLES */}
-            <section className="py-24 bg-white/5">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <h3 className="text-3xl font-bold font-serif text-white mb-12 text-center">What You Get</h3>
-                        <div className="bg-[#0B1121] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                            <div className="grid grid-cols-1 md:grid-cols-2">
-                                <div className="p-10 border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-center">
-                                    <div className="bg-brand-accent/20 w-16 h-16 rounded-2xl flex items-center justify-center text-brand-accent mb-6">
-                                        <FileCheck className="w-8 h-8" />
-                                    </div>
-                                    <h4 className="text-2xl font-bold text-white mb-4">The Audit Report</h4>
-                                    <p className="text-slate-400 mb-6">
-                                        A dense, actionable PDF containing your Risk Severity Matrix, Compliance Gaps, and detailed technical findings from our red-teaming sessions.
-                                    </p>
-                                    <span className="text-xs font-mono text-slate-500 bg-black/30 p-2 rounded">
-                                        FINAL_AUDIT_V1.pdf (45 pages)
-                                    </span>
-                                </div>
-                                <div className="p-10 bg-gradient-to-br from-brand-accent/5 to-transparent flex flex-col justify-center">
-                                    <h4 className="text-lg font-bold text-white mb-6">Key Decision Outputs</h4>
-                                    <ul className="space-y-6">
-                                        <li className="flex gap-4">
-                                            <div className="bg-green-500/20 p-2 rounded text-green-500 h-fit">
-                                                <CheckCircle className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <strong className="text-white block">Go / No-Go Decision</strong>
-                                                <span className="text-sm text-slate-400">Clear recommendation on production readiness.</span>
-                                            </div>
-                                        </li>
-                                        <li className="flex gap-4">
-                                            <div className="bg-blue-500/20 p-2 rounded text-blue-500 h-fit">
-                                                <Clock className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <strong className="text-white block">Remediation Timeline</strong>
-                                                <span className="text-sm text-slate-400">Estimated time to fix critical vulnerabilities.</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
                 </div>
             </section>
 
             {/* 5. CTA */}
             <section className="py-24 text-center">
                 <div className="max-w-3xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-white mb-6">Get Clarity in 2 Weeks</h2>
-                    <p className="text-slate-400 mb-8">
-                        Don't launch with crossed fingers. Launch with data.
+                    <h2 className="text-3xl font-bold text-white mb-6">Get Your Scorecard</h2>
+                    <p className="text-slate-300 mb-8">
+                        Know your risks before your users do.
                     </p>
                     <Link href="/contact">
                         <MagneticButton className="bg-white text-[#020617] font-bold px-10 py-5 rounded-full hover:shadow-lg transition-all border border-transparent hover:border-brand-accent/50">
-                            Book Your Audit
+                            Request Readiness Review
                         </MagneticButton>
                     </Link>
                 </div>

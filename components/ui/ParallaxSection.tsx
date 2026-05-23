@@ -50,8 +50,6 @@ export default function ParallaxSection({
                         autoPlay
                         loop
                         muted
-                        playsInline
-                        poster="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop"
                         className="w-full h-full object-cover"
                     >
                         <source src={videoUrl} type="video/mp4" />

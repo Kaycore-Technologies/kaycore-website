@@ -194,9 +194,8 @@ export default function TermsOfService() {
             </p>
             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg border border-slate-200 dark:border-slate-700 mb-6">
               <p className="text-slate-900 dark:text-white font-semibold mb-2">Kaycore Technologies</p>
-              <p className="text-slate-700 dark:text-slate-300">Email: legal@kaycore.com</p>
-              <p className="text-slate-700 dark:text-slate-300">Phone: +1 (555) 123-4567</p>
-              <p className="text-slate-700 dark:text-slate-300">Address: 123 Technology Drive, San Francisco, CA 94105</p>
+              <p className="text-slate-700 dark:text-slate-300">Email: admin@kaycore.com</p>
+              <p className="text-slate-700 dark:text-slate-300">Address: Bengaluru, Karnataka, India</p>
             </div>
           </div>
         </div>

@@ -2,84 +2,124 @@
 
 import { industries } from '@/components/company-data';
 import { CheckCircle } from 'lucide-react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MagneticButton } from '@/components/ui';
 import { ScrollReveal } from '@/components/animations';
+import { GlowButton } from '@/components/ui';
+import { LeadFormCTA } from '@/components/LeadFormCTA';
+import Image from 'next/image';
 
 export default function IndustriesPage() {
-    return (
-        <div className="bg-brand-dark min-h-screen text-slate-50 font-sans selection:bg-brand-accent selection:text-white">
+  return (
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white">
 
-            {/* 1. HERO SECTION */}
-            <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] flex items-center">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-accent/10 blur-[120px] rounded-full" />
-                </div>
+      {/* Hero Section — centered, consistent with Home/Services/About */}
+      <section className="relative overflow-hidden min-h-[70vh] flex items-center justify-center pt-20">
+        <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
+        <div className="orb orb-accent w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
 
-                <div className="max-w-4xl mx-auto text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-serif text-white mb-8 leading-tight">
-                            Where Failure is <span className="text-brand-accent">Unacceptable</span>.
-                        </h1>
-                        <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed font-light max-w-3xl mx-auto">
-                            We specialize in industries where a single AI error can mean regulatory action, patient harm, or catastrophic financial loss. If you're shipping a toy, we're not for you.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* 2. INDUSTRY CARDS */}
-            <section className="py-32 px-4 sm:px-6 lg:px-8 bg-[#020617]">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {industries.map((ind, idx) => (
-                            <ScrollReveal key={idx}>
-                                <div className="bg-white/5 border border-white/10 p-8 rounded-3xl h-full hover:border-brand-accent/30 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)] transition-all">
-                                    {/* Image */}
-                                    <div className="mb-8 relative h-48 rounded-2xl overflow-hidden">
-                                        <img src={ind.image} alt={ind.name} className="object-cover w-full h-full opacity-80" />
-                                        <div className="absolute inset-0 bg-brand-dark/20" />
-                                    </div>
-
-                                    {/* Title */}
-                                    <h2 className="text-2xl font-bold text-white mb-4">{ind.name}</h2>
-
-                                    {/* Description */}
-                                    <p className="text-slate-300 leading-relaxed mb-6">
-                                        {ind.description}
-                                    </p>
-
-                                    {/* Compliance Indicator */}
-                                    <div className="flex items-center gap-2 text-sm text-slate-400 font-medium">
-                                        <CheckCircle className="w-4 h-4 text-brand-accent" />
-                                        <span>Sector-Specific Compliance</span>
-                                    </div>
-                                </div>
-                            </ScrollReveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 3. CTA */}
-            <section className="py-32 text-center border-t border-white/5">
-                <div className="max-w-3xl mx-auto px-4">
-                    <h3 className="text-3xl font-bold text-white mb-6">Don't see your industry?</h3>
-                    <p className="text-slate-400 mb-8">
-                        If your AI operates in a high-stakes environment, we should talk.
-                    </p>
-                    <Link href="/contact">
-                        <MagneticButton className="bg-brand-accent text-white font-bold px-10 py-5 rounded-full hover:brightness-110 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_40px_rgba(14,165,233,0.5)]">
-                            Talk to an AI Quality Expert
-                        </MagneticButton>
-                    </Link>
-                </div>
-            </section>
+        <div className="relative z-10 text-center space-y-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
+          >
+            <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">Industries</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
+              Quality Engineering for{' '}
+              <span className="text-gradient">Every Industry</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light max-w-3xl mx-auto">
+              Deep domain expertise in the industries where software quality failures cost millions. We bring specialized testing frameworks to your sector.
+            </p>
+          </motion.div>
         </div>
-    );
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Industry Cards */}
+      <motion.section 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="py-24 lg:py-32"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            {industries.map((ind, idx) => {
+              // Unsplash placeholders matching the industries (Healthcare, SaaS, Fintech, Retail, Logistics, EdTech)
+              const images = [
+                "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80", // Healthcare
+                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", // SaaS/Data
+                "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80", // Fintech
+                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80", // Retail
+                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80", // Logistics
+                "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"  // EdTech
+              ];
+
+              const gradients = [
+                "from-blue-500/20 via-transparent to-transparent",
+                "from-purple-500/20 via-transparent to-transparent",
+                "from-emerald-500/20 via-transparent to-transparent",
+                "from-amber-500/20 via-transparent to-transparent",
+                "from-rose-500/20 via-transparent to-transparent",
+                "from-cyan-500/20 via-transparent to-transparent"
+              ];
+
+              return (
+                <motion.div 
+                  key={idx} 
+                  className="h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                >
+                  <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10 backdrop-blur-md group h-full flex flex-col justify-end min-h-[420px]">
+                    {/* Background Image with Hover Zoom */}
+                    <Image
+                      src={images[idx] || images[0]}
+                      alt={ind.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover opacity-50 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 ease-out z-0"
+                    />
+                    
+                    {/* Hover Glow */}
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${gradients[idx % gradients.length]} z-10`} />
+
+                    {/* Dark Glass Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/90 to-[#030712]/40 z-10" />
+
+                    <div className="relative z-20 mt-auto flex flex-col transform group-hover:-translate-y-1 transition-transform duration-300">
+                      <h2 className="text-2xl font-bold text-white mb-3">{ind.name}</h2>
+                      <p className="text-gray-300 leading-relaxed text-sm max-w-sm transition-all duration-300 group-hover:mb-4">{ind.description}</p>
+                      
+                      <div className="space-y-3 max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-out group-hover:max-h-[160px] group-hover:opacity-100">
+                        {ind.challenges.map((challenge, i) => (
+                          <div key={i} className="flex items-center gap-3 text-sm text-gray-200">
+                            <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
+                            <span>{challenge}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CTA */}
+      <div className="section-divider" />
+      <LeadFormCTA 
+        title="Don't see your industry?"
+        description="Our AI-powered QA approach adapts to any domain. Let's talk about your specific needs and build a custom risk protocol."
+      />
+    </div>
+  );
 }

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ScrollReveal, StaggerContainer, AnimatedItem } from '@/components/animations';
 import { MagneticButton } from '@/components/ui';
-import { Activity, Shield, Users, Clock, AlertTriangle, CheckCircle, ArrowRight } from 'lucide-react';
+import { Activity, Shield, Users, Clock, AlertTriangle, CheckCircle, ArrowRight, XCircle, Search } from 'lucide-react';
 import Image from 'next/image';
 
 export default function RetainerContent({ service }: { service: any }) {
@@ -13,8 +13,8 @@ export default function RetainerContent({ service }: { service: any }) {
     return (
         <div className="bg-brand-dark text-slate-50 font-sans selection:bg-brand-accent selection:text-white relative">
 
-            {/* HERO */}
-            <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] flex items-center">
+            {/* 1. HERO */}
+            <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[70vh] flex items-center">
                 <div className="absolute inset-0">
                     <Image
                         src={service.image}
@@ -36,10 +36,10 @@ export default function RetainerContent({ service }: { service: any }) {
                             ACTIVE_MONITORING
                         </div>
                         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold font-serif text-white mb-6 leading-tight">
-                            Your External <br /> <span className="text-brand-accent">AI Safety Department</span>
+                            Production AI drifts. <br /> <span className="text-brand-accent">We catch it first.</span>
                         </h1>
                         <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed font-light mb-10 max-w-2xl mx-auto">
-                            Don&apos;t wait for a user incident. We provide continuous red-teaming, drift detection, and compliance oversight as a monthly service.
+                            Don&apos;t wait for a user incident. We provide continuous red-teaming, drift detection, and regression management as a monthly service.
                         </p>
                         <div className="flex justify-center gap-4">
                             <Link href="/contact">
@@ -52,87 +52,115 @@ export default function RetainerContent({ service }: { service: any }) {
                 </div>
             </section>
 
-            {/* CONTINUOUS LOOP */}
-            <section className="py-32 px-4 border-t border-white/5 bg-[#020617]">
-                <div className="max-w-7xl mx-auto">
-                    <ScrollReveal>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            <div>
-                                <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">The Challenge</h2>
-                                <h3 className="text-3xl sm:text-5xl font-bold font-serif text-white mb-6">
-                                    Models Decay. <br /> Risks Evolve.
-                                </h3>
-                                <p className="text-slate-400 text-lg leading-relaxed mb-6">
-                                    An AI model is not like code; it does not stay fixed. Updates to the underlying foundation model (e.g., GPT-4), shifts in user behavior, or new jailbreak techniques can break your safety guardrails overnight.
-                                </p>
-                                <ul className="space-y-4">
-                                    {[
-                                        'Foundation Model Updates (Drift)',
-                                        'New Jailbreak Techniques',
-                                        'Changing Regulations (EU AI Act)'
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex gap-3 text-slate-300">
-                                            <AlertTriangle className="w-5 h-5 text-red-400" /> {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="relative">
-                                {/* Abstract Visualization of Loop */}
-                                <div className="aspect-square bg-white/5 rounded-full border border-white/10 relative animate-[spin_10s_linear_infinite]">
-                                    <div className="absolute inset-4 border border-brand-accent/30 rounded-full border-dashed" />
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-brand-accent/5 blur-3xl rounded-full" />
+            {/* 2. WHO & DELIVERABLES */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0B1121] border-y border-white/5">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    {/* LEFT: Who it's for */}
+                    <div>
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">Who This Is For</h3>
+                        <h2 className="text-3xl font-bold text-white mb-6">Post-Launch Enterprise</h2>
+                        <p className="text-slate-300 text-lg leading-relaxed mb-8">
+                            You have AI in production. You know foundation models update silently (drift). You need an external "eye in the sky" to ensure quality doesn't degrade over time.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                'Companies without a dedicated AI Quality team',
+                                'Enterprise apps requiring ongoing compliance evidence',
+                                'Teams worried about OpenAI/Anthropic model updates breaking prompt variance'
+                            ].map((item, i) => (
+                                <li key={i} className="flex gap-4 items-center text-slate-300">
+                                    <CheckCircle className="w-5 h-5 text-brand-accent shrink-0" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* RIGHT: Deliverables */}
+                    <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-6">What We Deliver</h3>
+                        <ul className="space-y-6">
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Shield className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Monthly Red-Team Sprints</strong>
+                                    <span className="text-slate-300 text-sm">We test your model against new jailbreaks (e.g., "DAN 12.0") every month.</span>
                                 </div>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="text-center">
-                                        <Activity className="w-16 h-16 text-brand-accent mx-auto mb-4" />
-                                        <div className="text-white font-bold text-xl">Continuous<br />Validation</div>
-                                    </div>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Activity className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Drift Monitoring</strong>
+                                    <span className="text-slate-300 text-sm">Alerts if your model becomes lazy, toxic, or verbose after an API update.</span>
                                 </div>
-                            </div>
-                        </div>
-                    </ScrollReveal>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Users className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Executive QBRs</strong>
+                                    <span className="text-slate-300 text-sm">Quarterly Business Reviews proving the ROI of quality to your board.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
-            {/* DELIVERABLES GRID */}
-            <section className="py-32 px-4">
-                <div className="max-w-7xl mx-auto">
+            {/* 3. BOUNDARIES (WHAT WE DON'T DO) */}
+            <section className="py-16 px-4 bg-brand-dark border-b border-white/5">
+                <div className="max-w-4xl mx-auto bg-slate-800/50 border border-slate-700/50 p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
+                    <div className="bg-slate-700 p-4 rounded-full text-slate-400 shrink-0">
+                        <XCircle className="w-8 h-8" />
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2">What We DO NOT Do</h4>
+                        <p className="text-slate-300">
+                            We are not a Tier 1 Support Desk. We do not handle your customer support tickets 24/7. We are <span className="text-white font-bold">Tier 3 Engineering Support</span> for critical AI failures.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            {/* 4. PROCESS */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-dark">
+                <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">Included in Retainer</h2>
-                        <h3 className="text-3xl sm:text-4xl font-bold font-serif text-white">Monthly Deliverables</h3>
+                        <h2 className="text-3xl font-bold font-serif text-white mb-6">Monthly Cadence</h2>
+                        <div className="flex items-center justify-center gap-2 text-slate-400">
+                            <Clock className="w-4 h-4" />
+                            <span>Engagement: 6-12 Months</span>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
                         {[
-                            {
-                                icon: Shield,
-                                title: 'Red-Teaming Sprints',
-                                desc: 'Monthly targeted attacks to test new features against injection and bias.'
-                            },
-                            {
-                                icon: Clock,
-                                title: '24/7 Incident Response',
-                                desc: 'Priority access to our engineers if your model behaves unexpectedly in production.'
-                            },
-                            {
-                                icon: Users,
-                                title: 'Board Reporting',
-                                desc: 'Executive-level headers on risk posture, drift metrics, and ROI of quality.'
-                            }
-                        ].map((card, i) => (
-                            <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-brand-accent/30 hover:shadow-[0_0_20px_rgba(14,165,233,0.1)] transition-all group">
-                                <div className="bg-brand-accent/10 w-12 h-12 rounded-xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-white transition-colors">
-                                    <card.icon className="w-6 h-6" />
-                                </div>
-                                <h4 className="text-xl font-bold text-white mb-3">{card.title}</h4>
-                                <p className="text-slate-400 text-sm leading-relaxed">{card.desc}</p>
+                            { step: 'W1', title: 'Attack', desc: 'New vulnerability testing.' },
+                            { step: 'W2', title: 'Patch', desc: 'Engineering fixes for failing tests.' },
+                            { step: 'W3', title: 'Monitor', desc: 'Observe drift in production.' },
+                            { step: 'W4', title: 'Report', desc: 'Monthly risk report delivery.' },
+                        ].map((s, i) => (
+                            <div key={i} className="bg-white/5 p-6 rounded-xl border border-white/10 relative z-10">
+                                <div className="text-2xl font-bold text-brand-accent mb-4">{s.step}</div>
+                                <h4 className="font-bold text-white mb-2">{s.title}</h4>
+                                <p className="text-sm text-slate-300">{s.desc}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
+            {/* 5. CTA */}
+            <section className="py-24 text-center">
+                <div className="max-w-3xl mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-white mb-6">Secure Your AI's Future</h2>
+                    <Link href="/contact">
+                        <MagneticButton className="bg-white text-[#020617] font-bold px-10 py-5 rounded-full hover:shadow-lg transition-all border border-transparent hover:border-brand-accent/50">
+                            Discuss Retainer Options
+                        </MagneticButton>
+                    </Link>
+                </div>
+            </section>
         </div>
     );
 }

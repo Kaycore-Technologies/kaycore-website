@@ -23,4 +23,8 @@ export { BeforeAfterSlider } from './BeforeAfterSlider';
 export { LogoCarousel } from './LogoCarousel';
 export { AnimatedCounter } from './AnimatedCounter';
 export { default as ParallaxSection } from './ParallaxSection';
-
+export { GlassCard } from './GlassCard';
+export { GradientText } from './GradientText';
+export { SectionHeader } from './SectionHeader';
+export { GlowButton } from './GlowButton';
+export { ParticleBackground } from './ParticleBackground';

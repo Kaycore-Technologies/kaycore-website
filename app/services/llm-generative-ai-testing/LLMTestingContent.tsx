@@ -18,7 +18,9 @@ import {
     Terminal,
     Brain,
     Database,
-    Scale
+    Scale,
+    XCircle,
+    Clock
 } from 'lucide-react';
 
 export default function LLMTestingContent() {
@@ -26,7 +28,7 @@ export default function LLMTestingContent() {
         <div className="bg-brand-dark text-slate-50 font-sans selection:bg-brand-accent selection:text-white">
 
             {/* 1. HERO SECTION */}
-            <section className="relative pt-32 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[80vh] flex items-center">
+            <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-[70vh] flex items-center">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full" />
                     <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-brand-accent/10 blur-[120px] rounded-full" />
@@ -41,13 +43,13 @@ export default function LLMTestingContent() {
                     >
                         <div className="flex items-center gap-2 text-purple-400 font-bold mb-6 tracking-wider uppercase text-sm">
                             <Brain className="w-5 h-5" />
-                            LLM & Generative AI Testing
+                            LLM_VALIDATION
                         </div>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif text-white mb-6 leading-tight">
-                            Taming Non-Deterministic AI
+                            Enforcing Determinism on Generative AI
                         </h1>
                         <p className="text-lg sm:text-2xl text-slate-300 leading-relaxed font-light mb-8">
-                            Your prompt worked yesterday. <span className="text-white font-medium">Will it work today?</span> We validate prompt robustness, hallucination rates, and resistance to adversarial attacks before you ship.
+                            Your prompt worked yesterday. <span className="text-white font-medium">Will it work today?</span> We measure hallucination rates and block regressions before they reach your users.
                         </p>
                         <div className="flex flex-wrap gap-4">
                             <Link href="/contact">
@@ -92,163 +94,112 @@ export default function LLMTestingContent() {
                 </div>
             </section>
 
-            {/* 2. WHY MANUAL CHECKS FAIL */}
-            <section className="py-24 bg-[#0B1121] border-y border-white/5 relative">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                            <div className="lg:col-span-5">
-                                <h2 className="text-sm font-bold tracking-[0.2em] text-red-400 uppercase mb-4">The Trap</h2>
-                                <h3 className="text-3xl sm:text-4xl font-bold font-serif text-white mb-6">
-                                    Why "Vibe Checking" is Not Testing
-                                </h3>
-                                <p className="text-slate-400 text-lg leading-relaxed mb-6">
-                                    Traditional software testing is binary: Pass or Fail. Generative AI is probabilistic. Spot-checking 50 prompts manually gives you a <span className="text-white font-medium">false sense of security</span>.
-                                </p>
-                                <p className="text-slate-400 text-lg leading-relaxed">
-                                    A model might behave perfectly 95% of the time, but fail catastrophically on edge cases that manual testers never dream of. You need automated, high-volume evaluation.
-                                </p>
-                            </div>
-                            <div className="lg:col-span-7 grid gap-6">
-                                {[
-                                    { title: 'Probability & Drift', desc: 'Models change behaviors with minor updates or temperature shifts.' },
-                                    { title: 'Infinite Inputs', desc: 'Unlike UI buttons, text input has infinite variations.' },
-                                    { title: 'Subtle Failures', desc: 'Hallucinations often look plausible to non-experts.' },
-                                ].map((item, idx) => (
-                                    <div key={idx} className="bg-white/5 p-6 rounded-xl border border-white/10 flex gap-4 items-start">
-                                        <div className="bg-red-500/20 p-2 rounded-lg text-red-500 mt-1">
-                                            <AlertTriangle className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-white font-bold text-lg mb-1">{item.title}</h4>
-                                            <p className="text-slate-400 text-sm">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
-
-            {/* 3. TEST COVERAGE */}
-            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-dark">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-sm font-bold tracking-[0.2em] text-purple-400 uppercase mb-4">Our Methodology</h2>
-                        <h3 className="text-3xl sm:text-5xl font-bold font-serif text-white">
-                            What We Validate
-                        </h3>
+            {/* 2. WHO & DELIVERABLES */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0B1121] border-y border-white/5">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    {/* LEFT: Who it's for */}
+                    <div>
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">Who This Is For</h3>
+                        <h2 className="text-3xl font-bold text-white mb-6">GenAI Product Teams</h2>
+                        <p className="text-slate-300 text-lg leading-relaxed mb-8">
+                            You are building a Chatbot, Copilot, or Agent. You are terrified that a user will trick it into saying something racist, or that it will hallucinate legal advice.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                'Teams struggling with regression (fixing one prompt breaks another)',
+                                'Companies needing to prevent "jailbreaks" (DAN, prompt injection)',
+                                'RAG pipelines that accurately cite wrong information'
+                            ].map((item, i) => (
+                                <li key={i} className="flex gap-4 items-center text-slate-300">
+                                    <CheckCircle className="w-5 h-5 text-purple-400 shrink-0" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {[
-                            {
-                                icon: Brain,
-                                title: 'Hallucination Testing',
-                                desc: 'Measuring factual accuracy against ground-truth documents (RAG).'
-                            },
-                            {
-                                icon: Terminal,
-                                title: 'Prompt Injection',
-                                desc: 'Adversarial attacks to bypass safety filters and hijack the model.'
-                            },
-                            {
-                                icon: Scale,
-                                title: 'Bias & Toxicity',
-                                desc: 'Detecting harmful stereotypes or toxic output in generated text.'
-                            },
-                            {
-                                icon: Shield,
-                                title: 'Output Consistency',
-                                desc: 'Ensuring the model maintains tone and format across thousands of calls.'
-                            },
-                            {
-                                icon: Database,
-                                title: 'Data Leakage',
-                                desc: 'Verifying that training data or PII is not exposed in responses.'
-                            },
-                            {
-                                icon: AlertTriangle,
-                                title: 'Edge Case Stress',
-                                desc: 'Testing with garbled inputs, long contexts, and unexpected languages.'
-                            },
-                        ].map((item, idx) => (
-                            <AnimatedItem key={idx}>
-                                <div className="bg-white/5 border border-white/10 p-8 rounded-3xl hover:bg-purple-500/10 hover:border-purple-500/30 transition-all group h-full">
-                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white group-hover:text-purple-400 transition-colors">
-                                        <item.icon className="w-6 h-6" />
-                                    </div>
-                                    <h4 className="text-xl font-bold text-white mb-3">{item.title}</h4>
-                                    <p className="text-slate-400 leading-relaxed text-sm">{item.desc}</p>
+                    {/* RIGHT: Deliverables */}
+                    <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <h3 className="text-sm font-bold tracking-[0.2em] text-purple-400 uppercase mb-6">What We Deliver</h3>
+                        <ul className="space-y-6">
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Terminal className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Adversarial Stress Test</strong>
+                                    <span className="text-slate-300 text-sm">We attack your model with thousands of "jailbreak" prompts to find weak spots.</span>
                                 </div>
-                            </AnimatedItem>
-                        ))}
-                    </StaggerContainer>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><Database className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Golden Evaluation Dataset</strong>
+                                    <span className="text-slate-300 text-sm">A curated library of tricky prompts specific to your domain (not generic benchmarks).</span>
+                                </div>
+                            </li>
+                            <li className="flex gap-4 items-start">
+                                <div className="bg-slate-800 p-2 rounded-lg text-white shrink-0"><CheckCircle className="w-5 h-5" /></div>
+                                <div>
+                                    <strong className="text-white block text-lg">Safety Guardrails</strong>
+                                    <span className="text-slate-300 text-sm">Concrete system-prompt improvements and filter configs.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
-            {/* 4. DELIVERABLES */}
-            <section className="py-24 bg-white/5 relative">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="bg-[#0B1121] border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
-                            <div className="p-8 sm:p-12 border-b border-white/10">
-                                <h3 className="text-3xl font-bold font-serif text-white mb-4">
-                                    Tangible Deliverables
-                                </h3>
-                                <p className="text-slate-400 text-lg">
-                                    We don&apos;t just give you a "pass/fail". We give you the data to release with confidence.
-                                </p>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                                <div className="p-8 sm:p-12 space-y-6">
-                                    <h4 className="font-bold text-white flex items-center gap-2">
-                                        <CheckCircle className="text-green-400 w-5 h-5" />
-                                        Testing Artifacts
-                                    </h4>
-                                    <ul className="space-y-4">
-                                        <li className="flex gap-3 text-slate-400 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0" />
-                                            <span><strong>Golden Test Dataset:</strong> A curated set of 500+ heavy-hitting prompts specific to your domain.</span>
-                                        </li>
-                                        <li className="flex gap-3 text-slate-400 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0" />
-                                            <span><strong>Vulnerability Report:</strong> Detailed breakdown of successful jailbreaks and injection vectors.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="p-8 sm:p-12 space-y-6">
-                                    <h4 className="font-bold text-white flex items-center gap-2">
-                                        <CheckCircle className="text-green-400 w-5 h-5" />
-                                        Strategic Output
-                                    </h4>
-                                    <ul className="space-y-4">
-                                        <li className="flex gap-3 text-slate-400 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0" />
-                                            <span><strong>Release Confidence Score:</strong> A quantitative metric (0-100) indicating production readiness.</span>
-                                        </li>
-                                        <li className="flex gap-3 text-slate-400 text-sm">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 shrink-0" />
-                                            <span><strong>Remediation Roadmap:</strong> Specific system prompt changes and RAG pipeline fixes.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+            {/* 3. BOUNDARIES (WHAT WE DON'T DO) */}
+            <section className="py-16 px-4 bg-brand-dark border-b border-white/5">
+                <div className="max-w-4xl mx-auto bg-purple-900/10 border border-purple-500/20 p-8 rounded-2xl flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
+                    <div className="bg-purple-500/20 p-4 rounded-full text-purple-400 shrink-0">
+                        <XCircle className="w-8 h-8" />
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2">What We DO NOT Do</h4>
+                        <p className="text-slate-300">
+                            We do not "train" your base model. We investigate the <span className="text-white font-bold">application layer</span> where your users actually interact with the AI.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. PROCESS */}
+            <section className="py-24 px-4 sm:px-6 lg:px-8 bg-brand-dark">
+                <div className="max-w-5xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold font-serif text-white mb-6">Validation Process</h2>
+                        <div className="flex items-center justify-center gap-2 text-slate-400">
+                            <Clock className="w-4 h-4" />
+                            <span>Typical Engagement: 2-4 Weeks</span>
                         </div>
-                    </ScrollReveal>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                        {[
+                            { step: '01', title: 'Scope', desc: 'Define "Bad". What should the model NEVER do?' },
+                            { step: '02', title: 'Attack', desc: 'Red-teaming with automated and manual probes.' },
+                            { step: '03', title: 'Measure', desc: 'Calculate Failure Rate % on Golden Set.' },
+                            { step: '04', title: 'Harden', desc: 'Implement patches and re-test.' },
+                        ].map((s, i) => (
+                            <div key={i} className="bg-white/5 p-6 rounded-xl border border-white/10 relative z-10">
+                                <div className="text-4xl font-bold text-white/20 mb-4">{s.step}</div>
+                                <h4 className="font-bold text-white mb-2">{s.title}</h4>
+                                <p className="text-sm text-slate-300">{s.desc}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
             {/* 5. CTA */}
             <section className="py-24 text-center">
                 <div className="max-w-3xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold text-white mb-6">Ready to Ship?</h2>
-                    <p className="text-slate-400 mb-8">
-                        Stop guessing if your LLM is safe. Verify it.
+                    <h2 className="text-3xl font-bold text-white mb-6">Stop Guessing. Start Measuring.</h2>
+                    <p className="text-slate-300 mb-8">
+                        Get a deterministic quality score for your non-deterministic AI.
                     </p>
                     <Link href="/contact">
-                        <MagneticButton className="bg-white text-[#020617] font-bold px-10 py-5 rounded-full hover:shadow-lg transition-all">
+                        <MagneticButton className="bg-white text-[#020617] font-bold px-10 py-5 rounded-full hover:shadow-lg transition-all border border-transparent hover:border-brand-accent/50">
                             Start LLM Validation
                         </MagneticButton>
                     </Link>

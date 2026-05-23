@@ -44,7 +44,7 @@ export default function HealthcareContent() {
                             When AI Failure is <br /> <span className="text-blue-700">Not an Option</span>
                         </h1>
                         <p className="text-lg sm:text-2xl text-slate-600 leading-relaxed font-light mb-8 max-w-xl">
-                            In healthcare and finance, a "hallucination" isn't a glitch—it's a massive liability. We validate critical decision engines for safety, explainability, and regulatory compliance.
+                            In healthcare and finance, a "hallucination" is a liability. We validate critical decision engines for safety, explainability, and FDA/HIPAA alignment.
                         </p>
                         <div className="flex gap-4">
                             <Link href="/contact">
@@ -101,7 +101,7 @@ export default function HealthcareContent() {
                         <div className="max-w-3xl mx-auto text-center mb-16">
                             <h2 className="text-sm font-bold tracking-[0.2em] text-blue-600 uppercase mb-4">The Challenge</h2>
                             <h3 className="text-3xl sm:text-4xl font-bold font-serif text-slate-900 mb-6">
-                                The Black Box Problem
+                                Explainability is Non-Negotiable
                             </h3>
                             <p className="text-slate-600 text-lg leading-relaxed">
                                 Regulators (and doctors) don't trust black boxes. If your AI cannot explain <strong>why</strong> it made a decision, it cannot be deployed in a high-stakes environment.

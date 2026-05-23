@@ -21,7 +21,7 @@ import type {
   SanityService,
   BlockContent,
 } from '../types';
-import { blogPosts, caseStudies, services as staticServices, fallbackNews } from '../../components/company-data';
+import { services as staticServices } from '../../components/company-data';
 
 // Re-export types for convenience
 export type { SanityPost, SanityCaseStudy, SanityService, BlockContent };
@@ -33,27 +33,12 @@ export type { SanityPost, SanityCaseStudy, SanityService, BlockContent };
  *
  * @returns Promise<SanityPost[]> - Array of all blog posts
  * @throws Logs error to console if fetch fails, returns empty array
- *
- * @example
- * const posts = await getAllPosts();
  */
 export async function getAllPosts(): Promise<SanityPost[]> {
   const isConfigured = client.config().projectId !== 'not-configured';
   if (!isConfigured) {
-    console.warn('Sanity not configured, returning mock posts');
-    // Map static data to SanityPost type
-    return blogPosts.map(post => ({
-      _id: post.id.toString(),
-      title: post.title,
-      slug: { current: post.slug },
-      excerpt: post.excerpt,
-      author: { name: post.author, image: null }, // Simplified for mock
-      category: { title: post.category },
-      coverImage: { asset: { url: post.image } },
-      content: post.content,
-      publishedAt: post.date,
-      readTime: post.readTime
-    })) as unknown as SanityPost[];
+    console.warn('Sanity not configured, returning empty posts');
+    return [];
   }
 
   const query = `
@@ -73,19 +58,8 @@ export async function getAllPosts(): Promise<SanityPost[]> {
   try {
     return await client.fetch(query);
   } catch (error) {
-    console.error('Error fetching posts, using fallback:', error);
-    return blogPosts.map(post => ({
-      _id: post.id.toString(),
-      title: post.title,
-      slug: { current: post.slug },
-      excerpt: post.excerpt,
-      author: { name: post.author, image: null },
-      category: { title: post.category },
-      coverImage: { asset: { url: post.image } },
-      content: post.content,
-      publishedAt: post.date,
-      readTime: post.readTime
-    })) as unknown as SanityPost[];
+    console.error('Error fetching posts:', error);
+    return [];
   }
 }
 
@@ -200,23 +174,8 @@ export async function getAllCaseStudies(): Promise<SanityCaseStudy[]> {
     if (!result || result.length === 0) throw new Error('No case studies found');
     return result;
   } catch (error) {
-    console.warn('Using fallback case studies');
-    return caseStudies.map(cs => ({
-      _id: cs.id.toString(),
-      title: cs.title,
-      slug: { current: cs.slug },
-      client: cs.client,
-      industry: cs.industry,
-      overview: cs.overview,
-      problem: cs.problem,
-      solution: cs.solution,
-      results: cs.results,
-      coverImage: { asset: { url: cs.image } },
-      duration: cs.duration,
-      technologies: cs.technologies,
-      publishedAt: new Date().toISOString(), // Mock date
-      emoji: '📄'
-    })) as unknown as SanityCaseStudy[];
+    console.warn('No case studies available');
+    return [];
   }
 }
 
@@ -319,8 +278,8 @@ export async function getAllServices(): Promise<SanityService[]> {
       description: s.description,
       icon: null,
       fullDescription: s.description,
-      features: s.testingScope,
-      coverImage: { asset: { url: s.image } }
+      features: s.features,
+      coverImage: null
     })) as unknown as SanityService[];
   }
 }
@@ -389,8 +348,8 @@ export async function getServiceSlugs(): Promise<string[]> {
 export async function getRecentNews(): Promise<any[]> {
   const isConfigured = client.config().projectId !== 'not-configured';
   if (!isConfigured) {
-    console.warn('Sanity not configured, returning mock news');
-    return fallbackNews;
+    console.warn('Sanity not configured, returning empty news');
+    return [];
   }
 
   const query = `
@@ -408,7 +367,7 @@ export async function getRecentNews(): Promise<any[]> {
   try {
     return await client.fetch(query);
   } catch (error) {
-    console.error('Error fetching news, returning fallback:', error);
-    return fallbackNews;
+    console.error('Error fetching news:', error);
+    return [];
   }
 }

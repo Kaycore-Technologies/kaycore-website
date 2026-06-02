@@ -31,7 +31,7 @@ const values = [
 
 export default function AboutContent() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white">
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-purple w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none" />
 
@@ -58,7 +58,7 @@ export default function AboutContent() {
       <div className="section-divider" />
 
       {/* We Are Not A Body Shop */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -70,7 +70,7 @@ export default function AboutContent() {
             <h2 className="text-sm font-bold tracking-[0.2em] text-brand-accent uppercase mb-4">The Kaycore Difference</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold text-white">We Are Not A Body Shop</h3>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Negative Side */}
             <motion.div
@@ -136,7 +136,7 @@ export default function AboutContent() {
       </motion.section>
 
       {/* Values */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -165,7 +165,7 @@ export default function AboutContent() {
                   <GlassCard className="p-8 lg:p-10 h-full flex flex-col sm:flex-row items-start gap-6 hover:border-brand-accent/40 transition-all duration-500 group relative overflow-hidden">
                     {/* Abstract Hover Glow */}
                     <div className="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-bl from-cyan-400/20 to-purple-500/0 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                    
+
                     {/* Advanced Icon Container */}
                     <div className="w-16 h-16 shrink-0 rounded-2xl relative flex items-center justify-center border border-white/10 shadow-[0_0_20px_rgba(14,165,233,0.1)] overflow-hidden group-hover:scale-105 transition-all duration-500">
                       <div className="absolute inset-0 bg-[#030712] opacity-80" />
@@ -174,7 +174,7 @@ export default function AboutContent() {
                       <div className="absolute inset-[1px] bg-[#030712] rounded-[15px]" />
                       <Icon className="w-6 h-6 text-cyan-300 relative z-10 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
                     </div>
-                    
+
                     <div className="relative z-10">
                       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{val.title}</h3>
                       <p className="text-gray-400 text-sm leading-relaxed">{val.description}</p>
@@ -188,7 +188,7 @@ export default function AboutContent() {
       </motion.section>
 
       {/* Leadership */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -202,7 +202,7 @@ export default function AboutContent() {
               Founder-Led Accountability
             </h3>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Founder 1 */}
             <motion.div
@@ -211,26 +211,26 @@ export default function AboutContent() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
-                    <Image 
-                        src="/images/team/kulish.jpg" 
-                        alt="Kulish Kulshrestha - Founder & Lead Architect"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 500px"
-                        className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
-                </div>
-                <h4 className="text-white font-bold text-3xl mb-1">Kulish Kulshrestha</h4>
-                <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Founder & Lead Architect</p>
-                <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
-                    <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
-                </blockquote>
-                <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                    With over a decade of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
-                </p>
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
+                <Image
+                  src="/images/team/kulish.jpg"
+                  alt="Kulish Kulshrestha - Founder & Lead Architect"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+              </div>
+              <h4 className="text-white font-bold text-3xl mb-1">Kulish Kulshrestha</h4>
+              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Founder & Lead Architect</p>
+              <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
+              </blockquote>
+              <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                With over a decade of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
+              </p>
             </motion.div>
-            
+
             {/* Founder 2 */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -238,31 +238,31 @@ export default function AboutContent() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             >
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
-                    <Image 
-                        src="/images/team/ayushi.jpg" 
-                        alt="Dr. Ayushi Shukla - Co-founder, Kaycore Technologies"
-                        fill
-                        sizes="(max-width: 768px) 100vw, 500px"
-                        className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
-                </div>
-                <h4 className="text-white font-bold text-3xl mb-1">Dr. Ayushi Shukla</h4>
-                <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Co-founder, Kaycore Technologies</p>
-                <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
-                    <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
-                </blockquote>
-                <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                    Dr. Shukla brings nearly a decade of frontline clinical experience to Kaycore&apos;s healthcare initiatives. Having served in leading institutions such as Manipal and Kailash Hospitals, she experienced firsthand the administrative burnout and systemic inefficiencies plaguing modern medicine. Her mission is to harness AI to reduce physician cognitive load, eliminate documentation friction, and ultimately return the focus of healthcare back to the patient.
-                </p>
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
+                <Image
+                  src="/images/team/ayushi.jpg"
+                  alt="Dr. Ayushi Shukla - Co-founder, Kaycore Technologies"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+              </div>
+              <h4 className="text-white font-bold text-3xl mb-1">Dr. Ayushi Shukla</h4>
+              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Co-founder, Kaycore Technologies</p>
+              <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
+              </blockquote>
+              <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                Dr. Shukla brings nearly a decade of frontline clinical experience to Kaycore&apos;s healthcare initiatives. Having served in leading institutions, she experienced firsthand the administrative burnout and systemic inefficiencies plaguing modern medicine. Her mission is to harness AI to reduce physician cognitive load, eliminate documentation friction, and ultimately return the focus of healthcare back to the patient.
+              </p>
             </motion.div>
           </div>
         </div>
       </motion.section>
 
       {/* CTA */}
-      <LeadFormCTA 
+      <LeadFormCTA
         title="Ready for a Real Partner?"
         description="Let's build something that survives the real world. Talk to our engineers today and let us engineer custom risk protocols for your application."
       />

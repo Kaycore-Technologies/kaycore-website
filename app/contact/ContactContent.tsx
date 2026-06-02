@@ -7,7 +7,7 @@ import { Mail, Linkedin, Github, Youtube, Instagram, CheckCircle2 } from 'lucide
 
 export default function ContactContent() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white pt-44 pb-24">
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white pt-44 pb-24 relative overflow-x-hidden">
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-accent w-[600px] h-[600px] top-0 right-0 -translate-y-1/4 opacity-20 pointer-events-none" />
       <div className="orb orb-cyan w-[500px] h-[500px] bottom-0 left-0 translate-y-1/4 opacity-10 pointer-events-none" />

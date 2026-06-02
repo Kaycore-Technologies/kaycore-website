@@ -10,7 +10,7 @@ import { LeadFormCTA } from '@/components/LeadFormCTA';
 
 export default function ServicesContent() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white">
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-accent w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
 

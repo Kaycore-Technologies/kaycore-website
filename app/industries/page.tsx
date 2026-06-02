@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 export default function IndustriesPage() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white">
+    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
 
       {/* Hero Section — centered, consistent with Home/Services/About */}
       <section className="relative overflow-hidden min-h-[70vh] flex items-center justify-center pt-20">

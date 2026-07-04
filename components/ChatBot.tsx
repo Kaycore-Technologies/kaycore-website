@@ -352,7 +352,7 @@ export function ChatBot() {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={mode === 'chat' ? "Ask about Kaycore..." : "Type your answer..."}
-                  className="w-full rounded-2xl pl-4 pr-12 py-3.5 text-sm text-white focus:outline-none transition-all duration-300"
+                  className="w-full rounded-2xl pl-4 pr-12 py-3.5 text-base text-white focus:outline-none transition-all duration-300"
                   style={{
                     backgroundColor: 'rgba(255,255,255,0.04)',
                     border: '1px solid rgba(255,255,255,0.08)',

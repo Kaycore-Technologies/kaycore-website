@@ -37,7 +37,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative z-50 flex items-center gap-3 group"
+            className="relative z-50 flex items-center gap-3 group py-1.5"
             aria-label="Kaycore Technologies"
           >
             <div className="relative h-8 w-32 md:h-10 md:w-40 transition-transform group-hover:scale-105">

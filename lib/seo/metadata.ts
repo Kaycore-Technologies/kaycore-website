@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kaycore.com';
+export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kaycore.com';
 
 export function generateMetadata(
   title: string,
@@ -59,7 +59,7 @@ export function generateMetadata(
       title: `${title} | Kaycore Technologies`,
       description,
       images: [imageUrl],
-      creator: '@kaycore_tech',
+      creator: '@kaycore',
     },
     alternates: {
       canonical: url,

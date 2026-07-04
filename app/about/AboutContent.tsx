@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { SectionHeader, GlassCard, GlowButton } from '@/components/ui';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
-import { ShieldCheck, Target, Users, Zap, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Target, Users, Zap, CheckCircle2, Linkedin } from 'lucide-react';
 import Image from 'next/image';
 
 const values = [
@@ -222,7 +222,16 @@ export default function AboutContent() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
               </div>
               <h4 className="text-white font-bold text-3xl mb-1">Kulish Kulshrestha</h4>
-              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Founder & Lead Architect</p>
+              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">Founder & Lead Architect</p>
+              <a
+                href="https://www.linkedin.com/in/kulish-kulshrestha/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Kulish Kulshrestha on LinkedIn"
+                className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
+              >
+                <Linkedin className="w-4 h-4" /> Connect on LinkedIn
+              </a>
               <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
                 <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
               </blockquote>
@@ -249,7 +258,16 @@ export default function AboutContent() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
               </div>
               <h4 className="text-white font-bold text-3xl mb-1">Dr. Ayushi Shukla</h4>
-              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-6">Co-founder, Kaycore Technologies</p>
+              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">Co-founder, Kaycore Technologies</p>
+              <a
+                href="https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Dr. Ayushi Shukla on LinkedIn"
+                className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
+              >
+                <Linkedin className="w-4 h-4" /> Connect on LinkedIn
+              </a>
               <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
                 <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
               </blockquote>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Case Studies | Kaycore Technologies',
   description: 'Real-world results from our AI QA and test automation engagements. Coming soon.',
+  alternates: { canonical: '/case-studies' },
 };
 
 export default function CaseStudies() {

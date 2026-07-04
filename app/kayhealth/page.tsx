@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'KayHealth | AI-Powered Healthcare Solutions',
   description:
     'KayHealth brings AI-powered solutions to healthcare — from automated clinical documentation to intelligent telemedicine assistants. HIPAA compliant. Physician approved.',
+  alternates: { canonical: '/kayhealth' },
 };
 
 export default function KayHealthPage() {

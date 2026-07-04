@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Security & AI Ethics Policy | Kaycore Technologies',
   description: 'Our commitment to data security, HIPAA compliance, and ethical AI testing.',
+  alternates: { canonical: '/security-policy' },
 };
 
 export default function SecurityPolicyPage() {

@@ -47,11 +47,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Kaycore Technologies' }],
   creator: 'Kaycore Technologies',
-  metadataBase: new URL('https://www.kaycore.tech'),
+  metadataBase: new URL('https://www.kaycore.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.kaycore.tech',
+    url: 'https://www.kaycore.com',
     title: 'Kaycore Technologies | AI-Powered QA & Test Automation',
     description:
       'Enterprise-grade AI QA services, test automation, and dedicated QA teams. Ship faster. Break nothing.',
@@ -71,7 +74,7 @@ export const metadata: Metadata = {
     description:
       'AI-powered QA services, test automation, and dedicated QA teams for enterprise software.',
     images: ['/assets/og-image.jpg'],
-    creator: '@kaycoretech',
+    creator: '@kaycore',
   },
   robots: {
     index: true,
@@ -88,8 +91,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Kaycore Technologies',
-    url: 'https://www.kaycore.tech',
-    logo: 'https://www.kaycore.tech/assets/logo.png',
+    url: 'https://www.kaycore.com',
+    logo: 'https://www.kaycore.com/assets/logo.png',
     description:
       'AI-powered QA services, test automation, and dedicated QA teams for enterprise software teams.',
     address: {
@@ -101,11 +104,27 @@ export default function RootLayout({
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'contact@kaycore.tech',
+      email: 'admin@kaycore.com',
     },
     sameAs: [
-      'https://twitter.com/kaycoretech',
-      'https://linkedin.com/company/kaycore-technologies',
+      'https://x.com/kaycore',
+      'https://linkedin.com/company/kaycore',
+      'https://youtube.com/@kaycore',
+      'https://instagram.com/kaycore',
+    ],
+    founder: [
+      {
+        '@type': 'Person',
+        name: 'Kulish Kulshrestha',
+        jobTitle: 'Founder & Lead Architect',
+        sameAs: 'https://www.linkedin.com/in/kulish-kulshrestha/',
+      },
+      {
+        '@type': 'Person',
+        name: 'Dr. Ayushi Shukla',
+        jobTitle: 'Co-founder',
+        sameAs: 'https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/',
+      },
     ],
   };
 

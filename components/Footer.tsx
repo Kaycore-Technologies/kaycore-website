@@ -181,6 +181,16 @@ export function Footer() {
             <h4 className={`${headingColor} font-bold mb-6 tracking-wide`}>Company</h4>
             <ul className="space-y-4 text-sm">
               <li>
+                <Link href="/case-studies" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/privacy-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Privacy Policy
                 </Link>

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { articles } from '@/content/articles';
+import { caseStudies } from '@/content/case-studies';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.kaycore.com';
@@ -35,5 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...articleEntries];
+  const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((c) => ({
+    url: `${baseUrl}/case-studies/${c.slug}`,
+    lastModified: new Date(c.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...articleEntries, ...caseStudyEntries];
 }

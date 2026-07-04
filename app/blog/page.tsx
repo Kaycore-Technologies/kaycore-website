@@ -1,23 +1,28 @@
-import Link from 'next/link';
+import type { Metadata } from 'next';
+import BlogContent from './BlogContent';
+import { articles, articleCategories } from '@/content/articles';
 
-export const metadata = {
-  title: 'Blog | Kaycore Technologies',
-  description: 'Insights, trends, and playbooks from the Kaycore engineering team. Coming soon.',
+export const metadata: Metadata = {
+  title: 'Blog | AI Quality Engineering Insights',
+  description:
+    'Data-backed guides on AI quality engineering, LLM testing, and choosing an AI testing partner, from the Kaycore engineering team.',
   alternates: { canonical: '/blog' },
 };
 
-export default function Blog() {
-  return (
-    <div className="min-h-screen bg-[#030712] flex items-center justify-center px-4">
-      <div className="text-center space-y-6 max-w-lg">
-        <h1 className="text-4xl font-display font-bold text-white">Blog Coming Soon</h1>
-        <p className="text-gray-400 text-lg">
-          We&apos;re working on sharing insights about AI-powered QA, test automation, and quality engineering.
-        </p>
-        <Link href="/" className="btn-primary inline-flex">
-          <span>Back to Home</span>
-        </Link>
-      </div>
-    </div>
-  );
+export default function BlogPage() {
+  const posts = [...articles]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .map((a) => ({
+      id: a.slug,
+      title: a.title,
+      slug: a.slug,
+      excerpt: a.excerpt,
+      date: a.date,
+      author: a.author,
+      category: a.category,
+      readTime: a.readTime,
+      image: a.image,
+    }));
+
+  return <BlogContent posts={posts} categories={articleCategories} />;
 }

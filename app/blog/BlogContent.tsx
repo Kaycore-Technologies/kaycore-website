@@ -51,11 +51,11 @@ export default function BlogContent({ posts, categories }: { posts: BlogPost[], 
                         ENGINEERING BLOG
                     </div>
                     <TextReveal
-                        text="Insights & Perspectives"
+                        text="AI Quality Insights"
                         className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight tracking-tight"
                     />
                     <p className="text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto font-light">
-                        Deep dives into cloud architecture, AI implementation, and digital transformation from our engineering teams.
+                        Data-backed guides on AI quality engineering, LLM testing, and shipping AI systems that behave reliably in production.
                     </p>
 
                     {/* Search Bar - Hero Context */}
@@ -242,20 +242,19 @@ export default function BlogContent({ posts, categories }: { posts: BlogPost[], 
                 <div className="absolute inset-0 bg-brand-accent/5" />
                 <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                        Stay ahead of the curve
+                        Have an AI system to validate?
                     </h2>
                     <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-                        Join 5,000+ engineers receiving our weekly insights on distributed systems, AI, and platform engineering.
+                        Talk to our lead quality engineers about testing your AI for hallucination, drift, and adversarial risk. You keep every test suite and dataset we build.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                        <input
-                            type="email"
-                            placeholder="Enter your work email"
-                            className="flex-1 px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:bg-white/10 focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 outline-none transition-all"
-                        />
-                        <button className="px-8 py-3.5 bg-white text-[#020617] font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                            Subscribe
-                        </button>
+                    <div className="flex justify-center">
+                        <Link
+                            href="/contact"
+                            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#020617] font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                        >
+                            Talk to an Expert
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </div>
                 </div>
             </section>

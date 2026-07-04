@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Careers | Kaycore Technologies',
   description: 'Join the Kaycore Technologies team. We\'re hiring senior QA engineers and automation experts.',
+  alternates: { canonical: '/careers' },
 };
 
 export default function CareersPage() {

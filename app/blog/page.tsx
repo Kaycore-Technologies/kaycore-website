@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Blog | Kaycore Technologies',
   description: 'Insights, trends, and playbooks from the Kaycore engineering team. Coming soon.',
+  alternates: { canonical: '/blog' },
 };
 
 export default function Blog() {

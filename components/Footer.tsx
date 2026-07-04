@@ -59,8 +59,8 @@ export function Footer() {
                 : 'bg-brand-accent text-white hover:bg-brand-accent/90 shadow-md shadow-brand-accent/20'
             }`}
           >
-            {isKayHealth ? 'Schedule a Demo' : 'Start a Conversation'}
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            {isKayHealth ? 'Schedule a Demo' : 'Talk to an Expert'}
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
         </div>
         )}
@@ -85,19 +85,19 @@ export function Footer() {
               Kaycore Technologies delivers next-generation Quality Engineering services and AI-powered healthcare solutions, helping enterprise teams ship flawless products at speed.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on X (Twitter)" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
-              <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <Youtube className="w-4 h-4" />
+              <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on YouTube" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
+                <Youtube className="w-4 h-4" aria-hidden="true" />
               </a>
-              <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <Instagram className="w-4 h-4" />
+              <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
+                <Instagram className="w-4 h-4" aria-hidden="true" />
               </a>
-              <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <Linkedin className="w-4 h-4" />
+              <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on LinkedIn" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
+                <Linkedin className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>

@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,42 +29,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Configure Email Transporter (Microsoft 365 / Outlook)
-    const nodemailer = require('nodemailer');
-
-    let transporter;
-    let isTestMode = false;
-
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-      transporter = nodemailer.createTransport({
-        host: 'smtp.office365.com',
-        port: 587,
-        secure: false, // TLS
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-        tls: {
-          ciphers: 'SSLv3'
-        }
-      });
-    } else if (process.env.NODE_ENV === 'development') {
-      console.log('Using Ethereal Email for local testing');
-      const testAccount = await nodemailer.createTestAccount();
-      transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
-      });
-      isTestMode = true;
-    } else {
-      console.error('Server Error: Missing email configuration (EMAIL_USER or EMAIL_PASS)');
+    if (!process.env.RESEND_API_KEY) {
+      console.error('Server Error: Missing RESEND_API_KEY');
       return NextResponse.json(
-        { error: 'Server configuration error: Email credentials not set.' },
+        { error: 'Server configuration error: Email service not configured.' },
         { status: 500 }
       );
     }
@@ -71,22 +42,22 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(arrayBuffer);
 
     try {
-      // Send notification to Admin (You)
-      const info = await transporter.sendMail({
-        from: `"Kaycore Careers" <${process.env.EMAIL_USER || 'test@ethereal.email'}>`,
-        to: "admin@kaycore.com",
+      // Send notification to Admin via Resend
+      const { data, error } = await resend.emails.send({
+        from: 'Kaycore Careers <admin@kaycore.com>',
+        to: ['admin@kaycore.com'],
         replyTo: email,
         subject: `[Job Application] ${position} - ${name}`,
         text: `
           New Job Application Received
-          
+
           Name: ${name}
           Email: ${email}
           Position: ${position}
-          
+
           Cover Letter / Notes:
           ${coverLetter || 'Not specified'}
-          
+
           -----------------------------------
           Sent from kaycore.com careers form
         `,
@@ -107,16 +78,17 @@ export async function POST(request: NextRequest) {
           {
             filename: resume.name,
             content: buffer,
-          }
-        ]
+          },
+        ],
       });
 
-      console.log('Application email sent successfully');
-      if (isTestMode) {
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      if (error) {
+        throw new Error(error.message);
       }
+
+      console.log('Application email sent successfully via Resend:', data);
     } catch (emailError: any) {
-      console.error('Failed to send application email:', emailError);
+      console.error('Failed to send application email via Resend:', emailError);
       return NextResponse.json(
         { error: `Email delivery failed: ${emailError.message}` },
         { status: 500 }

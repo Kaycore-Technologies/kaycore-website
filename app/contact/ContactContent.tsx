@@ -70,22 +70,22 @@ export default function ContactContent() {
                 </a>
                 <div className="hidden sm:block h-4 w-px bg-white/10" />
                 <div className="flex gap-4">
-                  <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on X (Twitter)" className="text-gray-400 hover:text-brand-accent transition-colors">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   </a>
-                  <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                    <Youtube className="w-5 h-5" />
+                  <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on YouTube" className="text-gray-400 hover:text-brand-accent transition-colors">
+                    <Youtube className="w-5 h-5" aria-hidden="true" />
                   </a>
-                  <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                    <Instagram className="w-5 h-5" />
+                  <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className="text-gray-400 hover:text-brand-accent transition-colors">
+                    <Instagram className="w-5 h-5" aria-hidden="true" />
                   </a>
-                  <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                    <Linkedin className="w-5 h-5" />
+                  <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on LinkedIn" className="text-gray-400 hover:text-brand-accent transition-colors">
+                    <Linkedin className="w-5 h-5" aria-hidden="true" />
                   </a>
-                  <a href="https://github.com/Kaycore-Technologies" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-accent transition-colors">
-                    <Github className="w-5 h-5" />
+                  <a href="https://github.com/Kaycore-Technologies" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on GitHub" className="text-gray-400 hover:text-brand-accent transition-colors">
+                    <Github className="w-5 h-5" aria-hidden="true" />
                   </a>
                 </div>
               </div>

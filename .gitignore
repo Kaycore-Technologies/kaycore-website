@@ -41,6 +41,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude code
+.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# audit deliverables (kept as separate files, not versioned)
+audit-2026-07/

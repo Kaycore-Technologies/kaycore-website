@@ -77,6 +77,21 @@ body {
   border-radius: 4px;
 }
 
+/* Respect users who prefer reduced motion (WCAG 2.3.3 / 2.2) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Selection */
 ::selection {
   background-color: rgba(99, 102, 241, 0.4);

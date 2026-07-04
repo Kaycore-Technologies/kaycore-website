@@ -7,10 +7,55 @@ import { services } from '@/components/company-data';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from '@/components/animations';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
+import { FAQ, type FAQItem } from '@/components/FAQ';
+
+const servicesFaqs: FAQItem[] = [
+  {
+    q: 'What services does Kaycore offer?',
+    a: 'AI Quality & Risk Readiness Audits, LLM & Generative AI Testing, AI-QE Retainers (an on-call external AI risk department), performance testing, dedicated QA teams, and QA consulting — the full spectrum of quality engineering for AI-powered software.',
+  },
+  {
+    q: 'Do you offer ongoing support or only one-off projects?',
+    a: 'Both. Our AI-QE Retainers embed senior QA engineers for continuous regression and release coverage plus ongoing AI risk monitoring, with flexible month-to-month capacity. We also run fixed-scope audits and project engagements.',
+  },
+  {
+    q: 'How does an engagement work?',
+    a: 'Four stages: Discovery & Audit (we map your product, codebase, and current QA), Strategy & Planning (a test strategy tailored to your stack and release cadence), Build & Automate (frameworks integrated into your CI/CD), and Monitor & Optimize (continuous coverage that improves each sprint).',
+  },
+  {
+    q: 'How is testing AI different from traditional QA?',
+    a: 'AI systems are probabilistic and have an effectively infinite input space, so they can hallucinate, drift, or fail under adversarial prompts. We use statistical evaluation, adversarial testing, and continuous monitoring rather than the fixed pass/fail assertions traditional QA relies on.',
+  },
+];
 
 export default function ServicesContent() {
+  const servicesLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: services.map((service, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      item: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        serviceType: 'AI Quality Engineering',
+        provider: {
+          '@type': 'Organization',
+          name: 'Kaycore Technologies',
+          url: 'https://www.kaycore.com',
+        },
+        areaServed: 'Global',
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesLd) }}
+      />
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-accent w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
 
@@ -117,8 +162,10 @@ export default function ServicesContent() {
         </div>
       </motion.section>
 
+      <FAQ items={servicesFaqs} />
+
       {/* Embedded Lead Form */}
-      <LeadFormCTA 
+      <LeadFormCTA
         title="Secure Your AI Systems Today"
         description="Ready to deploy flawless software? Reach out to our leads directly and let us engineer custom risk protocols for your application."
       />

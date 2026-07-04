@@ -128,6 +128,17 @@ export default function RootLayout({
     ],
   };
 
+  const websiteLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Kaycore Technologies',
+    url: 'https://www.kaycore.com',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Kaycore Technologies',
+    },
+  };
+
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
@@ -149,6 +160,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
         <Header />
         <main className="flex-grow">

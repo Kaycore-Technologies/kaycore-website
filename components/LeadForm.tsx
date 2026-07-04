@@ -150,7 +150,7 @@ export function LeadForm({
             </div>
 
             {error && (
-              <p className="text-red-500 text-xs text-center font-medium leading-relaxed bg-red-500/10 border border-red-500/20 py-2.5 px-4 rounded-xl">{error}</p>
+              <p role="alert" aria-live="assertive" className="text-red-500 text-xs text-center font-medium leading-relaxed bg-red-500/10 border border-red-500/20 py-2.5 px-4 rounded-xl">{error}</p>
             )}
 
             <button

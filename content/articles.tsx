@@ -373,8 +373,9 @@ const testLlmBeforeProduction: Article = {
         <li>You monitor the live system for drift after launch.</li>
       </ol>
       <p>
-        If you cannot check every box yet, that is the roadmap. For the wider discipline this sits
-        inside, see{' '}
+        If you cannot check every box yet, that is the roadmap. You can also{' '}
+        <a href="/resources/llm-readiness-checklist">get the full version as a free checklist</a>. For
+        the wider discipline this sits inside, see{' '}
         <a href="/blog/what-is-ai-quality-engineering">what AI Quality Engineering is</a>, and if you
         want a partner to build this with you, read{' '}
         <a href="/blog/how-to-choose-an-ai-testing-partner">how to choose an AI testing partner</a>.

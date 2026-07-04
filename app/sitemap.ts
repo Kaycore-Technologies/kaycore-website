@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/case-studies',
     '/blog',
+    '/resources/llm-readiness-checklist',
     '/careers',
     '/contact',
     '/kayhealth',

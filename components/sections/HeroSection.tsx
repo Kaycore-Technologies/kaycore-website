@@ -62,7 +62,7 @@ export function HeroSection() {
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">What is AI Quality Engineering?</h2>
           <p className="text-lg text-slate-300 leading-relaxed">
-            Systematic validation for probabilistic software. Traditional QA asserts that <code className="bg-black/50 px-1.5 py-0.5 rounded text-cyan-400 font-mono text-xs md:text-sm">if(x) return y</code>. It fails with LLMs because they are non-deterministic, infinite-state systems. AI Quality Engineering (AI-QE) combines data science, adversarial security, and behavioral psychology to bound the uncertainty of generative models.
+            AI Quality Engineering (AI-QE) is the practice of systematically validating non-deterministic AI systems for safety, accuracy, robustness, and drift, both before and after production. Traditional QA asserts that <code className="bg-black/50 px-1.5 py-0.5 rounded text-cyan-400 font-mono text-xs md:text-sm">if(x) return y</code>, which breaks with LLMs because they are non-deterministic, infinite-state systems. AI-QE replaces fixed assertions with statistical evaluation, adversarial testing, and continuous monitoring.
           </p>
         </motion.div>
 

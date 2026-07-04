@@ -97,7 +97,7 @@ export default function IndustriesContent() {
                       <h2 className="text-2xl font-bold text-white mb-3">{ind.name}</h2>
                       <p className="text-gray-300 leading-relaxed text-sm max-w-sm transition-all duration-300 group-hover:mb-4">{ind.description}</p>
 
-                      <div className="space-y-3 max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-out group-hover:max-h-[160px] group-hover:opacity-100">
+                      <div className="space-y-3 overflow-hidden transition-all duration-500 ease-out max-h-[200px] opacity-100 md:max-h-0 md:opacity-0 md:group-hover:max-h-[160px] md:group-hover:opacity-100">
                         {ind.challenges.map((challenge, i) => (
                           <div key={i} className="flex items-center gap-3 text-sm text-gray-200">
                             <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />

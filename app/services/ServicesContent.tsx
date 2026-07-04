@@ -148,7 +148,7 @@ export default function ServicesContent() {
                         </ul>
                       </div>
                       
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute bottom-0 translate-y-4 group-hover:translate-y-0 pb-2">
+                      <div className="opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 absolute bottom-0 md:translate-y-4 md:group-hover:translate-y-0 pb-2">
                         <GlowButton href="/contact" variant="secondary" showArrow className="px-6 py-2 text-sm bg-white/10 backdrop-blur-md border border-white/20 hover:bg-brand-accent hover:border-brand-accent">
                           Discuss this service
                         </GlowButton>

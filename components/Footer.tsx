@@ -108,7 +108,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               {services.slice(0, 5).map((service) => (
                 <li key={service.id}>
-                  <Link href="/services" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                  <Link href="/services" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                     {service.title}
                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                   </Link>
@@ -122,7 +122,7 @@ export function Footer() {
             <h4 className={`${headingColor} font-bold mb-6 tracking-wide`}>KayHealth</h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <Link href="/kayhealth" className={`${textColor} ${healthHoverColor} transition-colors flex items-center group`}>
+                <Link href="/kayhealth" className={`${textColor} ${healthHoverColor} transition-colors flex items-center group py-1.5`}>
                   AI Healthcare Hub
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                 </Link>
@@ -144,7 +144,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               {industries.slice(0, 5).map((industry) => (
                 <li key={industry.name}>
-                  <Link href="/industries" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                  <Link href="/industries" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                     {industry.name}
                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                   </Link>
@@ -181,22 +181,22 @@ export function Footer() {
             <h4 className={`${headingColor} font-bold mb-6 tracking-wide`}>Company</h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <Link href="/privacy-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                <Link href="/privacy-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                <Link href="/terms-of-service" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/cookie-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                <Link href="/cookie-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Cookie Policy
                 </Link>
               </li>
               <li>
-                <Link href="/security-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group`}>
+                <Link href="/security-policy" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Security Policy
                 </Link>
               </li>

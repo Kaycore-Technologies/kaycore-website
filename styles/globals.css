@@ -92,6 +92,119 @@ body {
   }
 }
 
+/* --- Long-form article typography (blog / case studies) --- */
+.article-prose {
+  color: #cbd5e1;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.article-prose > * + * {
+  margin-top: 1.4em;
+}
+.article-prose h2 {
+  color: #fff;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 2.4em;
+  margin-bottom: 0.2em;
+  scroll-margin-top: 6rem;
+}
+.article-prose h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 0.1em;
+}
+.article-prose p {
+  color: #cbd5e1;
+}
+.article-prose strong {
+  color: #fff;
+  font-weight: 600;
+}
+.article-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.article-prose a:hover {
+  color: #fff;
+}
+.article-prose ul,
+.article-prose ol {
+  padding-left: 1.4em;
+}
+.article-prose ul {
+  list-style: none;
+}
+.article-prose ul > li {
+  position: relative;
+  padding-left: 1.1em;
+}
+.article-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+}
+.article-prose ol {
+  list-style: decimal;
+}
+.article-prose li {
+  margin-top: 0.5em;
+  color: #cbd5e1;
+}
+.article-prose li::marker {
+  color: var(--color-accent);
+}
+.article-prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: #e2e8f0;
+}
+.article-prose code {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.12em 0.4em;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.9em;
+  color: #93c5fd;
+}
+.article-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+.article-prose th,
+.article-prose td {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+.article-prose th {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-weight: 600;
+}
+.article-prose figcaption {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
 /* Selection */
 ::selection {
   background-color: rgba(99, 102, 241, 0.4);

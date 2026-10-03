@@ -73,7 +73,7 @@ export function Footer() {
             <Link href="/" className="inline-block mb-6">
               <div className="relative h-10 w-40">
                 <Image
-                  src="/assets/logo_backup.png"
+                  src="/assets/logo-mark-2.png"
                   alt="Kaycore Technologies"
                   fill
                   sizes="160px"

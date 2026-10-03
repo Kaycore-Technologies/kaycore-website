@@ -1,5 +1,6 @@
 export { HeroSection } from './HeroSection';
 export { ServicesPreview } from './ServicesPreview';
+export { ProductsSection } from './ProductsSection';
 export { AICapabilities } from './AICapabilities';
 export { WhyKaycore } from './WhyKaycore';
 export { ProcessSection } from './ProcessSection';

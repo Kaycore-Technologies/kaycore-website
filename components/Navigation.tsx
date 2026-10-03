@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 
 interface NavChild {
   label: string;
@@ -21,6 +21,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Products', href: '/products' },
   { label: 'Industries', href: '/industries' },
   { label: 'KayHealth', href: '/kayhealth' },
   { label: 'About', href: '/about' },
@@ -152,13 +153,14 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
         <div className={`pl-8 border-l ${isLightTheme ? 'border-slate-200' : 'border-white/10'}`}>
           <Link
             href="/contact"
-            className={`inline-flex items-center justify-center text-sm font-semibold transition-all duration-300 hover:scale-105 ${
+            className={`group/cta inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition-all duration-300 hover:scale-[1.03] ${
               isLightTheme
-                ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full px-6 py-3 hover:shadow-xl'
-                : 'bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] text-white rounded-full px-6 py-3'
+                ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full px-4 py-2 hover:shadow-xl'
+                : 'bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] text-white rounded-full px-4 py-2'
             }`}
           >
             Talk to an Expert
+            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-0.5" />
           </Link>
         </div>
       </nav>

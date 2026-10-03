@@ -12,7 +12,7 @@ import { FAQ, type FAQItem } from '@/components/FAQ';
 const servicesFaqs: FAQItem[] = [
   {
     q: 'What services does Kaycore offer?',
-    a: 'AI Quality & Risk Readiness Audits, LLM & Generative AI Testing, AI-QE Retainers (an on-call external AI risk department), performance testing, dedicated QA teams, and QA consulting — the full spectrum of quality engineering for AI-powered software.',
+    a: 'AI Quality & Risk Readiness Audits, LLM & Generative AI Testing, AI-QE Retainers (an on-call external AI risk department), performance testing, embedded QA engineers, and QA consulting. Together they cover the full spectrum of quality engineering for AI-powered software.',
   },
   {
     q: 'Do you offer ongoing support or only one-off projects?',

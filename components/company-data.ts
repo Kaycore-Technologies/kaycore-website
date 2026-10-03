@@ -94,16 +94,16 @@ export const services: Service[] = [
   },
   {
     id: 5,
-    title: 'Dedicated QA Teams',
-    slug: 'dedicated-qa-teams',
+    title: 'Embedded QA Engineers',
+    slug: 'embedded-qa-engineers',
     description:
-      'Augment your engineering team with senior QA engineers. Fully managed, timezone-aligned, and embedded into your workflows from day one.',
+      'Senior QA engineers embedded into your team and workflows, staffed per engagement rather than drawn from a bench. Timezone-aligned and fully managed from day one.',
     icon: Users,
     features: [
       'Hand-picked senior engineers',
-      'Flexible team scaling',
+      'Staffed per engagement, not a bench',
       'Full Agile/Scrum integration',
-      'Dedicated QA lead included',
+      'Embedded in your workflow from day one',
     ],
     color: 'from-emerald-500/20 to-emerald-600/10',
   },
@@ -259,7 +259,7 @@ export const whyKaycore: WhyItem[] = [
   {
     title: 'Senior Engineers Only',
     description:
-      'Every team member has 5+ years of experience. No juniors learning on your project. Zero outsourcing.',
+      'Every team member has 5+ years of experience. No juniors learning on your project. The engineer who scopes your work is the engineer who does it.',
   },
   {
     title: 'Scalable & Flexible',

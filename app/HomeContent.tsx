@@ -2,11 +2,12 @@
 
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  HeroSection, 
-  ServicesPreview, 
-  AICapabilities, 
-  WhyKaycore, 
+import {
+  HeroSection,
+  ServicesPreview,
+  ProductsSection,
+  AICapabilities,
+  WhyKaycore,
   ProcessSection,
   IntroVideoSection
 } from '@/components/sections';
@@ -17,7 +18,7 @@ import { FAQ, type FAQItem } from '@/components/FAQ';
 const homeFaqs: FAQItem[] = [
   {
     q: 'What is AI Quality Engineering?',
-    a: 'AI Quality Engineering (AI-QE) is the discipline of systematically validating non-deterministic AI and LLM systems for safety, factual accuracy, robustness, and drift — before and after they reach production. Unlike traditional QA, which checks deterministic pass/fail logic, AI-QE is built to bound the uncertainty of probabilistic systems.',
+    a: 'AI Quality Engineering (AI-QE) is the discipline of systematically validating non-deterministic AI and LLM systems for safety, factual accuracy, robustness, and drift, both before and after they reach production. Unlike traditional QA, which checks deterministic pass/fail logic, AI-QE is built to bound the uncertainty of probabilistic systems.',
   },
   {
     q: 'How is testing AI different from traditional QA?',
@@ -33,7 +34,7 @@ const homeFaqs: FAQItem[] = [
   },
   {
     q: 'Do you work with healthcare and other regulated AI?',
-    a: 'Yes. Our team includes a physician co-founder, and we specialize in the high-stakes domains — healthcare, fintech, and AI-first startups — where quality failures carry the greatest cost.',
+    a: 'Yes. Our team includes a physician founder, and we specialize in the high-stakes domains such as healthcare, fintech, and AI-first startups, where quality failures carry the greatest cost.',
   },
 ];
 
@@ -54,6 +55,8 @@ export default function HomeContent() {
       <IntroVideoSection />
       <div className="section-divider" />
       <ServicesPreview />
+      <div className="section-divider" />
+      <ProductsSection />
       <AICapabilities />
       <WhyKaycore />
       <ProcessSection />

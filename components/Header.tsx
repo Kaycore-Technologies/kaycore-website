@@ -25,11 +25,11 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isKayHealth
           ? scrolled
-            ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200 py-4 shadow-sm'
-            : 'bg-transparent py-6'
-          : scrolled 
-            ? 'bg-[#030712]/80 backdrop-blur-xl border-b border-white/5 py-4' 
-            : 'bg-transparent py-6'
+            ? 'bg-white/70 backdrop-blur-2xl backdrop-saturate-150 border-b border-slate-200/70 py-1.5 shadow-sm'
+            : 'bg-white/30 backdrop-blur-xl backdrop-saturate-150 border-b border-white/40 py-2'
+          : scrolled
+            ? 'bg-gradient-to-b from-white/[0.08] to-white/[0.03] backdrop-blur-2xl backdrop-saturate-150 border-b border-white/10 py-1.5 shadow-lg shadow-black/30'
+            : 'bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 border-b border-white/10 py-2'
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -37,12 +37,12 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative z-50 flex items-center gap-3 group py-1.5"
+            className="relative z-50 flex items-center gap-3 group py-0.5"
             aria-label="Kaycore Technologies"
           >
-            <div className="relative h-8 w-32 md:h-10 md:w-40 transition-transform group-hover:scale-105">
+            <div className="relative h-7 w-40 md:h-8 md:w-44 transition-transform group-hover:scale-105">
               <Image
-                src="/assets/logo_backup.png"
+                src="/assets/logo-mark-2.png"
                 alt="Kaycore Technologies"
                 fill
                 sizes="(max-width: 768px) 128px, 160px"

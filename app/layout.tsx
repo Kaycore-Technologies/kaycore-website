@@ -116,13 +116,13 @@ export default function RootLayout({
       {
         '@type': 'Person',
         name: 'Kulish Kulshrestha',
-        jobTitle: 'Founder & Lead Architect',
+        jobTitle: 'CTO',
         sameAs: 'https://www.linkedin.com/in/kulish-kulshrestha/',
       },
       {
         '@type': 'Person',
         name: 'Dr. Ayushi Shukla',
-        jobTitle: 'Co-founder',
+        jobTitle: 'Founder and CEO',
         sameAs: 'https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/',
       },
     ],

@@ -35,7 +35,7 @@ export default function AboutContent() {
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-purple w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none" />
 
-      {/* Hero — center-aligned, matching Home/Services/Industries pattern */}
+      {/* Hero, center-aligned, matching Home/Services/Industries pattern */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="relative z-10 text-center space-y-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -203,77 +203,87 @@ export default function AboutContent() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Founder 1 */}
+          <div className="flex flex-col gap-8 lg:gap-10 max-w-4xl mx-auto">
+            {/* Founder 1 - CEO */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
+              className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10"
             >
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
-                <Image
-                  src="/images/team/kulish.jpg"
-                  alt="Kulish Kulshrestha - Founder & Lead Architect"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 500px"
-                  className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 lg:gap-10 items-start">
+                <div className="relative w-44 lg:w-52 shrink-0 aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 group mx-auto sm:mx-0">
+                  <Image
+                    src="/images/team/ayushi.jpg"
+                    alt="Dr. Ayushi Shukla - Founder and CEO"
+                    fill
+                    sizes="(max-width: 640px) 176px, 208px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent pointer-events-none" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-white font-bold text-2xl sm:text-3xl mb-1">Dr. Ayushi Shukla</h4>
+                  <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">Founder &amp; CEO</p>
+                  <a
+                    href="https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Dr. Ayushi Shukla on LinkedIn"
+                    className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
+                  >
+                    <Linkedin className="w-4 h-4" /> Connect on LinkedIn
+                  </a>
+                  <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                    <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
+                  </blockquote>
+                  <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                    Dr. Shukla brings almost eight years of frontline clinical experience to Kaycore&apos;s healthcare initiatives. Having served in leading institutions, she experienced firsthand the administrative burnout and systemic inefficiencies plaguing modern medicine. Her mission is to harness AI to reduce physician cognitive load, eliminate documentation friction, and ultimately return the focus of healthcare back to the patient.
+                  </p>
+                </div>
               </div>
-              <h4 className="text-white font-bold text-3xl mb-1">Kulish Kulshrestha</h4>
-              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">Founder & Lead Architect</p>
-              <a
-                href="https://www.linkedin.com/in/kulish-kulshrestha/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Kulish Kulshrestha on LinkedIn"
-                className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
-              >
-                <Linkedin className="w-4 h-4" /> Connect on LinkedIn
-              </a>
-              <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
-                <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
-              </blockquote>
-              <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                With over a decade of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
-              </p>
             </motion.div>
 
-            {/* Founder 2 */}
+            {/* Founder 2 - CTO */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10"
             >
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 mb-8 group">
-                <Image
-                  src="/images/team/ayushi.jpg"
-                  alt="Dr. Ayushi Shukla - Co-founder, Kaycore Technologies"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 500px"
-                  className="object-cover z-10 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent z-20 pointer-events-none" />
+              <div className="flex flex-col sm:flex-row-reverse gap-6 sm:gap-8 lg:gap-10 items-start">
+                <div className="relative w-44 lg:w-52 shrink-0 aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 group mx-auto sm:mx-0">
+                  <Image
+                    src="/images/team/kulish.jpg"
+                    alt="Kulish Kulshrestha - CTO"
+                    fill
+                    sizes="(max-width: 640px) 176px, 208px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/50 to-transparent pointer-events-none" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-white font-bold text-2xl sm:text-3xl mb-1">Kulish Kulshrestha</h4>
+                  <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">CTO</p>
+                  <a
+                    href="https://www.linkedin.com/in/kulish-kulshrestha/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Kulish Kulshrestha on LinkedIn"
+                    className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
+                  >
+                    <Linkedin className="w-4 h-4" /> Connect on LinkedIn
+                  </a>
+                  <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
+                    <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
+                  </blockquote>
+                  <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
+                    With nine years of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
+                  </p>
+                </div>
               </div>
-              <h4 className="text-white font-bold text-3xl mb-1">Dr. Ayushi Shukla</h4>
-              <p className="text-brand-accent font-mono text-sm uppercase tracking-wider mb-4">Co-founder, Kaycore Technologies</p>
-              <a
-                href="https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Dr. Ayushi Shukla on LinkedIn"
-                className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-brand-accent transition-colors mb-6"
-              >
-                <Linkedin className="w-4 h-4" /> Connect on LinkedIn
-              </a>
-              <blockquote className="border-l-2 border-brand-accent pl-4 mb-6">
-                <p className="text-lg text-white font-light italic">&quot;We are bridging the gap between clinical reality and technological capability to make healthcare accessible, efficient, and deeply human.&quot;</p>
-              </blockquote>
-              <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                Dr. Shukla brings nearly a decade of frontline clinical experience to Kaycore&apos;s healthcare initiatives. Having served in leading institutions, she experienced firsthand the administrative burnout and systemic inefficiencies plaguing modern medicine. Her mission is to harness AI to reduce physician cognitive load, eliminate documentation friction, and ultimately return the focus of healthcare back to the patient.
-              </p>
             </motion.div>
           </div>
         </div>

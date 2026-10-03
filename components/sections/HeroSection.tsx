@@ -101,7 +101,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="pt-12 text-xs font-mono text-gray-500 tracking-widest uppercase flex flex-wrap justify-center gap-x-4 gap-y-1"
         >
-          <span>Senior Engineers Only</span><span className="hidden xs:inline">•</span><span>AI-First Approach</span><span className="hidden xs:inline">•</span><span>Zero Outsourcing</span>
+          <span>Senior Engineers Only</span><span className="hidden xs:inline">•</span><span>AI-First Approach</span><span className="hidden xs:inline">•</span><span>No Junior Hand-offs</span>
         </motion.div>
       </div>
     </section>

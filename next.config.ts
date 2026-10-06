@@ -76,6 +76,20 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async redirects() {
+    // Retired illustrative case studies (source kept in content/archive/).
+    // statusCode 301 rather than `permanent: true`, which Next sends as a 308.
+    return [
+      'series-b-fintech-support-assistant',
+      'ai-saas-agent-reliability',
+      'hospital-network-clinical-documentation',
+      'ecommerce-search-relevance-bias',
+    ].map((slug) => ({
+      source: `/case-studies/${slug}`,
+      destination: '/case-studies',
+      statusCode: 301 as const,
+    }));
+  },
 };
 
 export default nextConfig;

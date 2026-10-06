@@ -13,7 +13,7 @@ const capabilities = [
   {
     icon: Zap,
     title: "Self-Healing Automation",
-    description: "Our AI frameworks automatically detect UI changes and heal broken test selectors, reducing maintenance overhead by 70%."
+    description: "Our AI frameworks are built to detect UI changes and repair broken test selectors, so your team spends less time maintaining tests and more time shipping."
   },
   {
     icon: ShieldCheck,

@@ -5,6 +5,15 @@ import { caseStudies, caseStudiesIntro } from '@/content/case-studies';
 
 const baseUrl = 'https://www.kaycore.com';
 
+// Same glass treatment as the header and About cards: translucent sheen, blur, top highlight.
+const glassPanel =
+  'rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
+
+// Approved heading "Selected work": last word takes the site's gradient accent, as on About.
+const headingWords = caseStudiesIntro.heading.split(' ');
+const headingAccent = headingWords.pop();
+const headingLead = headingWords.join(' ');
+
 export const metadata: Metadata = {
   title: 'Case Studies | Selected Work',
   description: caseStudiesIntro.paragraphs[0],
@@ -30,14 +39,15 @@ export default function CaseStudiesPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-14 px-4 sm:px-6 lg:px-8">
         <div className="absolute top-0 inset-x-0 h-[420px] bg-grid opacity-20 pointer-events-none" />
+        <div className="orb orb-accent w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-5">Case Studies</p>
           <h1 className="text-4xl sm:text-6xl font-display font-bold text-white leading-tight tracking-tight mb-6">
-            {caseStudiesIntro.heading}
+            {headingLead} <span className="text-gradient">{headingAccent}</span>
           </h1>
           <div className="space-y-4 max-w-2xl mx-auto">
             {caseStudiesIntro.paragraphs.map((p) => (
-              <p key={p} className="text-lg text-gray-400 leading-relaxed">
+              <p key={p} className="text-lg text-gray-300 leading-relaxed">
                 {p}
               </p>
             ))}
@@ -46,11 +56,13 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="orb orb-purple w-[520px] h-[520px] top-10 -left-40 opacity-15 pointer-events-none" />
+        <div className="orb orb-cyan w-[460px] h-[460px] bottom-0 -right-32 opacity-10 pointer-events-none" />
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8">
           {caseStudies.map((study) => (
             <Link key={study.slug} href={`/case-studies/${study.slug}`} className="group block h-full">
-              <article className="h-full flex flex-col rounded-3xl border border-white/10 bg-white/5 overflow-hidden hover:border-brand-accent/30 hover:-translate-y-1 transition-all duration-500">
+              <article className={`h-full flex flex-col overflow-hidden hover:-translate-y-1 duration-500 ${glassPanel} glass-card`}>
                 <div className="p-7 flex flex-col flex-1">
                   <h2 className="text-xl font-bold text-white mb-3 leading-snug group-hover:text-brand-accent transition-colors">
                     {study.title}

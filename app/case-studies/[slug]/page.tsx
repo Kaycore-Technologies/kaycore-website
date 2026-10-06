@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -8,6 +7,10 @@ import { LeadFormCTA } from '@/components/LeadFormCTA';
 
 const baseUrl = 'https://www.kaycore.com';
 const ogImage = { url: '/assets/og-image.jpg', alt: 'Kaycore Technologies - AI-Powered Quality Engineering' };
+
+// Same glass treatment as the header and About cards: translucent sheen, blur, top highlight.
+const glassPanel =
+  'rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] backdrop-blur-xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]';
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
@@ -88,6 +91,7 @@ export default async function CaseStudyDetail({
       <article>
         <header className="relative pt-32 pb-10 px-4 sm:px-6 lg:px-8">
           <div className="absolute top-0 inset-x-0 h-[420px] bg-grid opacity-20 pointer-events-none" />
+          <div className="orb orb-accent w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
           <div className="max-w-3xl mx-auto relative z-10">
             <nav aria-label="Breadcrumb" className="mb-8">
               <ol className="flex items-center gap-2 text-sm text-gray-500">
@@ -113,15 +117,17 @@ export default async function CaseStudyDetail({
           </div>
         </header>
 
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 border-t border-white/10">
-          <div className="article-prose">
+        <div className="relative px-4 sm:px-6 lg:px-8">
+          <div className="orb orb-purple w-[520px] h-[520px] top-20 -left-48 opacity-15 pointer-events-none" />
+          <div className="orb orb-cyan w-[460px] h-[460px] bottom-10 -right-40 opacity-10 pointer-events-none" />
+          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             {study.body.map((section, i) => (
-              <Fragment key={section.heading ?? `intro-${i}`}>
+              <section key={section.heading ?? `intro-${i}`} className={`article-prose p-6 sm:p-8 lg:p-10 ${glassPanel}`}>
                 {section.heading && <h2>{section.heading}</h2>}
                 {section.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
-              </Fragment>
+              </section>
             ))}
           </div>
         </div>
@@ -132,7 +138,7 @@ export default async function CaseStudyDetail({
         <h2 className="text-2xl font-display font-bold text-white mb-8">More case studies</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {related.map((r) => (
-            <Link key={r.slug} href={`/case-studies/${r.slug}`} className="group block rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-accent/30 transition-all">
+            <Link key={r.slug} href={`/case-studies/${r.slug}`} className={`group block p-6 glass-card ${glassPanel}`}>
               <p className="text-xs font-mono text-brand-accent uppercase tracking-wider mb-2">{r.tags[0]}</p>
               <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{r.title}</h3>
               <span className="inline-flex items-center gap-1.5 text-sm text-brand-accent font-semibold">

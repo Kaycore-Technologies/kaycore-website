@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((c) => ({
     url: `${baseUrl}/case-studies/${c.slug}`,
-    lastModified: new Date(c.date),
+    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));

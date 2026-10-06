@@ -280,7 +280,7 @@ export default function AboutContent() {
                     <p className="text-lg text-white font-light italic">&quot;I don&apos;t ask whether an AI works. I ask how it fails and whether we detect it in time.&quot;</p>
                   </blockquote>
                   <p className="text-gray-400 leading-relaxed text-sm lg:text-base">
-                    With nine years of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he founded Kaycore to bridge the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
+                    With nine years of experience architecting and validating production-grade software, Kulish is driven by a singular mission: to eliminate the unpredictability of AI in enterprise environments. Recognizing that traditional QA fails when applied to probabilistic systems, he leads technology and quality engineering at Kaycore, bridging the gap between experimental AI and mission-critical reliability. His expertise in risk analysis and failure modes ensures that organizations can deploy AI solutions with absolute confidence.
                   </p>
                 </div>
               </div>

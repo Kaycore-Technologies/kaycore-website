@@ -1,3 +1,9 @@
+/*
+ * UNPUBLISHED. Retired October 2026.
+ * These four entries are illustrative scenarios, not completed engagements, so they
+ * must not appear on the site. Nothing imports this file. Their old URLs 301 to
+ * /case-studies (see next.config.ts). Kept for reference only.
+ */
 import type { ReactNode } from 'react';
 
 export interface CaseStudyOutcome {

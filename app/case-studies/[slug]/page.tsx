@@ -1,12 +1,13 @@
+import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Info } from 'lucide-react';
-import { getCaseStudy, caseStudies, caseStudyDisclosure } from '@/content/case-studies';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { getCaseStudy, caseStudies } from '@/content/case-studies';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
 
 const baseUrl = 'https://www.kaycore.com';
+const ogImage = { url: '/assets/og-image.jpg', alt: 'Kaycore Technologies - AI-Powered Quality Engineering' };
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
@@ -19,18 +20,25 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const study = getCaseStudy(slug);
-  if (!study) return { title: 'Case Study Not Found | Kaycore Technologies' };
+  if (!study) return { title: 'Case Study Not Found' };
 
   return {
     title: `${study.title} | Case Study`,
     description: study.summary,
+    keywords: study.tags,
     alternates: { canonical: `/case-studies/${study.slug}` },
     openGraph: {
       type: 'article',
       title: study.title,
       description: study.summary,
       url: `${baseUrl}/case-studies/${study.slug}`,
-      images: [{ url: study.image, width: 1600, height: 900, alt: study.title }],
+      images: [ogImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: study.title,
+      description: study.summary,
+      images: [ogImage.url],
     },
   };
 }
@@ -44,7 +52,6 @@ export default async function CaseStudyDetail({
   const study = getCaseStudy(slug);
   if (!study) notFound();
 
-  const { Body } = study;
   const url = `${baseUrl}/case-studies/${study.slug}`;
   const related = caseStudies.filter((c) => c.slug !== study.slug).slice(0, 2);
 
@@ -53,9 +60,7 @@ export default async function CaseStudyDetail({
     '@type': 'Article',
     headline: study.title,
     description: study.summary,
-    image: study.image,
-    datePublished: study.date,
-    dateModified: study.date,
+    keywords: study.tags.join(', '),
     author: { '@type': 'Organization', name: 'Kaycore Technologies' },
     publisher: {
       '@type': 'Organization',
@@ -63,7 +68,6 @@ export default async function CaseStudyDetail({
       logo: { '@type': 'ImageObject', url: `${baseUrl}/assets/logo.png` },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-    about: study.industry,
   };
 
   const breadcrumbLd = {
@@ -91,63 +95,34 @@ export default async function CaseStudyDetail({
                 <li aria-hidden="true">/</li>
                 <li><Link href="/case-studies" className="hover:text-brand-accent transition-colors">Case Studies</Link></li>
                 <li aria-hidden="true">/</li>
-                <li className="text-gray-300 truncate max-w-[40%]">{study.industry}</li>
+                <li className="text-gray-300 truncate max-w-[40%]" aria-current="page">{study.title}</li>
               </ol>
             </nav>
 
-            <div className="flex items-center gap-3 mb-5">
-              <span className="px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-bold">{study.industry}</span>
-              <span className="text-sm font-mono text-gray-500 uppercase tracking-wider">{study.client}</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white leading-tight tracking-tight mb-6">
               {study.title}
             </h1>
-          </div>
-        </header>
-
-        {/* Hero image */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <div className="relative aspect-[16/9] rounded-3xl overflow-hidden border border-white/10">
-            <Image src={study.image} alt={study.title} fill sizes="(max-width: 896px) 100vw, 896px" className="object-cover" priority />
-          </div>
-        </div>
-
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Outcomes */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-14">
-            {study.outcomes.map((o) => (
-              <div key={o.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
-                <div className="text-2xl font-bold text-brand-accent mb-2">{o.value}</div>
-                <div className="text-xs text-gray-400 leading-snug">{o.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Challenge */}
-          <div className="article-prose mb-2">
-            <h2>The challenge</h2>
-            <p>{study.challenge}</p>
-          </div>
-
-          {/* Approach */}
-          <div className="article-prose">
-            <h2>Our approach</h2>
-            <ul>
-              {study.approach.map((step, i) => (
-                <li key={i}>{step}</li>
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">{study.summary}</p>
+            <ul className="flex flex-wrap gap-2" aria-label="Tags">
+              {study.tags.map((tag) => (
+                <li key={tag} className="px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/20 text-brand-accent text-xs font-bold">
+                  {tag}
+                </li>
               ))}
             </ul>
           </div>
+        </header>
 
-          {/* Body */}
-          <div className="article-prose mt-2">
-            <Body />
-          </div>
-
-          {/* Disclosure */}
-          <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-gray-500 mt-14">
-            <Info className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" aria-hidden="true" />
-            <p>{caseStudyDisclosure}</p>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 border-t border-white/10">
+          <div className="article-prose">
+            {study.body.map((section, i) => (
+              <Fragment key={section.heading ?? `intro-${i}`}>
+                {section.heading && <h2>{section.heading}</h2>}
+                {section.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </Fragment>
+            ))}
           </div>
         </div>
       </article>
@@ -158,17 +133,17 @@ export default async function CaseStudyDetail({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {related.map((r) => (
             <Link key={r.slug} href={`/case-studies/${r.slug}`} className="group block rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-accent/30 transition-all">
-              <p className="text-xs font-mono text-brand-accent uppercase tracking-wider mb-2">{r.industry}</p>
+              <p className="text-xs font-mono text-brand-accent uppercase tracking-wider mb-2">{r.tags[0]}</p>
               <h3 className="text-lg font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">{r.title}</h3>
               <span className="inline-flex items-center gap-1.5 text-sm text-brand-accent font-semibold">
-                Read <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Read <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </span>
             </Link>
           ))}
         </div>
         <div className="mt-10">
           <Link href="/case-studies" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-            <ArrowLeft className="w-4 h-4" /> All case studies
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" /> All case studies
           </Link>
         </div>
       </section>

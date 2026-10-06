@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
   { label: 'Products', href: '/products' },
+  { label: 'Case Studies', href: '/case-studies' },
   { label: 'Industries', href: '/industries' },
   { label: 'KayHealth', href: '/kayhealth' },
   { label: 'About', href: '/about' },
@@ -87,7 +88,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center gap-8" ref={dropdownRef}>
+      <nav className="hidden xl:flex items-center gap-8" ref={dropdownRef}>
         <ul className="flex items-center gap-8">
           {navItems.map((item) => {
             const isActive = isItemActive(item);
@@ -105,7 +106,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                   <>
                     <Link
                       href={item.href}
-                      className={`text-sm font-medium tracking-wide uppercase transition-colors flex items-center gap-1.5 ${
+                      className={`text-sm font-medium tracking-wide uppercase whitespace-nowrap transition-colors flex items-center gap-1.5 ${
                         isActive ? linkActiveHealth : linkBase
                       }`}
                     >
@@ -139,7 +140,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`text-sm font-medium tracking-wide uppercase transition-colors ${
+                    className={`text-sm font-medium tracking-wide uppercase whitespace-nowrap transition-colors ${
                       isActive ? linkActive : linkBase
                     }`}
                   >
@@ -168,7 +169,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
       {/* Mobile Menu Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`md:hidden relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors ${
+        className={`xl:hidden relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors ${
           isLightTheme ? 'text-slate-500 hover:text-slate-900' : 'text-gray-400 hover:text-white'
         }`}
         aria-label="Toggle menu"
@@ -179,7 +180,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
       {/* Mobile Navigation Overlay rendered outside the header hierarchy using a React Portal */}
       {mounted && createPortal(
         <div
-          className={`fixed inset-0 z-40 transition-all duration-300 md:hidden flex flex-col justify-center ${
+          className={`fixed inset-0 z-40 transition-all duration-300 xl:hidden flex flex-col justify-center ${
             isLightTheme
               ? 'bg-white/98 backdrop-blur-xl'
               : 'bg-[#030712]/95 backdrop-blur-xl'

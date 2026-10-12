@@ -24,12 +24,9 @@ export function WhyKaycore() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {whyKaycore.map((item, idx) => {
-            // Determine bento box spans
-            let spanClass = "md:col-span-1 md:row-span-1";
-            if (idx === 0) spanClass = "md:col-span-2 md:row-span-2"; // Large hero bento
-            else if (idx === 3) spanClass = "md:col-span-2 md:row-span-1"; // Wide bento
-            else if (idx === 4) spanClass = "md:col-span-1 md:row-span-1"; 
-            else if (idx === 5) spanClass = "md:col-span-3 md:row-span-1"; // Full width bottom
+            // Bento spans: one row each, wide card alternating sides (wide-narrow, narrow-wide, wide-narrow)
+            const isWide = idx === 0 || idx === 3 || idx === 4;
+            const spanClass = isWide ? "md:col-span-2" : "md:col-span-1";
 
             // Determine image
             const images = [
@@ -37,8 +34,8 @@ export function WhyKaycore() {
               "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
               "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
-              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80",
-              "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=1200&q=80"
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+              "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80"
             ];
 
             return (

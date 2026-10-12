@@ -8,11 +8,21 @@ import { GlowButton } from '@/components/ui';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
 import Image from 'next/image';
 
+// Unsplash images keyed by slug so reordering industries never mismatches a card and its image
+const industryImages: Record<string, string> = {
+  'ai-startups': 'photo-1509062522246-3755977927d7',
+  saas: 'photo-1551288049-bebda4e38f71',
+  fintech: 'photo-1611974789855-9c2a0a7236a3',
+  healthcare: 'photo-1516549655169-df83a0774514',
+  retail: 'photo-1556742049-0cfed4f6a45d',
+  logistics: 'photo-1578575437130-527eed3abbec',
+};
+
 export default function IndustriesContent() {
   return (
     <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
 
-      {/* Hero Section — centered, consistent with Home/Services/About */}
+      {/* Hero Section: centered, consistent with Home/Services/About */}
       <section className="relative overflow-hidden min-h-[70vh] flex items-center justify-center pt-20">
         <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
         <div className="orb orb-accent w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
@@ -26,11 +36,11 @@ export default function IndustriesContent() {
           >
             <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">Industries</p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
-              Quality Engineering for{' '}
-              <span className="text-gradient">Every Industry</span>
+              Industries{' '}
+              <span className="text-gradient">We Serve</span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light max-w-3xl mx-auto">
-              Deep domain expertise in the industries where software quality failures cost millions. We bring specialized testing frameworks to your sector.
+              We serve AI startups, SaaS platforms, FinTech, and healthcare and healthtech companies, delivering trust, compliance, and confidence before go-live.
             </p>
           </motion.div>
         </div>
@@ -49,15 +59,6 @@ export default function IndustriesContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {industries.map((ind, idx) => {
-              // Unsplash placeholders matching the industries (Healthcare, SaaS, Fintech, Retail, Logistics, AI Startups)
-              const images = [
-                "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=600&q=80", // Healthcare
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80", // SaaS/Data
-                "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80", // Fintech
-                "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80", // Retail
-                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80", // Logistics
-                "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"  // AI Startups
-              ];
 
               const gradients = [
                 "from-blue-500/20 via-transparent to-transparent",
@@ -80,7 +81,7 @@ export default function IndustriesContent() {
                   <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10 backdrop-blur-md group h-full flex flex-col justify-end min-h-[420px]">
                     {/* Background Image with Hover Zoom */}
                     <Image
-                      src={images[idx] || images[0]}
+                      src={`https://images.unsplash.com/${industryImages[ind.slug]}?auto=format&fit=crop&w=600&q=80`}
                       alt={ind.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -118,7 +119,7 @@ export default function IndustriesContent() {
       <div className="section-divider" />
       <LeadFormCTA
         title="Don't see your industry?"
-        description="Our AI-powered QA approach adapts to any domain. Let's talk about your specific needs and build a custom risk protocol."
+        description="We test AI, and everything AI builds. If your product uses AI or was built with it, talk to us about shipping it with certainty."
       />
     </div>
   );

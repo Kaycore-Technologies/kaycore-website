@@ -3,43 +3,36 @@
 import { motion } from 'framer-motion';
 import { SectionHeader } from '@/components/ui';
 import Link from 'next/link';
+import { services } from '@/components/company-data';
 
-const bentoItems = [
-  {
-    title: "AI Quality & Risk Readiness Audit",
-    desc: "A comprehensive assessment of AI systems against safety, security, and performance benchmarks.",
-    colSpan: "md:col-span-2",
-    bgClass: "bg-gradient-to-br from-purple-900/40 to-blue-900/40",
-    media: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    title: "LLM & Generative AI Testing",
-    desc: "Specialized testing for non-deterministic models validating prompt robustness.",
-    colSpan: "md:col-span-1",
-    bgClass: "bg-cyan-900/20",
-    media: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=500&q=80"
-  },
-  {
-    title: "AI-QE Retainers",
-    desc: "Ongoing quality engineering support acting as an external AI risk department.",
-    colSpan: "md:col-span-1",
-    bgClass: "bg-emerald-900/20",
-    media: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80"
-  },
-  {
-    title: "Performance Engineering",
-    desc: "Load testing architectures before they hit production bottlenecks.",
-    colSpan: "md:col-span-2",
-    bgClass: "bg-gradient-to-bl from-slate-800 to-indigo-900/40",
-    media: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
-  }
-];
+// The six core services (the first six in company-data), with homepage-only art keyed by slug
+const previewArt: Record<string, { bgClass: string; media: string }> = {
+  'ai-quality-risk-audit': { bgClass: "bg-gradient-to-br from-purple-900/40 to-blue-900/40", media: "photo-1677442136019-21780ecad995" },
+  'llm-generative-ai-testing': { bgClass: "bg-cyan-900/20", media: "photo-1550751827-4bd374c3f58b" },
+  'qa-for-ai-built-apps': { bgClass: "bg-sky-900/20", media: "photo-1555949963-ff9fe0c870eb" },
+  'custom-ai-qa-automation-frameworks': { bgClass: "bg-gradient-to-bl from-slate-800 to-indigo-900/40", media: "photo-1605810230434-7631ac76ec81" },
+  'continuous-quality-retainers': { bgClass: "bg-emerald-900/20", media: "photo-1551288049-bebda4e38f71" },
+  'regulated-healthcare-ai-qa': { bgClass: "bg-rose-900/20", media: "photo-1516549655169-df83a0774514" },
+};
+
+// Bento spans match the Services page: the three longest descriptions get the wide cards
+const wideSlugs = new Set(['ai-quality-risk-audit', 'qa-for-ai-built-apps', 'regulated-healthcare-ai-qa']);
+const bentoItems = services.slice(0, 6).map((service) => {
+  const isWide = wideSlugs.has(service.slug);
+  return {
+    title: service.title,
+    desc: service.description,
+    colSpan: isWide ? "md:col-span-2" : "md:col-span-1",
+    bgClass: previewArt[service.slug].bgClass,
+    media: `https://images.unsplash.com/${previewArt[service.slug].media}?auto=format&fit=crop&w=${isWide ? 800 : 500}&q=80`,
+  };
+});
 
 export function ServicesPreview() {
   return (
     <section className="py-24 lg:py-32 relative">
       <div className="section-container">
-        <SectionHeader badge="Capabilities" title="The Architecture of" highlight="Reliability" description="Enterprise-grade AI testing frameworks designed for scale." />
+        <SectionHeader badge="Capabilities" title="The Architecture of" highlight="Reliability" description="We test AI, and everything AI builds, for startups and enterprises." />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {bentoItems.map((item, idx) => (
             <Link href="/services" key={idx} className={`block ${item.colSpan}`}>

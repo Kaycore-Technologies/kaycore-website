@@ -8,9 +8,6 @@ export interface Product {
   linkLabel?: string;
 }
 
-export const rdFundingLine =
-  'Kaycore funds its own R&D from the quality engineering services on this site.';
-
 export const products: Product[] = [
   {
     name: 'Eval Harness',

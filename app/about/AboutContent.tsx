@@ -49,7 +49,10 @@ export default function AboutContent() {
               Built for the <span className="text-gradient">High Stakes.</span>
             </h1>
             <p className="text-xl text-gray-300 font-light leading-relaxed max-w-3xl">
-              Kaycore was founded on a simple premise: AI is too dangerous to be built by generalists. We exist to close the Confidence Gap. We bring the rigor of aerospace engineering to the chaos of generative AI.
+              Kaycore Technologies is a founder-led AI Quality Engineering firm. We partner with startups and enterprises on two problems that traditional QA was never designed for: AI systems that behave unpredictably, and software built by AI.
+            </p>
+            <p className="mt-6 text-lg sm:text-xl font-display font-semibold text-white max-w-3xl">
+              Our mission: <span className="text-gradient">to help builders ship with certainty, not crossed fingers.</span>
             </p>
           </motion.div>
         </div>

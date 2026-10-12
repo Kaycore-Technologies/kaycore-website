@@ -26,7 +26,7 @@ export default function ContactContent() {
                 Start a <br /><span className="text-gradient">Conversation.</span>
               </h1>
               <p className="text-xl text-gray-400 font-light leading-relaxed">
-                We are engineers, not salespeople. Tell us how you want to ensure your AI-enabled features are reliable and stable. Select the task you need help with: QA automation, readiness review, generative AI testing, or ongoing support.
+                We are engineers, not salespeople. Tell us how you want to ensure your AI-enabled features are reliable and stable. Select the task you need help with: AI readiness review, generative AI testing, QA for an AI-built website or app, QA automation, or ongoing support.
               </p>
             </motion.div>
 

@@ -3,6 +3,18 @@
 import { motion } from 'framer-motion';
 import { GlowButton } from '@/components/ui/GlowButton';
 
+// Kaycore's two problem statements, worded as on its LinkedIn page
+const heroProblems = [
+  {
+    title: 'AI systems that behave unpredictably.',
+    body: 'LLMs and generative AI are probabilistic, so the same input can produce different outputs. We validate, test, and safeguard these systems for accuracy, safety, and consistency in production, not just in demos.',
+  },
+  {
+    title: 'Software built by AI.',
+    body: 'Websites and apps created with Claude Code, Cursor, and other AI coding tools ship quickly, but often with hidden defects. We catch those defects before launch, so you release sooner and spend less fixing problems afterwards.',
+  },
+];
+
 export function HeroSection() {
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20">
@@ -29,18 +41,18 @@ export function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl text-sm text-gray-300"
         >
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-          Next-Generation Quality Engineering
+          Founder-led AI Quality Engineering
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tight leading-[1.05]"
+          className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight leading-[1.05]"
         >
-          Ship Faster.{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-lg">
-            Break Nothing.
+          We test AI, and{' '}
+          <span className="md:block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-lg">
+            everything AI builds.
           </span>
         </motion.h1>
 
@@ -50,33 +62,22 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md"
         >
-          We help teams ship AI systems that behave reliably, safely, and consistently in production, not just demos.
+          Kaycore Technologies is a founder-led AI Quality Engineering firm. We partner with startups and enterprises on two problems that traditional QA was never designed for.
         </motion.p>
 
-        {/* AI-QE Definition Block */}
+        {/* The two problems */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="max-w-4xl mx-auto p-5 md:p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md text-left mt-8 space-y-4"
+          className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left mt-8"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">What is AI Quality Engineering?</h2>
-          <p className="text-lg text-slate-300 leading-relaxed">
-            AI Quality Engineering (AI-QE) is the practice of systematically validating non-deterministic AI systems for safety, accuracy, robustness, and drift, both before and after production. Traditional QA asserts that <code className="bg-black/50 px-1.5 py-0.5 rounded text-cyan-400 font-mono text-xs md:text-sm">if(x) return y</code>, which breaks with LLMs because they are non-deterministic, infinite-state systems. AI-QE replaces fixed assertions with statistical evaluation, adversarial testing, and continuous monitoring.
-          </p>
-        </motion.div>
-
-        {/* Feature Badges */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.28 }}
-          className="flex flex-wrap justify-center gap-3 pt-4"
-        >
-          {['Hallucination Rates', 'Drift Detection', 'Adversarial Attacks'].map((badge, i) => (
-            <span key={i} className="px-4 py-1.5 rounded-full border border-brand-accent/30 bg-brand-accent/10 text-brand-accent text-sm font-medium backdrop-blur-sm">
-              {badge}
-            </span>
+          {heroProblems.map((problem, i) => (
+            <div key={problem.title} className="p-5 md:p-7 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md">
+              <p className="text-sm font-mono text-brand-accent mb-3">0{i + 1}</p>
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white mb-3">{problem.title}</h2>
+              <p className="text-base md:text-lg text-slate-300 leading-relaxed">{problem.body}</p>
+            </div>
           ))}
         </motion.div>
 

@@ -8,7 +8,7 @@ const capabilities = [
   {
     icon: Cpu,
     title: "AI-Powered Test Generation",
-    description: "Automatically generate comprehensive test cases from user stories, PRD documents, and API specs using our proprietary LLM workflows."
+    description: "Automatically generate comprehensive test cases from user stories, PRD documents, and API specs using LLM workflows built for your stack."
   },
   {
     icon: Zap,
@@ -43,10 +43,10 @@ export function AICapabilities() {
       
       <div className="section-container relative z-10">
         <SectionHeader
-          badge="AI Capabilities"
+          badge="Custom AI QA Frameworks"
           title="Testing Reimagined with"
           highlight="Artificial Intelligence"
-          description="We embed AI directly into the QA lifecycle, turning testing from a bottleneck into a competitive advantage."
+          description="We build custom AI QA automation frameworks into your QA lifecycle, so testing keeps pace with how fast you ship."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">

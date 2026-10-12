@@ -33,8 +33,16 @@ const homeFaqs: FAQItem[] = [
     a: 'A model safety and bias assessment, failure-mode and risk mapping, an adversarial and security-exposure review, and a prioritized remediation roadmap you can act on.',
   },
   {
+    q: 'Do you test websites and apps built with AI coding tools?',
+    a: 'Yes. Websites and apps created with Claude Code, Cursor, and other AI coding tools ship quickly, but often with hidden defects. We catch those defects before launch, so you release sooner and spend less fixing problems afterwards.',
+  },
+  {
+    q: 'Do you work with startups or enterprises?',
+    a: 'Both. We partner with startups and enterprises, from a fixed-scope audit before launch to a continuous quality retainer.',
+  },
+  {
     q: 'Do you work with healthcare and other regulated AI?',
-    a: 'Yes. Our team includes a physician founder, and we specialize in the high-stakes domains such as healthcare, fintech, and AI-first startups, where quality failures carry the greatest cost.',
+    a: 'Yes. Regulated and healthcare AI QA is one of our core services, and our founder is a physician. We serve AI startups, SaaS platforms, FinTech, and healthcare and healthtech companies.',
   },
 ];
 
@@ -66,7 +74,7 @@ export default function HomeContent() {
       {/* Ready for a Real Partner Section */}
       <LeadFormCTA
         title="Ready for a Real Partner?"
-        description="Let's build something that survives the real world. Talk to our lead Quality Engineers today about securing and validating your AI architectures."
+        description="Our mission: to help builders ship with certainty, not crossed fingers. Talk to our lead quality engineers about the AI you are building, or the software AI is building for you."
       />
     </div>
   );

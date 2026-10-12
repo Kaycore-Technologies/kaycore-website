@@ -12,11 +12,11 @@ import { FAQ, type FAQItem } from '@/components/FAQ';
 const servicesFaqs: FAQItem[] = [
   {
     q: 'What services does Kaycore offer?',
-    a: 'AI Quality & Risk Readiness Audits, LLM & Generative AI Testing, AI-QE Retainers (an on-call external AI risk department), performance testing, embedded QA engineers, and QA consulting. Together they cover the full spectrum of quality engineering for AI-powered software.',
+    a: 'AI risk and readiness audits, LLM and generative AI testing, QA for AI-built websites and apps, custom AI QA automation frameworks, continuous quality retainers, and regulated and healthcare AI QA, plus performance testing, embedded QA engineers, and QA consulting. In short: we test AI, and everything AI builds.',
   },
   {
     q: 'Do you offer ongoing support or only one-off projects?',
-    a: 'Both. Our AI-QE Retainers embed senior QA engineers for continuous regression and release coverage plus ongoing AI risk monitoring, with flexible month-to-month capacity. We also run fixed-scope audits and project engagements.',
+    a: 'Both. Our Continuous Quality Retainers embed senior QA engineers for continuous regression and release coverage plus ongoing AI risk monitoring, with flexible month-to-month capacity. We also run fixed-scope audits and project engagements.',
   },
   {
     q: 'How does an engagement work?',
@@ -27,6 +27,21 @@ const servicesFaqs: FAQItem[] = [
     a: 'AI systems are probabilistic and have an effectively infinite input space, so they can hallucinate, drift, or fail under adversarial prompts. We use statistical evaluation, adversarial testing, and continuous monitoring rather than the fixed pass/fail assertions traditional QA relies on.',
   },
 ];
+
+// Images keyed by slug so reordering or adding services never mismatches a card and its image
+const serviceImages: Record<string, string> = {
+  'ai-quality-risk-audit': 'photo-1550751827-4bd374c3f58b',
+  'llm-generative-ai-testing': 'photo-1677442136019-21780ecad995',
+  'qa-for-ai-built-apps': 'photo-1555949963-ff9fe0c870eb',
+  'custom-ai-qa-automation-frameworks': 'photo-1605810230434-7631ac76ec81',
+  'continuous-quality-retainers': 'photo-1551288049-bebda4e38f71',
+  'regulated-healthcare-ai-qa': 'photo-1516549655169-df83a0774514',
+  'performance-testing': 'photo-1518770660439-4636190af475',
+  'embedded-qa-engineers': 'photo-1522071820081-009f0129c71c',
+  'qa-consulting': 'photo-1542621334-a254cf47733d',
+};
+
+const wideServices = new Set(['ai-quality-risk-audit', 'qa-for-ai-built-apps', 'regulated-healthcare-ai-qa']);
 
 export default function ServicesContent() {
   const servicesLd = {
@@ -59,7 +74,7 @@ export default function ServicesContent() {
       <div className="absolute top-0 inset-x-0 h-[500px] bg-grid opacity-30 pointer-events-none" />
       <div className="orb orb-accent w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
 
-      {/* Hero — center-aligned, matching Home pattern */}
+      {/* Hero: center-aligned, matching Home pattern */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="relative z-10 text-center space-y-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -70,10 +85,10 @@ export default function ServicesContent() {
           >
             <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">Our Services</p>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold mb-8 leading-tight tracking-tight">
-              Enterprise-Grade <span className="text-gradient">QA Solutions</span>
+              Services for Startups <span className="text-gradient">&amp; Enterprises</span>
             </h1>
             <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed">
-              From AI test automation to dedicated QA teams, we cover the full spectrum of quality engineering to help you ship faster and break nothing.
+              We test AI, and everything AI builds: LLM and generative AI systems, and the websites and apps created with AI coding tools. Senior engineers only, from a fixed-scope audit to a continuous quality retainer.
             </p>
           </motion.div>
         </div>
@@ -90,24 +105,12 @@ export default function ServicesContent() {
         className="py-24 lg:py-32 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(400px,auto)]">
             {services.map((service, idx) => {
-              // Determine bento box spans
-              let spanClass = "md:col-span-1 md:row-span-1";
-              if (idx === 0) spanClass = "md:col-span-2 md:row-span-1";
-              else if (idx === 3) spanClass = "md:col-span-2 md:row-span-1";
-              else if (idx === 4) spanClass = "md:col-span-1 md:row-span-1";
-              else if (idx === 5) spanClass = "md:col-span-2 md:row-span-1";
-
-              // Determine images
-              const images = [
-                "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-                "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80",
-                "https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=600&q=80"
-              ];
+              // Bento spans: rows of wide + narrow, then the three additional services as a row of three
+              const isWide = wideServices.has(service.slug);
+              const spanClass = isWide ? "md:col-span-2" : "md:col-span-1";
+              const image = `https://images.unsplash.com/${serviceImages[service.slug]}?auto=format&fit=crop&w=${isWide ? 1200 : 600}&q=80`;
 
               return (
                 <motion.div 
@@ -122,7 +125,7 @@ export default function ServicesContent() {
                     
                     {/* Background Image with Hover Zoom */}
                     <Image
-                      src={images[idx]}
+                      src={image}
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -133,7 +136,7 @@ export default function ServicesContent() {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent z-10" />
                     
                     <div className="relative z-20 flex flex-col h-full justify-between">
-                      <div className="transform group-hover:-translate-y-2 transition-transform duration-300">
+                      <div className="pb-14 transform group-hover:-translate-y-2 transition-transform duration-300">
                         <h2 className="text-3xl font-display font-bold text-white mb-3">{service.title}</h2>
                         <p className="text-gray-300 leading-relaxed max-w-lg mb-6">
                           {service.description}

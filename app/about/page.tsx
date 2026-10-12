@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import AboutContent from './AboutContent';
 
 export const metadata: Metadata = {
-  title: 'About Kaycore | Quality Engineering Specialists',
-  description: 'Kaycore is an AI-first Quality Engineering firm helping companies deliver flawless products at speed.',
+  title: 'About Kaycore | Founder-Led AI Quality Engineering',
+  description: 'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI, and everything AI builds, so startups and enterprises can ship with certainty.',
   alternates: { canonical: '/about' },
 };
 

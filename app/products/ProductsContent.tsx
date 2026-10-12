@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { products, rdFundingLine } from '@/content/products';
+import { products } from '@/content/products';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
 
 export default function ProductsContent() {
@@ -15,10 +15,9 @@ export default function ProductsContent() {
         <div className="orb orb-accent w-[600px] h-[600px] -top-40 left-1/2 -translate-x-1/2 opacity-15 pointer-events-none" />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-5">Products</p>
-          <h1 className="text-4xl sm:text-6xl font-display font-bold text-white leading-tight tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-6xl font-display font-bold text-white leading-tight tracking-tight">
             Technology we build
           </h1>
-          <p className="text-lg text-gray-300 leading-relaxed">{rdFundingLine}</p>
         </div>
       </section>
 

@@ -78,7 +78,7 @@ export function ChatBot() {
         });
         const data = await response.json();
         if (response.status === 429) {
-          addMessage('bot', data.error || "Please slow down — I need a moment!");
+          addMessage('bot', data.error || "Please slow down, I need a moment!");
         } else if (!response.ok) {
           addMessage('bot', data.error || "I'm having trouble right now. Please try again.");
         } else {
@@ -118,7 +118,7 @@ export function ChatBot() {
             body: JSON.stringify({
               name: newLeadData.name,
               email: newLeadData.email,
-              challenges: `[CHATBOT LEAD — ${new Date().toISOString()}]\n\n${transcript}\nVISITOR: ${userText}`
+              challenges: `[CHATBOT LEAD: ${new Date().toISOString()}]\n\n${transcript}\nVISITOR: ${userText}`
             })
           });
           if (response.ok) {

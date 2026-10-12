@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { SectionHeader } from '@/components/ui';
-import { products, rdFundingLine } from '@/content/products';
+import { products } from '@/content/products';
 
 export function ProductsSection() {
   return (
@@ -47,8 +47,6 @@ export function ProductsSection() {
             </motion.div>
           ))}
         </div>
-
-        <p className="text-center text-sm text-gray-500 mt-12 max-w-2xl mx-auto">{rdFundingLine}</p>
       </div>
     </section>
   );

@@ -197,6 +197,7 @@ export default function ClientContactForm() {
               <option value="preparing-release" className="bg-[#030712]">Preparing for release</option>
               <option value="regression-automation" className="bg-[#030712]">Regression test automation</option>
               <option value="llm-validation" className="bg-[#030712]">LLM-generated feature validation</option>
+              <option value="ai-built-app-qa" className="bg-[#030712]">QA for an AI-built website or app</option>
               <option value="ongoing-support" className="bg-[#030712]">Ongoing QA support</option>
               <option value="unsure" className="bg-[#030712]">Not sure - need guidance</option>
             </select>

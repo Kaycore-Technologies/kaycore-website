@@ -26,7 +26,7 @@ const features = [
   },
   {
     title: 'Multi-Specialty Support',
-    description: 'Trained on 40+ specialties — from cardiology to psychiatry. Accurate clinical language for every domain.',
+    description: 'Trained on 40+ specialties, from cardiology to psychiatry. Accurate clinical language for every domain.',
     colSpan: 'md:col-span-2',
     media: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=800&q=80',
   },
@@ -55,7 +55,7 @@ export default function KayScribeContent() {
     <div className="font-sans selection:bg-blue-200/50 selection:text-blue-900">
 
       <ProductHero
-        badge="KayScribe — AI Medical Scribe"
+        badge="KayScribe: AI Medical Scribe"
         productName="Your AI"
         tagline="Medical Scribe."
         description="Eliminate hours of clinical documentation. KayScribe listens, structures, and delivers complete notes so physicians can focus on patients."

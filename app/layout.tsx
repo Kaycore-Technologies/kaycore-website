@@ -28,22 +28,23 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kaycore Technologies | AI-Powered QA & Test Automation',
+    default: 'Kaycore Technologies | We Test AI, and Everything AI Builds',
     template: '%s | Kaycore Technologies',
   },
   description:
-    'Kaycore Technologies delivers AI-powered QA services, test automation, and dedicated QA teams. Enterprise-grade quality engineering for SaaS, Fintech, Healthcare & AI startups.',
+    'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
   keywords: [
-    'AI QA services',
-    'Test automation company',
-    'AI testing solutions',
-    'Offshore QA team',
-    'Healthcare QA testing',
-    'API automation',
+    'AI quality engineering',
+    'AI testing services',
+    'LLM testing',
+    'Generative AI testing',
+    'AI risk audit',
+    'QA for AI-built apps',
+    'AI QA automation frameworks',
+    'Healthcare AI QA',
+    'Test automation',
     'Performance testing',
     'QA consulting',
-    'Dedicated QA teams',
-    'AI test automation',
   ],
   authors: [{ name: 'Kaycore Technologies' }],
   creator: 'Kaycore Technologies',
@@ -55,9 +56,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.kaycore.com',
-    title: 'Kaycore Technologies | AI-Powered QA & Test Automation',
+    title: 'Kaycore Technologies | We Test AI, and Everything AI Builds',
     description:
-      'Enterprise-grade AI QA services, test automation, and dedicated QA teams. Ship faster. Break nothing.',
+      'We test AI, and everything AI builds. Founder-led AI Quality Engineering for startups and enterprises.',
     siteName: 'Kaycore Technologies',
     images: [
       {
@@ -70,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kaycore Technologies | AI-Powered QA & Test Automation',
+    title: 'Kaycore Technologies | We Test AI, and Everything AI Builds',
     description:
-      'AI-powered QA services, test automation, and dedicated QA teams for enterprise software.',
+      'We test AI, and everything AI builds. Founder-led AI Quality Engineering for startups and enterprises.',
     images: ['/assets/og-image.jpg'],
     creator: '@kaycore',
   },
@@ -94,7 +95,8 @@ export default function RootLayout({
     url: 'https://www.kaycore.com',
     logo: 'https://www.kaycore.com/assets/logo.png',
     description:
-      'AI-powered QA services, test automation, and dedicated QA teams for enterprise software teams.',
+      'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
+    slogan: 'We test AI, and everything AI builds.',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Bengaluru',
@@ -112,20 +114,18 @@ export default function RootLayout({
       'https://youtube.com/@kaycore',
       'https://instagram.com/kaycore',
     ],
-    founder: [
-      {
-        '@type': 'Person',
-        name: 'Kulish Kulshrestha',
-        jobTitle: 'CTO',
-        sameAs: 'https://www.linkedin.com/in/kulish-kulshrestha/',
-      },
-      {
-        '@type': 'Person',
-        name: 'Dr. Ayushi Shukla',
-        jobTitle: 'Founder and CEO',
-        sameAs: 'https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/',
-      },
-    ],
+    founder: {
+      '@type': 'Person',
+      name: 'Dr. Ayushi Shukla',
+      jobTitle: 'Founder and CEO',
+      sameAs: 'https://www.linkedin.com/in/dr-ayushi-shukla-646700a8/',
+    },
+    employee: {
+      '@type': 'Person',
+      name: 'Kulish Kulshrestha',
+      jobTitle: 'CTO',
+      sameAs: 'https://www.linkedin.com/in/kulish-kulshrestha/',
+    },
   };
 
   const websiteLd = {

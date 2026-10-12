@@ -31,7 +31,7 @@ export default function KayHealthContent() {
 
       {/* Hero */}
       <ProductHero
-        badge="KayHealth — AI for Healthcare"
+        badge="KayHealth: AI for Healthcare"
         productName="AI for the People"
         tagline="Who Heal."
         description="We build AI-powered tools that reduce physician burnout, automate clinical workflows, and bring intelligent care to every patient interaction."

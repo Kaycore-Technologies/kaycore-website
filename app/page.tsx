@@ -2,18 +2,21 @@ import type { Metadata } from 'next';
 import HomeContent from './HomeContent';
 
 export const metadata: Metadata = {
-  title: 'AI-Powered QA Services & Test Automation | Kaycore Technologies',
+  title: 'We Test AI, and Everything AI Builds | Kaycore Technologies',
   description:
-    'Kaycore Technologies delivers AI-powered QA services, test automation, dedicated QA teams, and enterprise quality engineering for SaaS, Fintech, Healthcare & AI startups.',
+    'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
   keywords: [
-    'AI QA services',
-    'Test automation company',
-    'AI testing solutions',
-    'Offshore QA team',
-    'Healthcare QA testing',
-    'API automation',
+    'AI quality engineering',
+    'AI testing services',
+    'LLM testing',
+    'Generative AI testing',
+    'AI risk audit',
+    'QA for AI-built apps',
+    'AI QA automation frameworks',
+    'Healthcare AI QA',
+    'Test automation',
     'Performance testing',
-    'Dedicated QA teams',
+    'QA consulting',
   ],
 };
 

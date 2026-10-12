@@ -48,7 +48,7 @@ export function Footer() {
               {isKayHealth ? 'Ready to transform patient care?' : 'Ready to elevate your software quality?'}
             </h3>
             <p className={isKayHealth ? 'text-blue-100/80' : 'text-gray-400'}>
-              {isKayHealth ? 'Schedule a demo with our clinical AI team.' : 'Partner with our dedicated AI-powered QA teams.'}
+              {isKayHealth ? 'Schedule a demo with our clinical AI team.' : 'Talk to the senior engineers who will do the work.'}
             </p>
           </div>
           <Link
@@ -82,7 +82,7 @@ export function Footer() {
               </div>
             </Link>
             <p className={`${textColor} text-sm leading-relaxed mb-8 max-w-md`}>
-              Kaycore Technologies delivers next-generation Quality Engineering services and AI-powered healthcare solutions, helping enterprise teams ship flawless products at speed.
+              Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI, and everything AI builds, helping startups and enterprises ship with certainty.
             </p>
             <div className="flex items-center gap-4">
               <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on X (Twitter)" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>

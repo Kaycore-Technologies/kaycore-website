@@ -18,7 +18,7 @@ export function ProcessSection() {
           badge="Our Process"
           title="How We"
           highlight="Work Together"
-          description="A proven, transparent methodology for integrating seamlessly with your engineering team."
+          description="Our approach combines rigorous testing, risk-first validation, behavioural evaluation, and human-in-the-loop review. Senior engineers only: the person who scopes your work is the person who does it."
         />
 
         <div className="max-w-4xl mx-auto relative">

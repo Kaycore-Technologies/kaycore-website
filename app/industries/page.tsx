@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import IndustriesContent from './IndustriesContent';
 
 export const metadata: Metadata = {
-  title: 'Industries We Serve | Healthcare, Fintech, SaaS & AI QA',
+  title: 'Industries We Serve | AI Startups, SaaS, FinTech & Healthcare',
   description:
-    'Specialized AI quality engineering for Healthcare, Fintech, SaaS, Retail, Logistics, and AI startups — where software failures cost millions.',
+    'AI quality engineering for AI startups, SaaS platforms, FinTech, and healthcare and healthtech companies, delivering trust, compliance, and confidence before go-live.',
   alternates: {
     canonical: '/industries',
   },

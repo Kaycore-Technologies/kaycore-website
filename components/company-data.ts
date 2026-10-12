@@ -1,5 +1,5 @@
 /* ============================================
-   KAYCORE TECHNOLOGIES — COMPANY DATA
+   KAYCORE TECHNOLOGIES: COMPANY DATA
    All content aligned to the PRD
    ============================================ */
 
@@ -7,6 +7,8 @@ import {
   Bot,
   Brain,
   Code,
+  AppWindow,
+  Repeat,
   Gauge,
   Users,
   MessageSquare,
@@ -32,6 +34,7 @@ export interface Service {
 }
 
 export const services: Service[] = [
+  // The six services on Kaycore's LinkedIn page, in its order, followed by the three additional services.
   {
     id: 1,
     title: 'AI Quality & Risk Readiness Audit',
@@ -64,11 +67,41 @@ export const services: Service[] = [
   },
   {
     id: 3,
-    title: 'AI-QE Retainers',
-    slug: 'ai-qe-retainers',
+    title: 'QA for AI-Built Websites & Apps',
+    slug: 'qa-for-ai-built-apps',
     description:
-      'Ongoing quality engineering support acting as an external AI risk department.',
+      'Websites and apps created with Claude Code, Cursor, and other AI coding tools ship quickly, but often with hidden defects. We catch those defects before launch, so you release sooner and spend less fixing problems afterwards.',
+    icon: AppWindow,
+    features: [
+      'End-to-end testing of critical user journeys',
+      'Edge-case & error-handling coverage',
+      'Cross-browser & device checks',
+      'Release-readiness report before launch',
+    ],
+    color: 'from-sky-500/20 to-sky-600/10',
+  },
+  {
+    id: 4,
+    title: 'Custom AI QA Automation Frameworks',
+    slug: 'custom-ai-qa-automation-frameworks',
+    description:
+      'Robust, AI-powered test frameworks built for your stack and integrated directly into your CI/CD pipeline. You keep the code.',
     icon: Code,
+    features: [
+      'AI-powered test generation',
+      'Self-healing UI automation',
+      'Intelligent test selection in CI',
+      'Built in your repo, owned by your team',
+    ],
+    color: 'from-violet-500/20 to-violet-600/10',
+  },
+  {
+    id: 5,
+    title: 'Continuous Quality Retainers',
+    slug: 'continuous-quality-retainers',
+    description:
+      'Ongoing quality engineering support, acting as your external AI risk department.',
+    icon: Repeat,
     features: [
       'Embedded senior QA engineers',
       'Continuous regression & release coverage',
@@ -78,7 +111,22 @@ export const services: Service[] = [
     color: 'from-blue-500/20 to-blue-600/10',
   },
   {
-    id: 4,
+    id: 6,
+    title: 'Regulated & Healthcare AI QA',
+    slug: 'regulated-healthcare-ai-qa',
+    description:
+      'Clinical-grade validation readiness for AI in regulated healthcare, shaped with physician input and built to produce the documented evidence regulators ask for.',
+    icon: HeartPulse,
+    features: [
+      'Clinically informed risk mapping',
+      'Bias & sub-population robustness testing',
+      'Safety & groundedness evaluation',
+      'Documented evidence for regulatory review',
+    ],
+    color: 'from-rose-500/20 to-rose-600/10',
+  },
+  {
+    id: 7,
     title: 'Performance Testing',
     slug: 'performance-testing',
     description:
@@ -93,7 +141,7 @@ export const services: Service[] = [
     color: 'from-cyan-500/20 to-cyan-600/10',
   },
   {
-    id: 5,
+    id: 8,
     title: 'Embedded QA Engineers',
     slug: 'embedded-qa-engineers',
     description:
@@ -108,7 +156,7 @@ export const services: Service[] = [
     color: 'from-emerald-500/20 to-emerald-600/10',
   },
   {
-    id: 6,
+    id: 9,
     title: 'QA Consulting',
     slug: 'qa-consulting',
     description:
@@ -136,18 +184,19 @@ export interface Industry {
 }
 
 export const industries: Industry[] = [
+  // The four sectors on Kaycore's LinkedIn page first, in its order.
   {
     id: 1,
-    name: 'Healthcare',
-    slug: 'healthcare',
+    name: 'AI Startups',
+    slug: 'ai-startups',
     description:
-      'HIPAA-compliant QA for EHR systems, telemedicine platforms, and clinical applications. Zero-tolerance for errors in patient data.',
-    icon: HeartPulse,
-    challenges: ['HIPAA & HL7 compliance', 'EHR integration testing', 'Patient data security'],
+      'Specialized testing for ML models, LLM outputs, and AI-powered features. Validate your AI before it reaches users.',
+    icon: Rocket,
+    challenges: ['Model output validation', 'Prompt regression testing', 'Bias & safety testing'],
   },
   {
     id: 2,
-    name: 'SaaS',
+    name: 'SaaS Platforms',
     slug: 'saas',
     description:
       'Continuous testing for rapid release cycles. Ensure every deployment is bulletproof across web, mobile, and API layers.',
@@ -156,7 +205,7 @@ export const industries: Industry[] = [
   },
   {
     id: 3,
-    name: 'Fintech',
+    name: 'FinTech',
     slug: 'fintech',
     description:
       'Rigorous testing for payment processing, trading platforms, and regulatory compliance. Every transaction must be flawless.',
@@ -165,6 +214,15 @@ export const industries: Industry[] = [
   },
   {
     id: 4,
+    name: 'Healthcare & Healthtech',
+    slug: 'healthcare',
+    description:
+      'HIPAA-compliant QA for EHR systems, telemedicine platforms, clinical applications, and healthtech products. Zero-tolerance for errors in patient data.',
+    icon: HeartPulse,
+    challenges: ['HIPAA & HL7 compliance', 'EHR integration testing', 'Patient data security'],
+  },
+  {
+    id: 5,
     name: 'Retail & E-Commerce',
     slug: 'retail',
     description:
@@ -173,22 +231,13 @@ export const industries: Industry[] = [
     challenges: ['Peak load handling', 'Payment gateway testing', 'Omnichannel consistency'],
   },
   {
-    id: 5,
+    id: 6,
     name: 'Logistics',
     slug: 'logistics',
     description:
       'QA for supply chain management, fleet tracking, and warehouse systems. Ensure real-time accuracy across complex integrations.',
     icon: Truck,
     challenges: ['Real-time tracking accuracy', 'Third-party API reliability', 'Geo-distributed systems'],
-  },
-  {
-    id: 6,
-    name: 'AI Startups',
-    slug: 'ai-startups',
-    description:
-      'Specialized testing for ML models, LLM outputs, and AI-powered features. Validate your AI before it reaches users.',
-    icon: Rocket,
-    challenges: ['Model output validation', 'Prompt regression testing', 'Bias & safety testing'],
   },
 ];
 
@@ -254,7 +303,7 @@ export const whyKaycore: WhyItem[] = [
   {
     title: 'AI-First Approach',
     description:
-      'We don\'t just test software. We use AI to make testing smarter, faster, and more reliable than traditional methods.',
+      'We test AI, and everything AI builds, using AI to make that testing smarter, faster, and more reliable than traditional methods.',
   },
   {
     title: 'Senior Engineers Only',
@@ -262,14 +311,14 @@ export const whyKaycore: WhyItem[] = [
       'Every team member has 5+ years of experience. No juniors learning on your project. The engineer who scopes your work is the engineer who does it.',
   },
   {
-    title: 'Scalable & Flexible',
+    title: 'Startups & Enterprises',
     description:
-      'Start with one engineer or a full team. Scale up or down based on your sprint needs with zero friction.',
+      'We serve both startups and enterprises. Start with a fixed-scope audit or a single engineer, and scale to a continuous quality retainer as you grow.',
   },
   {
     title: 'Domain Expertise',
     description:
-      'Deep specialization in Healthcare, Fintech, SaaS, and AI. These are the industries where quality failures cost millions.',
+      'Deep specialization in AI startups, SaaS platforms, FinTech, and healthcare and healthtech. These are the industries where quality failures cost millions.',
   },
   {
     title: 'Embedded in Your Team',
@@ -289,7 +338,7 @@ export const aboutSection = {
   mission: {
     title: 'Our Mission',
     description:
-      'To democratize enterprise-grade quality engineering by combining AI-powered automation with human expertise, enabling every software team to ship with confidence.',
+      'To help builders ship with certainty, not crossed fingers.',
   },
   vision: {
     title: 'Our Vision',
@@ -317,24 +366,21 @@ export const aboutSection = {
   },
 };
 
-/* ---------- TEAM (Placeholder) ---------- */
+/* ---------- TEAM ---------- */
 
 export const teamMembers = [
   {
     id: 1,
-    name: 'Kulish Kulshrestha',
+    name: 'Dr. Ayushi Shukla',
     role: 'Founder & CEO',
-    bio: 'Visionary technologist driving Kaycore\'s AI-first approach to quality engineering.',
+    bio: 'Dr. Shukla brings almost eight years of frontline clinical experience to Kaycore\'s healthcare initiatives.',
   },
-];
-
-/* ---------- MILESTONES ---------- */
-
-export const milestones = [
-  { id: 1, year: '2023', title: 'Founded', description: 'Kaycore Technologies established with a vision for AI-powered QA.' },
-  { id: 2, year: '2024', title: 'First Enterprise Client', description: 'Secured first enterprise partnership in the Healthcare sector.' },
-  { id: 3, year: '2025', title: 'AI Automation Launch', description: 'Launched proprietary AI test automation framework.' },
-  { id: 4, year: '2026', title: 'Global Expansion', description: 'Scaling operations across healthcare, fintech, and AI verticals.' },
+  {
+    id: 2,
+    name: 'Kulish Kulshrestha',
+    role: 'CTO',
+    bio: 'With nine years of experience architecting and validating production-grade software, Kulish leads technology and quality engineering at Kaycore.',
+  },
 ];
 
 /* ---------- GLOBAL OFFICES ---------- */

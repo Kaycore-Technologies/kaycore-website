@@ -144,7 +144,7 @@ export default function AboutContent() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="py-16 lg:py-20 relative z-10 bg-white border-y border-line"
+        className="py-16 lg:py-20 relative z-10 bg-surface border-y border-line"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader

@@ -31,7 +31,7 @@ export function LeadFormCTA({
     >
       {/* Light call-to-action block: a translucent panel (the homepage dot grid shows through) with a soft
           logo-colour glow, holding LeadForm's solid white variant. */}
-      <div className="max-w-5xl mx-auto rounded-3xl bg-white/60 border border-line shadow-card px-5 py-12 sm:px-10 lg:px-16 lg:py-16 text-center relative overflow-hidden">
+      <div className="max-w-5xl mx-auto rounded-3xl bg-surface/60 border border-line shadow-card px-5 py-12 sm:px-10 lg:px-16 lg:py-16 text-center relative overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-1 k-accent-bar" aria-hidden="true" />
         <div className="absolute -top-32 -left-24 w-96 h-96 bg-c1/20 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
         <div className="absolute -bottom-32 -right-24 w-96 h-96 bg-c2/20 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />

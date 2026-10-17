@@ -137,7 +137,7 @@ export default function ChecklistContent() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Jane Doe"
-                      className="w-full bg-white border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
+                      className="w-full bg-surface border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
                     />
                   </div>
                   <div>
@@ -151,7 +151,7 @@ export default function ChecklistContent() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="jane@company.com"
-                      className="w-full bg-white border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
+                      className="w-full bg-surface border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
                     />
                   </div>
                   {error && (
@@ -162,7 +162,7 @@ export default function ChecklistContent() {
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="sm:col-span-2 inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-2 text-white font-semibold rounded-full py-4 transition-all disabled:opacity-60"
+                    className="sm:col-span-2 inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-2 text-on-navy font-semibold rounded-full py-4 transition-all disabled:opacity-60"
                   >
                     {status === 'loading' ? (
                       <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -224,7 +224,7 @@ export default function ChecklistContent() {
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-navy text-white font-semibold rounded-full hover:bg-navy-2 transition-all"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-navy text-on-navy font-semibold rounded-full hover:bg-navy-2 transition-all"
               >
                 Talk to an Expert <ArrowRight className="w-4 h-4" />
               </Link>

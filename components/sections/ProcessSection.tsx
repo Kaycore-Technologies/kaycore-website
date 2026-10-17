@@ -11,7 +11,7 @@ export function ProcessSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-16 lg:py-20 bg-white/40"
+      className="py-16 lg:py-20 bg-surface/40"
     >
       <div className="section-container">
         <SectionHeader

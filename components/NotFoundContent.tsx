@@ -50,12 +50,12 @@ export default function NotFoundContent() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
           >
             <Link href="/" className="inline-block">
-              <MagneticButton className="bg-navy text-white hover:bg-navy-2 px-8 py-3 hover:shadow-2xl">
+              <MagneticButton className="bg-navy text-on-navy hover:bg-navy-2 px-8 py-3 hover:shadow-2xl">
                 ← Back to Home
               </MagneticButton>
             </Link>
             <Link href="/contact" className="inline-block">
-              <MagneticButton className="border border-line text-navy hover:bg-soft bg-white px-8 py-3">
+              <MagneticButton className="border border-line text-navy hover:bg-soft bg-surface px-8 py-3">
                 Contact Support
               </MagneticButton>
             </Link>

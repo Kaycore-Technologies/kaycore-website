@@ -26,10 +26,14 @@ export function LeadForm({
   const [isSuccess, setIsSuccess] = useState(false);
 
   const isLight = theme !== 'dark';
+  // The main-site form uses theme tokens, so it follows the light/dark toggle; KayHealth's 'light' form keeps its fixed colours.
+  const isKaycore = theme === 'kaycore';
 
-  const containerClasses = isLight
-    ? 'bg-white border border-slate-200 shadow-2xl rounded-3xl p-8 md:p-10 relative overflow-hidden'
-    : 'bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-10 relative overflow-hidden';
+  const containerClasses = isKaycore
+    ? 'bg-surface border border-line shadow-2xl rounded-3xl p-8 md:p-10 relative overflow-hidden'
+    : isLight
+    ? 'bg-surface border border-slate-200 shadow-2xl rounded-3xl p-8 md:p-10 relative overflow-hidden'
+    : 'bg-surface/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-10 relative overflow-hidden';
 
   const labelClasses = theme === 'kaycore'
     ? 'block text-xs font-bold uppercase tracking-wider text-navy mb-2'
@@ -37,11 +41,15 @@ export function LeadForm({
     ? 'block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2'
     : 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2';
 
-  const inputClasses = isLight
-    ? 'w-full bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600/20 outline-none text-slate-900 rounded-xl px-4 py-3.5 transition-all duration-350'
-    : 'w-full bg-white/5 border border-white/10 focus:border-blue-500 focus:bg-white/[0.08] focus:ring-1 focus:ring-blue-500/20 outline-none text-white rounded-xl px-4 py-3.5 transition-all duration-350';
+  const inputClasses = isKaycore
+    ? 'w-full bg-soft border border-line focus:border-brand-accent focus:bg-surface focus:ring-1 focus:ring-brand-accent/20 outline-none text-ink placeholder:text-muted rounded-xl px-4 py-3.5 transition-all duration-350'
+    : isLight
+    ? 'w-full bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-surface focus:ring-1 focus:ring-blue-600/20 outline-none text-slate-900 rounded-xl px-4 py-3.5 transition-all duration-350'
+    : 'w-full bg-surface/5 border border-white/10 focus:border-blue-500 focus:bg-surface/[0.08] focus:ring-1 focus:ring-blue-500/20 outline-none text-white rounded-xl px-4 py-3.5 transition-all duration-350';
 
-  const buttonClasses = isLight
+  const buttonClasses = isKaycore
+    ? 'w-full bg-navy hover:bg-navy-2 text-on-navy font-semibold rounded-full py-4 transition-all duration-300 ease-in-out hover:scale-105 flex items-center justify-center gap-2 hover:shadow-xl'
+    : isLight
     ? 'w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full py-4 transition-all duration-300 ease-in-out hover:scale-105 flex items-center justify-center gap-2 hover:shadow-xl'
     : 'w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-full py-4 transition-all duration-300 ease-in-out hover:scale-105 flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]';
 
@@ -191,17 +199,17 @@ export function LeadForm({
               <CheckCircle2 className={`w-16 h-16 ${successIconColor}`} />
             </motion.div>
 
-            <h3 className={`text-2xl font-bold font-display mb-2 ${isLight ? 'text-slate-900' : 'text-white'}`}>
+            <h3 className={`text-2xl font-bold font-display mb-2 ${isKaycore ? 'text-navy' : isLight ? 'text-slate-900' : 'text-white'}`}>
               Message Received
             </h3>
-            <p className={`text-sm mb-8 max-w-sm ${isLight ? 'text-slate-600' : 'text-gray-400'}`}>
+            <p className={`text-sm mb-8 max-w-sm ${isKaycore ? 'text-body' : isLight ? 'text-slate-600' : 'text-gray-400'}`}>
               Thank you for reaching out. One of our lead AI Quality Engineers will review your request and contact you within 2 business hours.
             </p>
 
             <button
               onClick={handleReset}
               className={`text-sm font-semibold underline hover:no-underline transition-all ${
-                isLight ? 'text-slate-600 hover:text-slate-900' : 'text-gray-400 hover:text-white'
+                isKaycore ? 'text-body hover:text-navy' : isLight ? 'text-slate-600 hover:text-slate-900' : 'text-gray-400 hover:text-white'
               }`}
             >
               Submit another response

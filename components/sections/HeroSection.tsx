@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { GlowButton } from '@/components/ui/GlowButton';
+import { useIsDark } from '@/lib/theme';
 
 // Kaycore's two problem statements, worded as on its LinkedIn page
 const heroProblems = [
@@ -15,26 +16,30 @@ const heroProblems = [
   },
 ];
 
-// Light hero video. To use a new one (e.g. a Gemini light render), replace these two files, keeping the names.
-const HERO_VIDEO = '/assets/videos/hero-background-light.mp4';
-const HERO_VIDEO_POSTER = '/assets/videos/hero-background-light-poster.jpg';
+// Hero videos per theme. To use a new one, replace the files, keeping the names.
+const HERO_MEDIA = {
+  light: { video: '/assets/videos/hero-background-light.mp4', poster: '/assets/videos/hero-background-light-poster.jpg' },
+  dark: { video: '/assets/videos/hero-background-dark.mp4', poster: '/assets/videos/hero-background-dark-poster.jpg' },
+};
 
 export function HeroSection() {
+  const media = HERO_MEDIA[useIsDark() ? 'dark' : 'light'];
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20">
       {/* Cinematic Media Background */}
       <div className="absolute inset-0 -z-20">
         <video 
+          key={media.video}
           autoPlay 
           loop 
           muted 
           playsInline 
           className="absolute inset-0 w-full h-full object-cover z-0"
-          poster={HERO_VIDEO_POSTER}
-          src={HERO_VIDEO}
+          poster={media.poster}
+          src={media.video}
         />
-        {/* Light veil: calmer behind the text, the video shows through at the edges */}
-        <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(246,248,252,0.88)_0%,rgba(246,248,252,0.7)_55%,rgba(246,248,252,0.45)_100%)]" />
+        {/* Veil in the page colour: calmer behind the text, the video shows through at the edges */}
+        <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,rgba(246,248,252,0.88)_0%,rgba(246,248,252,0.7)_55%,rgba(246,248,252,0.45)_100%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(7,11,20,0.82)_0%,rgba(7,11,20,0.6)_55%,rgba(7,11,20,0.35)_100%)]" />
       </div>
 
 

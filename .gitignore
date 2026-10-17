@@ -50,3 +50,32 @@ next-env.d.ts
 
 # audit deliverables (kept as separate files, not versioned)
 audit-2026-07/
+
+# Keep the public repo to what the site needs.
+# Loose font files (fonts are loaded with next/font)
+/*.ttf
+/*.otf
+/*.woff
+/*.woff2
+# Generated notes, summaries and scratch docs at the repo root (README.md stays tracked)
+/LAYOUT_*
+/*_SUMMARY.*
+/PROJECT_SUMMARY.md
+/INDEX.md
+/QUICKSTART.md
+/SETUP.md
+/NOTES*.md
+/TODO*.md
+# Retired, draft or unpublished content
+content/archive/
+content/drafts/
+# Local scratch, exports and secrets that must never be pushed
+/scratch/
+/tmp/
+*.local
+*.secret
+*.key
+*.p12
+*.log
+.env*
+!.env*.example

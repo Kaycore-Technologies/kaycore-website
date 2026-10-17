@@ -13,10 +13,10 @@ export default function ContactContent() {
       <div className="orb orb-cyan w-[500px] h-[500px] bottom-0 left-0 translate-y-1/4 opacity-10 pointer-events-none" />
 
       <div className="section-container relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-16 xl:gap-24">
 
           {/* LEFT: Context & Promise */}
-          <div className="lg:col-span-5 space-y-12">
+          <div className="space-y-12 min-w-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -85,7 +85,7 @@ export default function ContactContent() {
           </div>
 
           {/* RIGHT: High Intent Form */}
-          <div className="lg:col-span-7">
+          <div className="min-w-0">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

@@ -7,5 +7,5 @@
 - Black: #000000
 
 ## Logo Fonts
-- Abhaya Libre (`/Abhaya Libre.ttf`)
-- Schibsted Grotesk (`/Schibsted Grotesk.ttf`)
+- Abhaya Libre (free on Google Fonts; not bundled in this repo)
+- Schibsted Grotesk (free on Google Fonts; not bundled in this repo)

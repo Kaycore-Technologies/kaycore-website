@@ -99,7 +99,7 @@ export function Footer() {
               <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on YouTube" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
                 <Youtube className="w-4 h-4" aria-hidden="true" />
               </a>
-              <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
+              <a href="https://www.instagram.com/kaycoretechnologies/" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
                 <Instagram className="w-4 h-4" aria-hidden="true" />
               </a>
               <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on LinkedIn" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>

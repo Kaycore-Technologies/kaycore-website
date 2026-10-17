@@ -115,7 +115,7 @@ export default function RootLayout({
       'https://x.com/kaycore',
       'https://linkedin.com/company/kaycore',
       'https://youtube.com/@kaycore',
-      'https://instagram.com/kaycore',
+      'https://www.instagram.com/kaycoretechnologies/',
     ],
     founder: {
       '@type': 'Person',

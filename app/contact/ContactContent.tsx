@@ -78,7 +78,7 @@ export default function ContactContent() {
                   <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on YouTube" className="text-muted hover:text-brand-accent transition-colors">
                     <Youtube className="w-5 h-5" aria-hidden="true" />
                   </a>
-                  <a href="https://instagram.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className="text-muted hover:text-brand-accent transition-colors">
+                  <a href="https://www.instagram.com/kaycoretechnologies/" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className="text-muted hover:text-brand-accent transition-colors">
                     <Instagram className="w-5 h-5" aria-hidden="true" />
                   </a>
                   <a href="https://linkedin.com/company/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on LinkedIn" className="text-muted hover:text-brand-accent transition-colors">

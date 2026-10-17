@@ -37,10 +37,10 @@ export function ProcessSection() {
             >
               {/* Step Number Badge */}
               <motion.div 
-                whileInView={{ scale: 1.2, backgroundColor: "#EAF2FF", boxShadow: "0 8px 24px rgba(15, 23, 42, 0.10)", borderColor: "#2563EB" }}
+                whileInView={{ scale: 1.2, boxShadow: "0 8px 24px rgba(15, 23, 42, 0.10)" }}
                 transition={{ duration: 0.4 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="glass-surface absolute left-0 top-6 md:top-8 -translate-x-1/2 w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border-2 border-brand-accent flex items-center justify-center z-10"
+                className="glass-surface absolute left-0 top-6 md:top-8 -translate-x-1/2 w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border-2 !border-brand-accent !bg-[#EAF2FF] dark:!bg-[#16244A] flex items-center justify-center z-10"
               >
                 <span className="text-brand-accent font-mono font-bold text-sm">{step.num}</span>
               </motion.div>

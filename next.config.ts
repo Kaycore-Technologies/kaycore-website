@@ -77,7 +77,7 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
-    // Retired illustrative case studies (source kept in content/archive/).
+    // Retired illustrative case studies (removed from the repo).
     // statusCode 301 rather than `permanent: true`, which Next sends as a 308.
     return [
       'series-b-fintech-support-assistant',

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { caseStudies, caseStudiesIntro } from '@/content/case-studies';
 import { pageMetadata } from '@/lib/seo';
-import { caseStudyIcons } from '@/components/case-study-icons';
+import { caseStudyIcons, caseStudyImage } from '@/components/case-study-icons';
+import { CardMedia } from '@/components/ui';
 import { DotGridBackground } from '@/components/ui/DotGridBackground';
 
 // White card with a soft navy-tinted shadow, as on the rest of the light theme.
@@ -54,8 +55,9 @@ export default function CaseStudiesPage() {
             return (
               <Link key={study.slug} href={`/case-studies/${study.slug}`} className="group block h-full">
                 <article className={`relative h-full flex flex-col overflow-hidden hover:-translate-y-1 duration-500 ${glassPanel} glass-card`}>
-                  <div className="absolute inset-x-0 top-0 h-1 k-accent-bar" aria-hidden="true" />
-                  <div className="p-7 sm:p-8 flex flex-col flex-1">
+                  <div className="absolute inset-x-0 top-0 z-10 h-1 k-accent-bar" aria-hidden="true" />
+                  <CardMedia src={caseStudyImage(study.slug)} alt="" sizes="(max-width: 768px) 100vw, 50vw" className="h-40 sm:h-48" />
+                  <div className="px-7 pb-7 pt-3 sm:px-8 sm:pb-8 flex flex-col flex-1">
                     <div className="flex items-start gap-4 mb-6">
                       {Icon && (
                         <span className="w-12 h-12 shrink-0 rounded-2xl bg-gradient-to-br from-c1 to-c2 text-white flex items-center justify-center shadow-card" aria-hidden="true">

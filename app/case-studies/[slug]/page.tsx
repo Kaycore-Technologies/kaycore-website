@@ -5,7 +5,8 @@ import { ArrowLeft, ArrowRight, BookOpen, Scale, TrendingUp, Wrench, type Lucide
 import { getCaseStudy, caseStudies, caseStudiesPublished } from '@/content/case-studies';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
 import { getArticle } from '@/content/articles';
-import { caseStudyIcons } from '@/components/case-study-icons';
+import { caseStudyIcons, caseStudyImage } from '@/components/case-study-icons';
+import Image from 'next/image';
 
 const baseUrl = 'https://www.kaycore.com';
 const ogImage = {
@@ -130,7 +131,8 @@ export default async function CaseStudyDetail({
               </ol>
             </nav>
 
-            <div className="max-w-4xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="lg:col-span-7">
               {Icon && (
                 <span className="inline-flex w-14 h-14 mb-6 rounded-2xl bg-gradient-to-br from-c1 to-c2 text-white items-center justify-center shadow-card" aria-hidden="true">
                   <Icon className="w-7 h-7" />
@@ -140,6 +142,10 @@ export default async function CaseStudyDetail({
                 {study.title}
               </h1>
               <p className="text-lg sm:text-xl text-body leading-relaxed">{study.summary}</p>
+            </div>
+            <div className="lg:col-span-5 relative aspect-video rounded-3xl overflow-hidden border border-line shadow-card">
+              <Image src={caseStudyImage(study.slug)} alt="" fill priority sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
+            </div>
             </div>
 
             {/* Headline figures, quoted exactly from the case study */}

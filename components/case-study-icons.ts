@@ -7,3 +7,6 @@ export const caseStudyIcons: Record<string, LucideIcon> = {
   'ci-stability-and-test-data': GitBranch,
   'ai-augmented-qa-workflow': Sparkles,
 };
+
+// Abstract header art per case study, generated with FLUX on fal.ai (no text, screens or logos).
+export const caseStudyImage = (slug: string) => `/assets/case-studies/${slug}.jpg`;

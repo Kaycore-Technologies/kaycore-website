@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { THEME_SCRIPT } from '@/lib/theme';
 import Script from 'next/script';
 import { Inter, Outfit, JetBrains_Mono } from 'next/font/google';
 import { Header } from '@/components/Header';
@@ -137,6 +138,10 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <head>
+        {/* Applies the saved or system theme before first paint, so the page never flashes */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body
         className={`${inter.variable} ${outfit.variable} ${jetbrains.variable} antialiased flex flex-col min-h-screen font-sans`}
       >

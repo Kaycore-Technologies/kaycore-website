@@ -20,8 +20,8 @@ export function LogoCarousel({ logos, speed = 30 }: LogoCarouselProps) {
   return (
     <div className="relative w-full overflow-hidden">
       {/* Gradient overlays for smooth edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white dark:from-slate-900 to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-surface dark:from-slate-900 to-transparent z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-surface dark:from-slate-900 to-transparent z-10" />
 
       {/* Scrolling container */}
       <motion.div

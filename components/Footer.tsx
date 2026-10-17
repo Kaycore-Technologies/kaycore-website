@@ -13,7 +13,7 @@ export function Footer() {
   const isKayHealth = pathname.startsWith('/kayhealth');
 
   // Theme-aware classes
-  const footerBg = isKayHealth ? 'bg-slate-50' : 'bg-white/50';
+  const footerBg = isKayHealth ? 'bg-slate-50' : 'bg-surface/50';
   const borderColor = isKayHealth ? 'border-slate-200' : 'border-line';
   const headingColor = isKayHealth ? 'text-slate-900' : 'text-navy';
   const textColor = isKayHealth ? 'text-slate-600' : 'text-body';
@@ -41,7 +41,7 @@ export function Footer() {
         <div className={`p-8 md:p-12 mb-20 flex flex-col md:flex-row items-center justify-between gap-8 rounded-3xl ${
           isKayHealth
             ? 'bg-gradient-to-r from-blue-600 to-blue-800 shadow-xl'
-            : 'bg-white/60 border border-line shadow-card'
+            : 'bg-surface/60 border border-line shadow-card'
         }`}>
           <div className="max-w-xl text-center md:text-left">
             {isKayHealth ? (
@@ -61,8 +61,8 @@ export function Footer() {
             href="/contact"
             className={`inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-xl whitespace-nowrap transition-all hover:scale-[1.02] ${
               isKayHealth
-                ? 'bg-white text-blue-700 hover:bg-blue-50 shadow-lg'
-                : 'bg-navy text-white hover:bg-navy-2 shadow-md'
+                ? 'bg-surface text-blue-700 hover:bg-blue-50 shadow-lg'
+                : 'bg-navy text-on-navy hover:bg-navy-2 shadow-md'
             }`}
           >
             {isKayHealth ? 'Schedule a Demo' : 'Talk to an Expert'}

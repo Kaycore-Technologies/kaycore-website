@@ -4,6 +4,8 @@ import { useState, useRef, useEffect, type CSSProperties } from 'react';
 import { X, Send, CheckCircle2, HeadphonesIcon, AlertCircle, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import { useSpamGuard } from '@/lib/use-spam-guard';
+import { usePathname } from 'next/navigation';
+import { useIsDark } from '@/lib/theme';
 
 type Message = {
   id: string;
@@ -129,9 +131,49 @@ const LIGHT: Palette = {
   footerText: '#1E293B',
 };
 
+// Dark glass for the dark theme: a deep navy pane with the same logo-coloured hue and rim.
+const DARK: Palette = {
+  ...LIGHT,
+  windowShadow: '0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 60px rgba(0, 0, 0, 0.55)',
+  ringGradient: 'linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.14) 100%)',
+  panelShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 0 28px rgba(104, 125, 241, 0.08), inset 0 -24px 40px -20px rgba(104, 125, 241, 0.3)',
+  panelBg: 'rgba(10, 16, 30, 0.72)',
+  panelTint: 'linear-gradient(145deg, rgba(110, 220, 245, 0.12) 0%, rgba(104, 125, 241, 0.12) 55%, rgba(147, 51, 234, 0.1) 100%)',
+  panelBorder: 'rgba(255, 255, 255, 0.1)',
+  headerBg: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01))',
+  headerBorder: 'rgba(255, 255, 255, 0.08)',
+  avatarInnerBg: '#0D1525',
+  onlineDotBorder: '#0D1525',
+  textMuted: '#CBD5E1',
+  closeColor: '#94A3B8',
+  closeHoverColor: '#E8EDF7',
+  closeHoverBg: 'rgba(255, 255, 255, 0.08)',
+  bannerBg: 'rgba(255, 255, 255, 0.04)',
+  bannerBorder: 'rgba(255, 255, 255, 0.06)',
+  icon: '#7AA2FF',
+  botAvatarBg: 'rgba(104, 125, 241, 0.2)',
+  botAvatarBorder: 'rgba(255, 255, 255, 0.12)',
+  botBubbleStyle: { backgroundColor: 'rgba(255, 255, 255, 0.06)', border: '1px solid rgba(255, 255, 255, 0.1)', boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 12px rgba(0, 0, 0, 0.25)' },
+  userBubbleStyle: { background: 'linear-gradient(135deg, #2563EB, #6D28D9)' },
+  typingDot: 'rgba(122, 162, 255, 0.8)',
+  footerBg: 'rgba(255, 255, 255, 0.03)',
+  footerBorder: 'rgba(255, 255, 255, 0.06)',
+  inputBg: 'rgba(255, 255, 255, 0.05)',
+  inputBorder: 'rgba(255, 255, 255, 0.1)',
+  inputText: '#E8EDF7',
+  inputFocusBg: 'rgba(255, 255, 255, 0.08)',
+  inputFocusShadow: '0 0 0 3px rgba(122, 162, 255, 0.3)',
+  success: '#34D399',
+  warning: '#FBBF24',
+  footerText: '#CBD5E1',
+};
+
 export function ChatBot() {
   const { guardMarkup, guardFields } = useSpamGuard();
-  const P = LIGHT;
+  // The dark glass follows the site theme; KayHealth always keeps the light glass.
+  const pathname = usePathname();
+  const isDark = useIsDark() && !pathname?.startsWith('/kayhealth');
+  const P = isDark ? DARK : LIGHT;
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { id: '1', role: 'bot', text: "Hi! I'm the Kaycore AI Assistant. We test AI, and everything AI builds. Ask me about our services, case studies, a sample quality audit, or KayHealth." }
@@ -369,7 +411,7 @@ export function ChatBot() {
               </p>
               <button
                 onClick={startLeadCapture}
-                className={`text-[11px] font-bold text-white px-4 py-1.5 rounded-full transition-all duration-300 hover:scale-105 ${P.btnClass}`}
+                className={`text-[11px] font-bold text-on-navy px-4 py-1.5 rounded-full transition-all duration-300 hover:scale-105 ${P.btnClass}`}
                 style={P.btnStyle}
               >
                 Talk to Expert
@@ -450,7 +492,7 @@ export function ChatBot() {
                 </p>
                 <button
                   onClick={startLeadCapture}
-                  className={`text-xs font-bold text-white px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 ${P.btnClass}`}
+                  className={`text-xs font-bold text-on-navy px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-105 ${P.btnClass}`}
                   style={P.btnStyle}
                 >
                   Talk to an Expert Instead
@@ -486,7 +528,7 @@ export function ChatBot() {
                 <button
                   onClick={handleSend}
                   disabled={!inputValue.trim() || isLoading}
-                  className={`absolute right-1.5 top-1.5 bottom-1.5 aspect-square rounded-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-105 ${P.sendBtnClass}`}
+                  className={`absolute right-1.5 top-1.5 bottom-1.5 aspect-square rounded-xl flex items-center justify-center text-on-navy transition-all duration-300 hover:scale-105 ${P.sendBtnClass}`}
                   style={{
                     ...(inputValue.trim() && !isLoading ? P.sendActiveStyle : P.sendInactiveStyle),
                     opacity: !inputValue.trim() || isLoading ? 0.3 : 1,

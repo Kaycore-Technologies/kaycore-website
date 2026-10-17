@@ -25,7 +25,7 @@ const sectionStyle: Record<string, { icon: LucideIcon; frame: string }> = {
   'What we built': { icon: Wrench, frame: `${glassPanel}` },
   'The decision that mattered': {
     icon: Scale,
-    frame: 'rounded-3xl bg-gradient-to-br from-c1/15 via-white to-c2/20 border border-c2/30 shadow-card',
+    frame: 'rounded-3xl bg-gradient-to-br from-c1/15 via-surface to-c2/20 border border-c2/30 shadow-card',
   },
   'What it produced': { icon: TrendingUp, frame: `${glassPanel} border-l-4 border-l-c2` },
 };
@@ -211,12 +211,12 @@ export default async function CaseStudyDetail({
                 </ul>
               </div>
 
-              <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-c1/20 via-white to-c2/25 border border-c2/30 shadow-card">
+              <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-c1/20 via-surface to-c2/25 border border-c2/30 shadow-card">
                 <h2 className="text-lg font-bold text-navy mb-2">Facing something similar?</h2>
                 <p className="text-sm text-body leading-relaxed mb-5">
                   Talk to our lead quality engineers about your suite. We will go deeper on this work on a call, under NDA where that helps.
                 </p>
-                <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-white text-sm font-semibold hover:bg-navy-2 transition-colors">
+                <Link href="/contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-navy text-on-navy text-sm font-semibold hover:bg-navy-2 transition-colors">
                   Discuss a similar engagement <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
               </div>

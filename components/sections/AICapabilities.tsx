@@ -34,7 +34,7 @@ export function AICapabilities() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-16 lg:py-20 relative overflow-hidden bg-white/40 border-y border-line"
+      className="py-16 lg:py-20 relative overflow-hidden bg-surface/40 border-y border-line"
     >
       {/* Soft light blobs */}
       <div className="absolute -top-1/2 left-1/4 w-[800px] h-[800px] bg-c2/10 rounded-full blur-[150px] animate-blob pointer-events-none" />

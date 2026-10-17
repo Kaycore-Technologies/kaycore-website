@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { ThemeToggle } from '@/lib/theme';
 
 interface NavChild {
   label: string;
@@ -79,7 +80,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
   const linkActive = isLightTheme ? 'text-blue-600' : 'text-brand-accent';
   const linkActiveHealth = isLightTheme ? 'text-blue-600' : 'text-brand-accent';
   const dropdownBg = isLightTheme
-    ? 'bg-white border-slate-200 shadow-xl'
+    ? 'bg-surface border-slate-200 shadow-xl'
     : 'thick-glass thick-glass-strong';
   const dropdownHover = isLightTheme ? 'hover:bg-blue-50' : 'hover:bg-soft';
   const dropdownLabel = isLightTheme ? 'text-slate-900 group-hover:text-blue-600' : 'text-navy group-hover:text-brand-accent';
@@ -151,13 +152,14 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
             );
           })}
         </ul>
-        <div className={`pl-8 border-l ${isLightTheme ? 'border-slate-200' : 'border-line'}`}>
+        <div className={`pl-8 border-l flex items-center gap-3 ${isLightTheme ? 'border-slate-200' : 'border-line'}`}>
+          {!isLightTheme && <ThemeToggle className="w-9 h-9 hover:bg-navy/5" />}
           <Link
             href="/contact"
             className={`group/cta inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition-all duration-300 hover:scale-[1.03] ${
               isLightTheme
                 ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full px-4 py-2 hover:shadow-xl'
-                : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-white rounded-full px-4 py-2'
+                : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-on-navy rounded-full px-4 py-2'
             }`}
           >
             Talk to an Expert
@@ -182,8 +184,8 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
         <div
           className={`fixed inset-0 z-40 transition-all duration-300 xl:hidden flex flex-col justify-center ${
             isLightTheme
-              ? 'bg-white/98 backdrop-blur-xl'
-              : 'bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-2xl backdrop-saturate-150'
+              ? 'bg-surface/98 backdrop-blur-xl'
+              : 'bg-gradient-to-b from-surface/80 to-surface/60 backdrop-blur-2xl backdrop-saturate-150'
           } ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         >
           {!isLightTheme && (
@@ -275,11 +277,14 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                   className={`block w-full text-center py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 ${
                     isLightTheme
                       ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full hover:shadow-xl'
-                      : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-white rounded-full'
+                      : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-on-navy rounded-full'
                   }`}
                 >
                   Talk to an Expert
                 </Link>
+                {!isLightTheme && (
+                  <ThemeToggle showLabel className="mt-6 w-full py-3 border border-line" />
+                )}
               </li>
             </ul>
           </nav>

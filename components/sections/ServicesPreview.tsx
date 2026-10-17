@@ -7,12 +7,12 @@ import { services } from '@/components/company-data';
 
 // The six core services (the first six in company-data), with homepage-only art keyed by slug
 const previewArt: Record<string, { bgClass: string; media: string }> = {
-  'ai-quality-risk-audit': { bgClass: "bg-white", media: "photo-1677442136019-21780ecad995" },
-  'llm-generative-ai-testing': { bgClass: "bg-white", media: "photo-1550751827-4bd374c3f58b" },
-  'qa-for-ai-built-apps': { bgClass: "bg-white", media: "photo-1555949963-ff9fe0c870eb" },
-  'custom-ai-qa-automation-frameworks': { bgClass: "bg-white", media: "photo-1605810230434-7631ac76ec81" },
-  'continuous-quality-retainers': { bgClass: "bg-white", media: "photo-1519389950473-47ba0277781c" },
-  'regulated-healthcare-ai-qa': { bgClass: "bg-white", media: "photo-1516549655169-df83a0774514" },
+  'ai-quality-risk-audit': { bgClass: "bg-surface", media: "photo-1677442136019-21780ecad995" },
+  'llm-generative-ai-testing': { bgClass: "bg-surface", media: "photo-1550751827-4bd374c3f58b" },
+  'qa-for-ai-built-apps': { bgClass: "bg-surface", media: "photo-1555949963-ff9fe0c870eb" },
+  'custom-ai-qa-automation-frameworks': { bgClass: "bg-surface", media: "photo-1605810230434-7631ac76ec81" },
+  'continuous-quality-retainers': { bgClass: "bg-surface", media: "photo-1519389950473-47ba0277781c" },
+  'regulated-healthcare-ai-qa': { bgClass: "bg-surface", media: "photo-1516549655169-df83a0774514" },
 };
 
 // Bento spans match the Services page: the three longest descriptions get the wide cards

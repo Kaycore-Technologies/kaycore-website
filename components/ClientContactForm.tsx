@@ -99,7 +99,7 @@ export default function ClientContactForm() {
     }
   };
 
-  const inputClasses = "w-full px-4 py-3 rounded-xl bg-white border border-line text-navy placeholder:text-muted focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30 transition-all duration-300";
+  const inputClasses = "w-full px-4 py-3 rounded-xl bg-surface border border-line text-navy placeholder:text-muted focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30 transition-all duration-300";
   const errorClasses = "border-red-400! focus:border-red-400! focus:ring-red-400/30!";
 
   return (
@@ -198,11 +198,11 @@ export default function ClientContactForm() {
               onChange={handleChange}
               className={`${inputClasses} appearance-none cursor-pointer ${errors.situation ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-white text-muted">Select a service...</option>
+              <option value="" disabled className="bg-surface text-muted">Select a service...</option>
               {services.map((service) => (
-                <option key={service.slug} value={service.title} className="bg-white text-navy">{service.title}</option>
+                <option key={service.slug} value={service.title} className="bg-surface text-navy">{service.title}</option>
               ))}
-              <option value="Not sure, need guidance" className="bg-white text-navy">Not sure, need guidance</option>
+              <option value="Not sure, need guidance" className="bg-surface text-navy">Not sure, need guidance</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
               <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -222,10 +222,10 @@ export default function ClientContactForm() {
               onChange={handleChange}
               className={`${inputClasses} appearance-none cursor-pointer ${errors.timeline ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-white text-muted">Select a timeline...</option>
-              <option value="immediate" className="bg-white text-navy">Immediate (&lt; 4 weeks)</option>
-              <option value="quarter" className="bg-white text-navy">This Quarter (1-3 months)</option>
-              <option value="planning" className="bg-white text-navy">Exploratory / Budgeting</option>
+              <option value="" disabled className="bg-surface text-muted">Select a timeline...</option>
+              <option value="immediate" className="bg-surface text-navy">Immediate (&lt; 4 weeks)</option>
+              <option value="quarter" className="bg-surface text-navy">This Quarter (1-3 months)</option>
+              <option value="planning" className="bg-surface text-navy">Exploratory / Budgeting</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
               <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
@@ -255,7 +255,7 @@ export default function ClientContactForm() {
             type="submit"
             disabled={isSubmitting}
             className="w-full relative group overflow-hidden px-8 py-4 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed
-                       bg-navy hover:bg-navy-2 text-white transition-all duration-300 shadow-card"
+                       bg-navy hover:bg-navy-2 text-on-navy transition-all duration-300 shadow-card"
           >
             <div className="flex items-center justify-center gap-2">
                <span>{isSubmitting ? 'Sending Request...' : 'Talk to an AI Quality Expert'}</span>

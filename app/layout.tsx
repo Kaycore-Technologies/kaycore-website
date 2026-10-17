@@ -72,7 +72,6 @@ export const metadata: Metadata = {
     description:
       'We test AI, and everything AI builds. Founder-led AI Quality Engineering for startups and enterprises.',
     images: ['/assets/og-image.jpg'],
-    creator: '@kaycore',
   },
   robots: {
     'max-image-preview': 'large',
@@ -112,9 +111,7 @@ export default function RootLayout({
       email: 'admin@kaycore.com',
     },
     sameAs: [
-      'https://x.com/kaycore',
       'https://linkedin.com/company/kaycore',
-      'https://youtube.com/@kaycore',
       'https://www.instagram.com/kaycoretechnologies/',
     ],
     founder: {

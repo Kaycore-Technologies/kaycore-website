@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Youtube, Linkedin, Instagram, MapPin, Mail, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Instagram, MapPin, Mail, ArrowUpRight } from 'lucide-react';
 import { services, industries, globalOffices } from '@/components/company-data';
 
 export function Footer() {
@@ -91,14 +91,6 @@ export function Footer() {
               Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI, and everything AI builds, helping startups and enterprises ship with certainty.
             </p>
             <div className="flex items-center gap-4">
-              <a href="https://x.com/kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on X (Twitter)" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a href="https://youtube.com/@kaycore" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on YouTube" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
-                <Youtube className="w-4 h-4" aria-hidden="true" />
-              </a>
               <a href="https://www.instagram.com/kaycoretechnologies/" target="_blank" rel="noopener noreferrer" aria-label="Kaycore on Instagram" className={`w-10 h-10 rounded-full ${socialBg} flex items-center justify-center ${socialIconColor} ${socialHover} transition-all`}>
                 <Instagram className="w-4 h-4" aria-hidden="true" />
               </a>

@@ -9,10 +9,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: ['/api/', '/studio/', '/admin/', '/private/'],
             },
             {
-                userAgent: ['Googlebot', 'Bingbot'],
-                allow: '/',
-            },
-            {
                 userAgent: ['AhrefsBot', 'SemrushBot'],
                 disallow: '/',
             },

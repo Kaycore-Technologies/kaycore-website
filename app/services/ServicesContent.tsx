@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { SectionHeader, GlassCard, GlowButton } from '@/components/ui';
+import Link from 'next/link';
+import { SampleAuditSection } from '@/components/sections/SampleAuditSection';
+import { SectionHeader, GlassCard, GlowButton, CardMedia } from '@/components/ui';
 import { services } from '@/components/company-data';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from '@/components/animations';
@@ -34,7 +35,7 @@ const serviceImages: Record<string, string> = {
   'llm-generative-ai-testing': 'photo-1677442136019-21780ecad995',
   'qa-for-ai-built-apps': 'photo-1555949963-ff9fe0c870eb',
   'custom-ai-qa-automation-frameworks': 'photo-1605810230434-7631ac76ec81',
-  'continuous-quality-retainers': 'photo-1551288049-bebda4e38f71',
+  'continuous-quality-retainers': 'photo-1519389950473-47ba0277781c',
   'regulated-healthcare-ai-qa': 'photo-1516549655169-df83a0774514',
   'performance-testing': 'photo-1518770660439-4636190af475',
   'embedded-qa-engineers': 'photo-1522071820081-009f0129c71c',
@@ -66,7 +67,7 @@ export default function ServicesContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen text-ink font-sans relative overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesLd) }}
@@ -84,10 +85,10 @@ export default function ServicesContent() {
             className="flex flex-col items-center"
           >
             <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">Our Services</p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold mb-8 leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-navy mb-8 leading-tight tracking-tight">
               Services for Startups <span className="text-gradient">&amp; Enterprises</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-body leading-relaxed">
               We test AI, and everything AI builds: LLM and generative AI systems, and the websites and apps created with AI coding tools. Senior engineers only, from a fixed-scope audit to a continuous quality retainer.
             </p>
           </motion.div>
@@ -102,7 +103,7 @@ export default function ServicesContent() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="py-24 lg:py-32 relative z-10"
+        className="py-16 lg:py-20 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(400px,auto)]">
@@ -113,46 +114,50 @@ export default function ServicesContent() {
               const image = `https://images.unsplash.com/${serviceImages[service.slug]}?auto=format&fit=crop&w=${isWide ? 1200 : 600}&q=80`;
 
               return (
-                <motion.div 
-                  key={service.id} 
-                  className={spanClass}
+                <motion.div
+                  key={service.id}
+                  id={service.slug}
+                  className={`${spanClass} scroll-mt-28`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 >
-                  <div className="relative w-full h-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md group flex flex-col justify-end">
-                    
-                    {/* Background Image with Hover Zoom */}
-                    <Image
+                  <div className="glass-surface relative w-full h-full overflow-hidden rounded-3xl hover:shadow-card-hover transition-shadow group flex flex-col">
+                    <CardMedia
                       src={image}
                       alt={service.title}
-                      fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover opacity-50 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 ease-out z-0"
+                      className="h-36 sm:h-40"
                     />
-                    
-                    {/* Dark Glass Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent z-10" />
-                    
-                    <div className="relative z-20 flex flex-col h-full justify-between">
+
+                    <div className="relative flex flex-col flex-1 justify-between px-8 pb-8 pt-3">
                       <div className="pb-14 transform group-hover:-translate-y-2 transition-transform duration-300">
-                        <h2 className="text-3xl font-display font-bold text-white mb-3">{service.title}</h2>
-                        <p className="text-gray-300 leading-relaxed max-w-lg mb-6">
+                        <h2 className="text-3xl font-display font-bold text-navy mb-3">{service.title}</h2>
+                        <p className="text-body leading-relaxed max-w-lg mb-6">
                           {service.description}
                         </p>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mt-6">
                           {service.features.map((feature, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                            <li key={i} className="flex items-start gap-2 text-sm text-body">
                               <CheckCircle2 className="w-4 h-4 text-brand-accent mt-0.5 shrink-0" />
                               <span>{feature}</span>
                             </li>
                           ))}
                         </ul>
+                        {service.sample && (
+                          <Link
+                            href="#sample-audit"
+                            className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-brand-accent hover:text-navy transition-colors"
+                          >
+                            {service.sample.label}
+                            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                          </Link>
+                        )}
                       </div>
                       
-                      <div className="opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 absolute bottom-0 md:translate-y-4 md:group-hover:translate-y-0 pb-2">
-                        <GlowButton href="/contact" variant="secondary" showArrow className="px-6 py-2 text-sm bg-white/10 backdrop-blur-md border border-white/20 hover:bg-brand-accent hover:border-brand-accent">
+                      <div className="opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 absolute bottom-8 md:translate-y-4 md:group-hover:translate-y-0 pb-2">
+                        <GlowButton href="/contact" variant="secondary" showArrow className="px-6 py-2 text-sm bg-white border border-line text-navy hover:bg-soft">
                           Discuss this service
                         </GlowButton>
                       </div>
@@ -164,6 +169,9 @@ export default function ServicesContent() {
           </div>
         </div>
       </motion.section>
+
+      {/* Sample deliverable for QA for AI-Built Websites & Apps */}
+      <SampleAuditSection id="sample-audit" />
 
       <FAQ items={servicesFaqs} />
 

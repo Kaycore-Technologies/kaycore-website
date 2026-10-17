@@ -15,7 +15,7 @@ export function Card({
   href,
 }: CardProps) {
   const baseStyles =
-    'bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-slate-200 dark:border-slate-700';
+    'glass-surface dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-700';
 
   const containerProps = {
     className: `${baseStyles} ${className}`,

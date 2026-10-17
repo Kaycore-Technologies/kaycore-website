@@ -27,27 +27,32 @@ export function LeadFormCTA({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="pt-24 pb-24 lg:pb-32 relative z-10 border-t border-white/5 overflow-hidden"
+      className="py-12 lg:py-16 px-4 sm:px-6 lg:px-8 relative z-10"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-white tracking-tight">
+      {/* Light call-to-action block: a translucent panel (the homepage dot grid shows through) with a soft
+          logo-colour glow, holding LeadForm's solid white variant. */}
+      <div className="max-w-5xl mx-auto rounded-3xl bg-white/60 border border-line shadow-card px-5 py-12 sm:px-10 lg:px-16 lg:py-16 text-center relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-1 k-accent-bar" aria-hidden="true" />
+        <div className="absolute -top-32 -left-24 w-96 h-96 bg-c1/20 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+        <div className="absolute -bottom-32 -right-24 w-96 h-96 bg-c2/20 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+        <h2 className="relative text-4xl md:text-5xl font-display font-bold mb-6 text-navy tracking-tight">
           {title}
         </h2>
-        <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p className="relative text-lg text-body mb-8 max-w-2xl mx-auto leading-relaxed">
           {description}
         </p>
 
-        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-12 max-w-2xl mx-auto">
+        <ul className="relative flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-12 max-w-2xl mx-auto">
           {trustSignals.map((signal) => (
-            <li key={signal} className="flex items-center gap-2 text-sm text-gray-300">
+            <li key={signal} className="flex items-center gap-2 text-sm text-body">
               <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" aria-hidden="true" />
               {signal}
             </li>
           ))}
         </ul>
 
-        <div className="max-w-2xl mx-auto text-left">
-          <LeadForm theme="dark" />
+        <div className="relative max-w-2xl mx-auto text-left">
+          <LeadForm theme="kaycore" />
         </div>
       </div>
     </motion.section>

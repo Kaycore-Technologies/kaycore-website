@@ -27,4 +27,4 @@ export { GlassCard } from './GlassCard';
 export { GradientText } from './GradientText';
 export { SectionHeader } from './SectionHeader';
 export { GlowButton } from './GlowButton';
-export { ParticleBackground } from './ParticleBackground';
+export { CardMedia } from './CardMedia';

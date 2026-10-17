@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSpamGuard } from '@/lib/use-spam-guard';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Lock, Send, ArrowRight } from 'lucide-react';
 
@@ -62,6 +63,7 @@ export default function ChecklistContent() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'unlocked' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
+  const { guardMarkup, guardFields } = useSpamGuard();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,6 +78,7 @@ export default function ChecklistContent() {
           name,
           email,
           challenges: 'Requested: LLM Production-Readiness Checklist',
+          ...guardFields(),
         }),
       });
       const data = await res.json();
@@ -90,16 +93,16 @@ export default function ChecklistContent() {
   const unlocked = status === 'unlocked';
 
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans overflow-x-hidden">
-      <div className="absolute top-0 inset-x-0 h-[420px] bg-grid opacity-20 pointer-events-none" />
+    <div className="min-h-screen text-ink font-sans overflow-x-hidden">
+      <div className="absolute top-0 inset-x-0 h-[420px] bg-grid [mask-image:linear-gradient(to_bottom,black_40%,transparent)] pointer-events-none" />
 
       <section className="relative z-10 pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-5">Free Resource</p>
-          <h1 className="text-4xl sm:text-5xl font-display font-bold text-white leading-tight tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl font-display font-bold text-navy leading-tight tracking-tight mb-6">
             The LLM Production-Readiness Checklist
           </h1>
-          <p className="text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-body leading-relaxed max-w-2xl mx-auto">
             A practical, 20-point checklist for deciding whether an AI feature is ready to ship. Built from the
             metrics and thresholds our engineers use on real production systems. No fluff, no sales pitch.
           </p>
@@ -115,15 +118,16 @@ export default function ChecklistContent() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, height: 0 }}
-                className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md p-8 md:p-10 mb-12"
+                className="glass-surface rounded-3xl p-8 md:p-10 mb-12"
               >
                 <div className="flex items-center gap-2 text-brand-accent text-sm font-medium mb-4">
                   <Lock className="w-4 h-4" aria-hidden="true" />
                   Enter your work email to unlock the checklist
                 </div>
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {guardMarkup}
                   <div>
-                    <label htmlFor="cl-name" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    <label htmlFor="cl-name" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
                       Full Name
                     </label>
                     <input
@@ -133,11 +137,11 @@ export default function ChecklistContent() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Jane Doe"
-                      className="w-full bg-white/5 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 outline-none text-white rounded-xl px-4 py-3.5 text-base transition-all"
+                      className="w-full bg-white border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
                     />
                   </div>
                   <div>
-                    <label htmlFor="cl-email" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
+                    <label htmlFor="cl-email" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
                       Work Email
                     </label>
                     <input
@@ -147,18 +151,18 @@ export default function ChecklistContent() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="jane@company.com"
-                      className="w-full bg-white/5 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 outline-none text-white rounded-xl px-4 py-3.5 text-base transition-all"
+                      className="w-full bg-white border border-line text-navy placeholder:text-muted rounded-xl px-4 py-3.5 text-base transition-all focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30"
                     />
                   </div>
                   {error && (
-                    <p role="alert" aria-live="assertive" className="sm:col-span-2 text-red-400 text-sm">
+                    <p role="alert" aria-live="assertive" className="sm:col-span-2 text-red-600 text-sm">
                       {error}
                     </p>
                   )}
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="sm:col-span-2 inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-full py-4 transition-all disabled:opacity-60"
+                    className="sm:col-span-2 inline-flex items-center justify-center gap-2 bg-navy hover:bg-navy-2 text-white font-semibold rounded-full py-4 transition-all disabled:opacity-60"
                   >
                     {status === 'loading' ? (
                       <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -168,7 +172,7 @@ export default function ChecklistContent() {
                       </>
                     )}
                   </button>
-                  <p className="sm:col-span-2 text-xs text-gray-500 text-center">
+                  <p className="sm:col-span-2 text-xs text-muted text-center">
                     We send the checklist and nothing else. No spam, no drip sequence.
                   </p>
                 </form>
@@ -182,7 +186,7 @@ export default function ChecklistContent() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-2 text-green-400 text-sm font-medium mb-8"
+                className="flex items-center gap-2 text-emerald-700 text-sm font-medium mb-8"
               >
                 <CheckCircle2 className="w-5 h-5" />
                 Unlocked. A copy is on its way to your inbox.
@@ -191,10 +195,10 @@ export default function ChecklistContent() {
             <div className="space-y-10">
               {checklist.map((section) => (
                 <div key={section.title}>
-                  <h2 className="text-xl font-bold text-white mb-5">{section.title}</h2>
+                  <h2 className="text-xl font-bold text-navy mb-5">{section.title}</h2>
                   <ul className="space-y-4">
                     {section.items.map((item, i) => (
-                      <li key={i} className="flex gap-3 items-start text-gray-300 leading-relaxed">
+                      <li key={i} className="flex gap-3 items-start text-body leading-relaxed">
                         <span className="mt-1 w-5 h-5 shrink-0 rounded-md border border-brand-accent/40 bg-brand-accent/10 flex items-center justify-center">
                           <CheckCircle2 className="w-3.5 h-3.5 text-brand-accent" />
                         </span>
@@ -211,16 +215,16 @@ export default function ChecklistContent() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 text-center"
+              className="glass-surface mt-16 rounded-3xl p-8 text-center"
             >
-              <h2 className="text-2xl font-bold text-white mb-3">Want help working through it?</h2>
-              <p className="text-gray-400 mb-6 max-w-xl mx-auto">
+              <h2 className="text-2xl font-bold text-navy mb-3">Want help working through it?</h2>
+              <p className="text-body mb-6 max-w-xl mx-auto">
                 Our lead quality engineers can run this assessment on your system and hand you the test suites and
                 datasets to keep.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-brand-accent text-white font-semibold rounded-full hover:bg-brand-accent/90 transition-all"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-navy text-white font-semibold rounded-full hover:bg-navy-2 transition-all"
               >
                 Talk to an Expert <ArrowRight className="w-4 h-4" />
               </Link>

@@ -22,7 +22,7 @@ export function GlowButton({
   type = 'button' 
 }: GlowButtonProps) {
   const baseClass = variant === 'primary' 
-    ? 'btn-primary hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 ease-in-out' 
+    ? 'btn-primary hover:scale-105 hover:shadow-[0_10px_28px_rgba(15,23,42,0.25)] transition-all duration-300 ease-in-out' 
     : 'btn-secondary hover:scale-105 transition-all duration-300 ease-in-out';
   
   const content = (

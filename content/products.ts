@@ -24,11 +24,11 @@ export const products: Product[] = [
   {
     name: 'KayHealth',
     status: 'In development',
-    tagline: 'The Eval Harness, aimed at regulated medical software.',
+    tagline: 'Built for the evidence healthcare regulators ask for.',
     summary:
-      "Our healthcare umbrella. Its first initiative applies the harness to AI-enabled medical software, producing the evidence India's CDSCO guidance now requires. KayScribe, an AI medical scribe, is also part of the family.",
+      "Our healthcare umbrella. Its first initiative validates AI-enabled medical software and documents what India's CDSCO guidance now requires: training data composition, model bias, and robustness across sub-populations. KayScribe, an AI medical scribe, is also part of the family.",
     detail: [
-      'KayHealth is our healthcare product umbrella. Its first initiative applies the Eval Harness to regulated medical software.',
+      'KayHealth is our healthcare product umbrella. Its first initiative takes the evaluation engine we use on our own engagements into regulated medical software, where every result has to stand up as documented evidence.',
       "India's CDSCO finalised its medical device software guidance on 30 July 2026. It requires documented evidence on training data composition, model bias, and robustness across sub-populations for AI-enabled health software. No standard test tooling produces that evidence. KayHealth is being built to.",
       'KayScribe, an AI medical scribe, is also part of the KayHealth family.',
     ],

@@ -15,9 +15,15 @@ export interface CaseStudy {
   slug: string;
   title: string;
   summary: string;
+  seoTitle?: string; // <= 60 chars, used as the absolute <title>
   tags: string[];
+  // Presentation only: each figure is quoted exactly as it appears in the copy below.
+  highlights: { value: string; label: string }[];
+  guide: string; // slug of the blog post built from this case study
   body: CaseStudySection[];
 }
+
+export const caseStudiesPublished = '2026-10-07';
 
 export const caseStudiesIntro = {
   heading: 'Selected work',
@@ -30,10 +36,17 @@ export const caseStudiesIntro = {
 /* ---------------- 1 ---------------- */
 const uiAutomation: CaseStudy = {
   slug: 'ui-automation-at-scale',
+  seoTitle: 'Playwright UI Test Automation Case Study | Kaycore',
   title: 'Building a UI suite that survives its own frontend',
   summary:
     '85 end-to-end test cases and 48 page-object classes on a multi-tenant admin platform, built to survive two frontend migrations.',
   tags: ['Playwright', 'TypeScript', 'end-to-end testing', 'page object model'],
+  highlights: [
+    { value: '85', label: 'end-to-end test cases' },
+    { value: '48', label: 'page-object classes' },
+    { value: '46', label: 'files, organised in layers' },
+  ],
+  guide: 'how-to-fix-flaky-playwright-tests',
   body: [
     {
       paragraphs: [
@@ -66,10 +79,17 @@ const uiAutomation: CaseStudy = {
 /* ---------------- 2 ---------------- */
 const graphqlContract: CaseStudy = {
   slug: 'graphql-contract-testing',
+  seoTitle: 'GraphQL API and Authorization Testing Case Study | Kaycore',
   title: 'API contract and authorisation testing on a federated graph',
   summary:
     '62 API test cases, a persistence read-back module called from 44 sites, and 22 silent skips turned into hard failures.',
   tags: ['GraphQL', 'federated graph', 'API testing', 'authorisation testing'],
+  highlights: [
+    { value: '62', label: 'API test cases' },
+    { value: '44', label: 'call sites for the persistence read-back module' },
+    { value: '22', label: 'silent skips turned into hard failures' },
+  ],
+  guide: 'graphql-api-testing-best-practices',
   body: [
     {
       paragraphs: [
@@ -104,10 +124,17 @@ const graphqlContract: CaseStudy = {
 /* ---------------- 3 ---------------- */
 const ciStability: CaseStudy = {
   slug: 'ci-stability-and-test-data',
+  seoTitle: 'Fixing a Red CI Pipeline: Flaky Tests Case Study | Kaycore',
   title: 'Taking over a red pipeline',
   summary:
     "12 quarantined tests restored in 20 days, leaked test data cut from 7 records per run to zero, and a suite that stopped killing other teams' pipelines.",
   tags: ['CI', 'flaky tests', 'test data management', 'pipeline stability'],
+  highlights: [
+    { value: '12', label: 'quarantined tests restored in 20 days' },
+    { value: '7 → 0', label: 'leaked records per run' },
+    { value: '55s → ~27s', label: "one folder's runtime" },
+  ],
+  guide: 'flaky-tests-in-ci-pipeline',
   body: [
     {
       paragraphs: [
@@ -143,10 +170,17 @@ const ciStability: CaseStudy = {
 /* ---------------- 4 ---------------- */
 const aiWorkflow: CaseStudy = {
   slug: 'ai-augmented-qa-workflow',
+  seoTitle: 'AI-Augmented QA Workflow Case Study | Kaycore',
   title: 'An AI-augmented QA workflow',
   summary:
     'A custom agent skill, live locator verification through MCP, and an enforcement layer that blocks a commit until the self-audit is clean.',
   tags: ['AI tooling', 'Claude Code', 'MCP', 'Playwright', 'developer workflow'],
+  highlights: [
+    { value: '467', label: 'lines in the custom agent skill' },
+    { value: '796', label: 'accessibility snapshots over seven months' },
+    { value: '89', label: 'single-fact memory entries' },
+  ],
+  guide: 'ai-assisted-test-automation-claude-code-mcp',
   body: [
     {
       paragraphs: [

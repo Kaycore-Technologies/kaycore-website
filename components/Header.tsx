@@ -21,17 +21,20 @@ export function Header() {
   }, []);
 
   return (
-    <header 
+    <header
+      data-theme={isKayHealth ? 'kayhealth' : 'kaycore'}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isKayHealth
           ? scrolled
             ? 'bg-white/70 backdrop-blur-2xl backdrop-saturate-150 border-b border-slate-200/70 py-1.5 shadow-sm'
             : 'bg-white/30 backdrop-blur-xl backdrop-saturate-150 border-b border-white/40 py-2'
           : scrolled
-            ? 'bg-gradient-to-b from-white/[0.08] to-white/[0.03] backdrop-blur-2xl backdrop-saturate-150 border-b border-white/10 py-1.5 shadow-lg shadow-black/30'
-            : 'bg-white/[0.04] backdrop-blur-xl backdrop-saturate-150 border-b border-white/10 py-2'
+            ? 'thick-glass thick-glass-strong border-x-0 border-t-0 py-1.5'
+            : 'thick-glass border-x-0 border-t-0 py-2'
       }`}
     >
+      {/* Cyan to indigo accent bar, as on the Quality Audit sample */}
+      {!isKayHealth && <div className="absolute inset-x-0 top-0 h-[3px] k-accent-bar" aria-hidden="true" />}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}

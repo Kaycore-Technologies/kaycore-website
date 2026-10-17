@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { ArrowRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { services } from '@/components/company-data';
+import { useSpamGuard } from '@/lib/use-spam-guard';
 
 interface FormData {
   name: string;
@@ -35,6 +37,7 @@ export default function ClientContactForm() {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { guardMarkup, guardFields } = useSpamGuard();
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
 
@@ -76,7 +79,7 @@ export default function ClientContactForm() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, ...guardFields() }),
       });
 
       if (response.ok) {
@@ -96,29 +99,30 @@ export default function ClientContactForm() {
     }
   };
 
-  const inputClasses = "w-full px-4 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:bg-white/[0.05] transition-all duration-300";
-  const errorClasses = "border-red-500/50 focus:border-red-500/50";
+  const inputClasses = "w-full px-4 py-3 rounded-xl bg-white border border-line text-navy placeholder:text-muted focus:outline-none focus:border-c2 focus:ring-2 focus:ring-c2/30 transition-all duration-300";
+  const errorClasses = "border-red-400! focus:border-red-400! focus:ring-red-400/30!";
 
   return (
     <div className="relative z-10">
       {submitStatus === 'success' && (
-        <div className="mb-8 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex gap-3 items-start">
-          <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
-          <p className="text-emerald-400 font-medium">{submitMessage}</p>
+        <div className="mb-8 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex gap-3 items-start">
+          <CheckCircle2 className="w-5 h-5 text-emerald-700 mt-0.5 shrink-0" />
+          <p className="text-emerald-700 font-medium">{submitMessage}</p>
         </div>
       )}
 
       {submitStatus === 'error' && (
-        <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex gap-3 items-start">
-          <AlertCircle className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
-          <p className="text-red-400 font-medium">{submitMessage}</p>
+        <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex gap-3 items-start">
+          <AlertCircle className="w-5 h-5 text-red-600 mt-0.5 shrink-0" />
+          <p className="text-red-600 font-medium">{submitMessage}</p>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {guardMarkup}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+            <label htmlFor="name" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
               Full Name *
             </label>
             <input
@@ -130,11 +134,11 @@ export default function ClientContactForm() {
               placeholder="Jane Doe"
               className={`${inputClasses} ${errors.name ? errorClasses : ''}`}
             />
-            {errors.name && <p className="text-red-400 text-xs mt-2 ml-1">{errors.name}</p>}
+            {errors.name && <p className="text-red-600 text-xs mt-2 ml-1">{errors.name}</p>}
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+            <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
               Work Email *
             </label>
             <input
@@ -146,12 +150,12 @@ export default function ClientContactForm() {
               placeholder="jane@company.com"
               className={`${inputClasses} ${errors.email ? errorClasses : ''}`}
             />
-            {errors.email && <p className="text-red-400 text-xs mt-2 ml-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-600 text-xs mt-2 ml-1">{errors.email}</p>}
           </div>
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+          <label htmlFor="company" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
             Company Name
           </label>
           <input
@@ -166,7 +170,7 @@ export default function ClientContactForm() {
         </div>
 
         <div>
-          <label htmlFor="useCase" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+          <label htmlFor="useCase" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
             What are you building or validating? *
           </label>
           <input
@@ -178,14 +182,15 @@ export default function ClientContactForm() {
             placeholder="e.g. Healthcare Chatbot, Financial Risk Model..."
             className={`${inputClasses} ${errors.useCase ? errorClasses : ''}`}
           />
-          {errors.useCase && <p className="text-red-400 text-xs mt-2 ml-1">{errors.useCase}</p>}
+          {errors.useCase && <p className="text-red-600 text-xs mt-2 ml-1">{errors.useCase}</p>}
         </div>
 
         <div>
-          <label htmlFor="situation" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
-            What describes your situation?
+          <label htmlFor="situation" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
+            Which service are you interested in?
           </label>
           <div className="relative">
+            {/* Options come from the service list, so the form never drifts from what Kaycore offers */}
             <select
               id="situation"
               name="situation"
@@ -193,22 +198,20 @@ export default function ClientContactForm() {
               onChange={handleChange}
               className={`${inputClasses} appearance-none cursor-pointer ${errors.situation ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-[#030712] text-gray-500">Select your status...</option>
-              <option value="preparing-release" className="bg-[#030712]">Preparing for release</option>
-              <option value="regression-automation" className="bg-[#030712]">Regression test automation</option>
-              <option value="llm-validation" className="bg-[#030712]">LLM-generated feature validation</option>
-              <option value="ai-built-app-qa" className="bg-[#030712]">QA for an AI-built website or app</option>
-              <option value="ongoing-support" className="bg-[#030712]">Ongoing QA support</option>
-              <option value="unsure" className="bg-[#030712]">Not sure - need guidance</option>
+              <option value="" disabled className="bg-white text-muted">Select a service...</option>
+              {services.map((service) => (
+                <option key={service.slug} value={service.title} className="bg-white text-navy">{service.title}</option>
+              ))}
+              <option value="Not sure, need guidance" className="bg-white text-navy">Not sure, need guidance</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
             </div>
           </div>
         </div>
 
         <div>
-          <label htmlFor="timeline" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+          <label htmlFor="timeline" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
             Estimated Timeline *
           </label>
           <div className="relative">
@@ -219,20 +222,20 @@ export default function ClientContactForm() {
               onChange={handleChange}
               className={`${inputClasses} appearance-none cursor-pointer ${errors.timeline ? errorClasses : ''}`}
             >
-              <option value="" disabled className="bg-[#030712] text-gray-500">Select a timeline...</option>
-              <option value="immediate" className="bg-[#030712]">Immediate (&lt; 4 weeks)</option>
-              <option value="quarter" className="bg-[#030712]">This Quarter (1-3 months)</option>
-              <option value="planning" className="bg-[#030712]">Exploratory / Budgeting</option>
+              <option value="" disabled className="bg-white text-muted">Select a timeline...</option>
+              <option value="immediate" className="bg-white text-navy">Immediate (&lt; 4 weeks)</option>
+              <option value="quarter" className="bg-white text-navy">This Quarter (1-3 months)</option>
+              <option value="planning" className="bg-white text-navy">Exploratory / Budgeting</option>
             </select>
             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              <svg className="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
             </div>
           </div>
-          {errors.timeline && <p className="text-red-400 text-xs mt-2 ml-1">{errors.timeline}</p>}
+          {errors.timeline && <p className="text-red-600 text-xs mt-2 ml-1">{errors.timeline}</p>}
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 ml-1">
+          <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2 ml-1">
             Additional Context *
           </label>
           <textarea
@@ -244,7 +247,7 @@ export default function ClientContactForm() {
             rows={4}
             className={`${inputClasses} resize-none ${errors.message ? errorClasses : ''}`}
           />
-          {errors.message && <p className="text-red-400 text-xs mt-2 ml-1">{errors.message}</p>}
+          {errors.message && <p className="text-red-600 text-xs mt-2 ml-1">{errors.message}</p>}
         </div>
 
         <div className="pt-4 space-y-4">
@@ -252,7 +255,7 @@ export default function ClientContactForm() {
             type="submit"
             disabled={isSubmitting}
             className="w-full relative group overflow-hidden px-8 py-4 rounded-xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed
-                       bg-white text-[#030712] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                       bg-navy hover:bg-navy-2 text-white transition-all duration-300 shadow-card"
           >
             <div className="flex items-center justify-center gap-2">
                <span>{isSubmitting ? 'Sending Request...' : 'Talk to an AI Quality Expert'}</span>
@@ -261,10 +264,10 @@ export default function ClientContactForm() {
           </button>
           
           <div className="flex flex-col sm:flex-row items-center justify-between px-2 gap-4">
-            <p className="text-xs text-gray-500 font-mono tracking-widest uppercase">
+            <p className="text-xs text-muted font-mono tracking-widest uppercase">
               Owner-led Review • No Sales Agents
             </p>
-            <p className="text-xs text-gray-500 flex items-center gap-2">
+            <p className="text-xs text-muted flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Reply within 24h
             </p>

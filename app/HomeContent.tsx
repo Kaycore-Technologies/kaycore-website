@@ -12,7 +12,7 @@ import {
   IntroVideoSection
 } from '@/components/sections';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
-import { ParticleBackground } from '@/components/ui/ParticleBackground';
+import { DotGridBackground } from '@/components/ui/DotGridBackground';
 import { FAQ, type FAQItem } from '@/components/FAQ';
 
 const homeFaqs: FAQItem[] = [
@@ -56,8 +56,8 @@ export default function HomeContent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative">
-      <ParticleBackground className="fixed inset-0 w-full h-full pointer-events-none z-[2]" particleCount={100} />
+    <div className="min-h-screen text-ink font-sans relative">
+      <DotGridBackground />
       <HeroSection />
       <div className="section-divider" />
       <IntroVideoSection />

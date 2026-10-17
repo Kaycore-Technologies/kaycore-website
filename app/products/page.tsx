@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
 import ProductsContent from './ProductsContent';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Products | Eval Harness and KayHealth',
   description:
-    'Kaycore builds its own quality engineering tooling, funded by its services. The Eval Harness tests non-deterministic AI systems, and KayHealth applies it to regulated medical software. Both are in development.',
-  alternates: { canonical: '/products' },
-};
+    'Kaycore builds its own quality tooling, funded by its services: Eval Harness for non-deterministic AI and KayHealth for healthcare AI, both in development.',
+  path: '/products',
+});
 
 export default function ProductsPage() {
   return <ProductsContent />;

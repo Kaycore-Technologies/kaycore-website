@@ -1,8 +1,31 @@
 @import 'tailwindcss';
 
 /* ============================================
-   KAYCORE TECHNOLOGIES — GLOBAL DESIGN SYSTEM
+   KAYCORE TECHNOLOGIES: GLOBAL DESIGN SYSTEM
+   Light theme, based on the Kaycore Quality Audit sample
+   (navy ink, soft blue-grey surfaces, cyan to indigo accent).
+   KayHealth keeps its own styling: see the data-theme="kayhealth" rules.
    ============================================ */
+
+/* Theme tokens, exposed as Tailwind utilities: text-navy, bg-page, border-line,
+   text-brand-accent, shadow-card, xs: and so on. */
+@theme {
+  --color-navy: #0F172A;
+  --color-navy-2: #1E293B;
+  --color-ink: #0F172A;
+  --color-body: #475569;
+  --color-muted: #4B5563;
+  --color-line: #DCE3EE;
+  --color-soft: #F4F7FB;
+  --color-page: #F6F8FC;
+  --color-c1: #6EDCF5;
+  --color-c2: #687DF1;
+  --color-brand-accent: #1D4ED8;
+  --breakpoint-xs: 480px;
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.10);
+  --shadow-card-hover: 0 14px 34px rgba(15, 23, 42, 0.14);
+  --shadow-paper: 0 18px 50px rgba(15, 23, 42, 0.22), 0 2px 6px rgba(15, 23, 42, 0.08);
+}
 
 /* --- Design Tokens (CSS Custom Properties) --- */
 :root {
@@ -45,7 +68,7 @@
   --section-padding-y: clamp(5rem, 10vw, 10rem);
   --container-max: 80rem;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 /* --- Base Styles --- */
 html,
@@ -63,9 +86,26 @@ html {
 
 body {
   @apply antialiased;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: #F6F8FC;
+  /* Soft glows in the Kaycore logo colours, fixed behind the page */
+  background-image:
+    radial-gradient(900px 620px at 0% 0%, rgba(110, 220, 245, 0.20), transparent 60%),
+    radial-gradient(820px 620px at 100% 35%, rgba(104, 125, 241, 0.18), transparent 60%),
+    radial-gradient(900px 700px at 25% 100%, rgba(147, 51, 234, 0.10), transparent 60%);
+  background-attachment: fixed;
+  color: #0F172A;
   position: relative;
+}
+
+/* KayHealth keeps its original base colours. The header marks KayHealth pages
+   with data-theme="kayhealth" during server render, so there is no flash. */
+html:has(header[data-theme="kayhealth"]) {
+  color-scheme: dark;
+}
+body:has(header[data-theme="kayhealth"]) {
+  background-color: var(--color-bg-primary);
+  background-image: none;
+  color: var(--color-text-primary);
 }
 
 
@@ -94,7 +134,7 @@ body {
 
 /* --- Long-form article typography (blog / case studies) --- */
 .article-prose {
-  color: #cbd5e1;
+  color: #475569;
   font-size: 1.0625rem;
   line-height: 1.8;
 }
@@ -102,7 +142,7 @@ body {
   margin-top: 1.4em;
 }
 .article-prose h2 {
-  color: #fff;
+  color: #0F172A;
   font-family: var(--font-outfit), sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
@@ -115,26 +155,26 @@ body {
   margin-top: 0;
 }
 .article-prose h3 {
-  color: #fff;
+  color: #0F172A;
   font-size: 1.3rem;
   font-weight: 600;
   margin-top: 1.8em;
   margin-bottom: 0.1em;
 }
 .article-prose p {
-  color: #cbd5e1;
+  color: #475569;
 }
 .article-prose strong {
-  color: #fff;
+  color: #0F172A;
   font-weight: 600;
 }
 .article-prose a {
-  color: var(--color-accent);
+  color: #1D4ED8;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .article-prose a:hover {
-  color: #fff;
+  color: #0F172A;
 }
 .article-prose ul,
 .article-prose ol {
@@ -155,32 +195,32 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 9999px;
-  background: var(--color-accent);
+  background: linear-gradient(135deg, #6EDCF5, #687DF1);
 }
 .article-prose ol {
   list-style: decimal;
 }
 .article-prose li {
   margin-top: 0.5em;
-  color: #cbd5e1;
+  color: #475569;
 }
 .article-prose li::marker {
-  color: var(--color-accent);
+  color: #2563EB;
 }
 .article-prose blockquote {
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid #3B82F6;
   padding-left: 1.25rem;
   font-style: italic;
-  color: #e2e8f0;
+  color: #475569;
 }
 .article-prose code {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #F4F7FB;
+  border: 1px solid #DCE3EE;
   border-radius: 6px;
   padding: 0.12em 0.4em;
   font-family: var(--font-jetbrains), monospace;
   font-size: 0.9em;
-  color: #93c5fd;
+  color: #1D4ED8;
 }
 .article-prose table {
   width: 100%;
@@ -191,27 +231,27 @@ body {
 }
 .article-prose th,
 .article-prose td {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #DCE3EE;
   padding: 0.7rem 0.9rem;
   text-align: left;
   vertical-align: top;
 }
 .article-prose th {
-  background: rgba(255, 255, 255, 0.04);
+  background: #0F172A;
   color: #fff;
   font-weight: 600;
 }
 .article-prose figcaption {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: #4B5563;
   text-align: center;
   margin-top: 0.6rem;
 }
 
 /* Selection */
 ::selection {
-  background-color: rgba(99, 102, 241, 0.4);
-  color: white;
+  background-color: rgba(59, 130, 246, 0.22);
+  color: #0F172A;
 }
 
 /* --- Scrollbar --- */
@@ -220,15 +260,25 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
+  background: #F6F8FC;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: #CBD5E1;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+html:has(header[data-theme="kayhealth"]) ::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+html:has(header[data-theme="kayhealth"]) ::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+}
+html:has(header[data-theme="kayhealth"]) ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
 
@@ -238,32 +288,123 @@ body {
 
 @layer components {
   .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
+    @apply backdrop-blur-xl;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #DCE3EE;
+  }
+
+  /* Solid white card with a soft navy-tinted shadow (glass is kept for the menu bar and chatbot only) */
+  .glass-surface,
+  .glass-card {
+    background: #ffffff;
+    border: 1px solid #DCE3EE;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   }
 
   .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
     border-radius: 1rem;
     transition: all 0.3s ease;
   }
 
   .glass-card:hover {
-    background: var(--glass-bg-hover);
-    border-color: var(--color-border-accent);
-    box-shadow: 0 0 30px var(--glow-accent), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    border-color: rgba(104, 125, 241, 0.45);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12);
   }
 
   .glass-navbar {
-    background: rgba(3, 7, 18, 0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    @apply backdrop-blur-xl backdrop-saturate-150;
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid #DCE3EE;
+  }
+
+  /* Thick glass (menu bar and chat box): a clear, lightly frosted pane whose edges catch
+     light like a bevel (bright top, softer bottom), with an inner rim glow, a hint of colour
+     deep in the glass and a grounded drop shadow. */
+  .thick-glass {
+    @apply backdrop-blur-2xl backdrop-saturate-[1.8] backdrop-brightness-[1.04];
+    /* Same tinted glass as the chat box: faint blue base, cyan to periwinkle to violet hue,
+       and a white sheen that fades downwards */
+    background-color: rgba(236, 243, 255, 0.3);
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.04) 100%),
+      linear-gradient(145deg, rgba(110, 220, 245, 0.24) 0%, rgba(104, 125, 241, 0.2) 55%, rgba(147, 51, 234, 0.16) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 10px 18px -12px rgba(255, 255, 255, 0.9),
+      inset 0 -12px 22px -14px rgba(104, 125, 241, 0.28),
+      0 1px 2px rgba(15, 23, 42, 0.06),
+      0 12px 32px rgba(15, 23, 42, 0.12);
+  }
+
+  /* A little more body once the bar floats over page content */
+  .thick-glass-strong {
+    background-image:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.2) 100%),
+      linear-gradient(145deg, rgba(110, 220, 245, 0.24) 0%, rgba(104, 125, 241, 0.2) 55%, rgba(147, 51, 234, 0.16) 100%);
+  }
+
+  /* Navy pill badge ("SAMPLE REPORT INSIDE") */
+  .k-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0F172A;
+    color: #ffffff;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* Gradient-tick list */
+  .k-check {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .k-check > li {
+    position: relative;
+    padding-left: 2.1rem;
+  }
+  .k-check > li + li {
+    margin-top: 0.75rem;
+  }
+  .k-check > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.12em;
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #6EDCF5, #687DF1);
+  }
+  .k-check > li::after {
+    content: "";
+    position: absolute;
+    left: 0.45rem;
+    top: calc(0.12em + 0.3rem);
+    width: 0.4rem;
+    height: 0.65rem;
+    border: solid #ffffff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+
+  /* Navy call-to-action block */
+  .k-cta {
+    background: linear-gradient(135deg, #0F172A, #1E293B);
+    color: #ffffff;
+  }
+
+  /* Thin cyan to indigo bar */
+  .k-accent-bar {
+    background: linear-gradient(90deg, #6EDCF5, #687DF1);
   }
 }
 
@@ -272,22 +413,38 @@ body {
    ============================================ */
 
 @layer utilities {
+  /* Ombre in the Kaycore logo's shades (cyan, periwinkle) running into purple.
+     Deepened from the logo so large headings keep at least 3:1 contrast on white. */
   .text-gradient {
-    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    background: linear-gradient(90deg, #1E9BD7 0%, #2A8FE3 16%, #3B7FF0 32%, #4F6BEA 48%, #6157E8 64%, #7C3AED 80%, #9333EA 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* room below the line so descenders (y, g, p) keep their colour */
+    padding-bottom: 0.12em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Hero phrase: cyan only on the first letters, then rich blue into purple, with a soft glow */
+  .text-gradient-hero {
+    background: linear-gradient(90deg, #1E9BD7 0%, #2F7FEB 12%, #3B6FF0 28%, #4F5FEA 45%, #6A4FEA 62%, #7C3AED 78%, #9333EA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.12em;
+    filter: drop-shadow(0 6px 22px rgba(104, 125, 241, 0.3));
   }
 
   .text-gradient-purple {
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    background: linear-gradient(135deg, #7C3AED, #4F46E5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-cyan {
-    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    background: linear-gradient(135deg, #0891B2, #2563EB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -362,21 +519,21 @@ body {
 /* Animated grid background */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .bg-grid-dense {
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
 /* Dot pattern */
 .bg-dots {
-  background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(15, 23, 42, 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -420,16 +577,17 @@ body {
   pointer-events: none;
 }
 
+/* Soft lavender and cyan glows, like the sample's background wash */
 .orb-accent {
-  background: var(--color-accent);
+  background: #93C5FD;
 }
 
 .orb-cyan {
-  background: var(--color-accent-cyan);
+  background: #A5F3FC;
 }
 
 .orb-purple {
-  background: var(--color-accent-purple);
+  background: #BFDBFE;
 }
 
 /* ============================================
@@ -446,7 +604,7 @@ body {
     font-weight: 600;
     font-size: 0.9375rem;
     color: white;
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    background: linear-gradient(135deg, #0F172A, #1E293B);
     border-radius: 9999px;
     transition: all 0.3s ease;
     position: relative;
@@ -457,7 +615,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #818cf8, #6366f1);
+    background: linear-gradient(135deg, #1E293B, #2563EB);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: inherit;
@@ -468,7 +626,7 @@ body {
   }
 
   .btn-primary:hover {
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.25);
     transform: translateY(-1px);
   }
 
@@ -485,17 +643,16 @@ body {
     padding: 0.875rem 2rem;
     font-weight: 600;
     font-size: 0.9375rem;
-    color: white;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #0F172A;
+    background: #ffffff;
+    border: 1px solid #DCE3EE;
     border-radius: 9999px;
-    backdrop-filter: blur(12px);
     transition: all 0.3s ease;
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(99, 102, 241, 0.3);
+    background: #F4F7FB;
+    border-color: rgba(59, 130, 246, 0.5);
     transform: translateY(-1px);
   }
 }
@@ -537,8 +694,8 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(99, 102, 241, 0.2),
-    rgba(6, 182, 212, 0.2),
+    rgba(59, 130, 246, 0.3),
+    rgba(110, 224, 242, 0.3),
     transparent
   );
 }
@@ -574,9 +731,9 @@ body {
 .animate-shimmer {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(15, 23, 42, 0) 0%,
+    rgba(15, 23, 42, 0.04) 50%,
+    rgba(15, 23, 42, 0) 100%
   );
   background-size: 200% 100%;
   animation: shimmer 2.5s linear infinite;

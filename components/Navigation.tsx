@@ -75,15 +75,15 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
   };
 
   // Theme-aware classes
-  const linkBase = isLightTheme ? 'text-slate-500 hover:text-slate-900' : 'text-gray-400 hover:text-white';
+  const linkBase = isLightTheme ? 'text-slate-500 hover:text-slate-900' : 'text-body hover:text-navy';
   const linkActive = isLightTheme ? 'text-blue-600' : 'text-brand-accent';
-  const linkActiveHealth = isLightTheme ? 'text-blue-600' : 'text-health-accent';
+  const linkActiveHealth = isLightTheme ? 'text-blue-600' : 'text-brand-accent';
   const dropdownBg = isLightTheme
     ? 'bg-white border-slate-200 shadow-xl'
-    : 'bg-[#0a1628]/95 backdrop-blur-2xl border-white/10 shadow-2xl';
-  const dropdownHover = isLightTheme ? 'hover:bg-blue-50' : 'hover:bg-health-accent/10';
-  const dropdownLabel = isLightTheme ? 'text-slate-900 group-hover:text-blue-600' : 'text-white group-hover:text-health-accent';
-  const dropdownDesc = isLightTheme ? 'text-slate-500' : 'text-gray-500';
+    : 'thick-glass thick-glass-strong';
+  const dropdownHover = isLightTheme ? 'hover:bg-blue-50' : 'hover:bg-soft';
+  const dropdownLabel = isLightTheme ? 'text-slate-900 group-hover:text-blue-600' : 'text-navy group-hover:text-brand-accent';
+  const dropdownDesc = isLightTheme ? 'text-slate-500' : 'text-muted';
 
   return (
     <>
@@ -151,13 +151,13 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
             );
           })}
         </ul>
-        <div className={`pl-8 border-l ${isLightTheme ? 'border-slate-200' : 'border-white/10'}`}>
+        <div className={`pl-8 border-l ${isLightTheme ? 'border-slate-200' : 'border-line'}`}>
           <Link
             href="/contact"
             className={`group/cta inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition-all duration-300 hover:scale-[1.03] ${
               isLightTheme
                 ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full px-4 py-2 hover:shadow-xl'
-                : 'bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] text-white rounded-full px-4 py-2'
+                : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-white rounded-full px-4 py-2'
             }`}
           >
             Talk to an Expert
@@ -170,7 +170,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`xl:hidden relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors ${
-          isLightTheme ? 'text-slate-500 hover:text-slate-900' : 'text-gray-400 hover:text-white'
+          isLightTheme ? 'text-slate-500 hover:text-slate-900' : 'text-body hover:text-navy'
         }`}
         aria-label="Toggle menu"
       >
@@ -183,7 +183,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
           className={`fixed inset-0 z-40 transition-all duration-300 xl:hidden flex flex-col justify-center ${
             isLightTheme
               ? 'bg-white/98 backdrop-blur-xl'
-              : 'bg-[#030712]/95 backdrop-blur-xl'
+              : 'bg-gradient-to-b from-white/80 to-white/60 backdrop-blur-2xl backdrop-saturate-150'
           } ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
         >
           {!isLightTheme && (
@@ -216,8 +216,8 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                             onClick={() => setIsOpen(false)}
                             className={`text-3xl font-display font-bold transition-colors ${
                               isActive
-                                ? (isLightTheme ? 'text-blue-600' : 'text-health-accent')
-                                : (isLightTheme ? 'text-slate-800 hover:text-slate-900' : 'text-gray-300 hover:text-white')
+                                ? (isLightTheme ? 'text-blue-600' : 'text-brand-accent')
+                                : (isLightTheme ? 'text-slate-800 hover:text-slate-900' : 'text-navy hover:text-brand-accent')
                             }`}
                           >
                             {item.label}
@@ -225,7 +225,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                           <button
                             onClick={() => setMobileAccordion(isAccordionOpen ? null : item.label)}
                             className={`p-2 transition-colors ${
-                              isLightTheme ? 'text-slate-500 hover:text-slate-800' : 'text-gray-400 hover:text-white'
+                              isLightTheme ? 'text-slate-500 hover:text-slate-800' : 'text-body hover:text-navy'
                             }`}
                             aria-label="Toggle submenu"
                           >
@@ -233,18 +233,18 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                           </button>
                         </div>
                         {isAccordionOpen && (
-                          <div className={`pl-4 mt-4 space-y-3 border-l-2 ${isLightTheme ? 'border-blue-200' : 'border-health-accent/30'}`}>
+                          <div className={`pl-4 mt-4 space-y-3 border-l-2 ${isLightTheme ? 'border-blue-200' : 'border-brand-accent/30'}`}>
                             {item.children!.map((child) => (
                               <Link
                                 key={child.href}
                                 href={child.href}
                                 className={`block text-lg py-3 min-h-[44px] flex items-center transition-colors ${
-                                  isLightTheme ? 'text-slate-600 hover:text-blue-600' : 'text-gray-400 hover:text-health-accent'
+                                  isLightTheme ? 'text-slate-600 hover:text-blue-600' : 'text-body hover:text-brand-accent'
                                 }`}
                               >
                                 {child.label}
                                 {child.description && (
-                                  <span className={`block text-xs ${isLightTheme ? 'text-slate-400' : 'text-gray-600'}`}>{child.description}</span>
+                                  <span className={`block text-xs ${isLightTheme ? 'text-slate-400' : 'text-muted'}`}>{child.description}</span>
                                 )}
                               </Link>
                             ))}
@@ -257,7 +257,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                         className={`text-3xl font-display font-bold transition-colors ${
                           isActive
                             ? (isLightTheme ? 'text-blue-600' : 'text-brand-accent')
-                            : (isLightTheme ? 'text-slate-800 hover:text-slate-900' : 'text-gray-300 hover:text-white')
+                            : (isLightTheme ? 'text-slate-800 hover:text-slate-900' : 'text-navy hover:text-brand-accent')
                         }`}
                       >
                         {item.label}
@@ -267,7 +267,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                 );
               })}
               
-              <li className={`transform transition-all duration-500 pt-8 border-t ${isLightTheme ? 'border-slate-200' : 'border-white/10'} ${
+              <li className={`transform transition-all duration-500 pt-8 border-t ${isLightTheme ? 'border-slate-200' : 'border-line'} ${
                 isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
               }`} style={{ transitionDelay: '500ms' }}>
                 <Link
@@ -275,7 +275,7 @@ export function Navigation({ isLightTheme = false }: NavigationProps) {
                   className={`block w-full text-center py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 ${
                     isLightTheme
                       ? 'bg-slate-900 hover:bg-slate-800 text-white rounded-full hover:shadow-xl'
-                      : 'bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] text-white rounded-full'
+                      : 'bg-navy hover:bg-navy-2 hover:shadow-[0_8px_20px_rgba(15,23,42,0.25)] text-white rounded-full'
                   }`}
                 >
                   Talk to an Expert

@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2 } from 'lucide-react';
+import { useSpamGuard } from '@/lib/use-spam-guard';
 
 interface LeadFormProps {
-  theme?: 'dark' | 'light';
+  // 'kaycore' is the light form with near-black labels, for the main site. 'light' stays as KayHealth uses it.
+  theme?: 'dark' | 'light' | 'kaycore';
   challengesPlaceholder?: string;
 }
 
@@ -20,15 +22,18 @@ export function LeadForm({
     challenges: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { guardMarkup, guardFields } = useSpamGuard();
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const isLight = theme === 'light';
+  const isLight = theme !== 'dark';
 
   const containerClasses = isLight
     ? 'bg-white border border-slate-200 shadow-2xl rounded-3xl p-8 md:p-10 relative overflow-hidden'
     : 'bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-8 md:p-10 relative overflow-hidden';
 
-  const labelClasses = isLight
+  const labelClasses = theme === 'kaycore'
+    ? 'block text-xs font-bold uppercase tracking-wider text-navy mb-2'
+    : isLight
     ? 'block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2'
     : 'block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2';
 
@@ -57,7 +62,7 @@ export function LeadForm({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, ...guardFields() }),
       });
 
       const data = await response.json();
@@ -97,6 +102,7 @@ export function LeadForm({
             onSubmit={handleSubmit}
             className="space-y-6 relative z-10"
           >
+            {guardMarkup}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className={labelClasses}>Full Name *</label>

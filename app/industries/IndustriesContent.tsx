@@ -4,14 +4,13 @@ import { industries } from '@/components/company-data';
 import { CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations';
-import { GlowButton } from '@/components/ui';
+import { GlowButton, CardMedia } from '@/components/ui';
 import { LeadFormCTA } from '@/components/LeadFormCTA';
-import Image from 'next/image';
 
 // Unsplash images keyed by slug so reordering industries never mismatches a card and its image
 const industryImages: Record<string, string> = {
   'ai-startups': 'photo-1509062522246-3755977927d7',
-  saas: 'photo-1551288049-bebda4e38f71',
+  saas: 'photo-1498050108023-c5249f4df085',
   fintech: 'photo-1611974789855-9c2a0a7236a3',
   healthcare: 'photo-1516549655169-df83a0774514',
   retail: 'photo-1556742049-0cfed4f6a45d',
@@ -20,7 +19,7 @@ const industryImages: Record<string, string> = {
 
 export default function IndustriesContent() {
   return (
-    <div className="min-h-screen bg-[#030712] text-gray-50 font-sans selection:bg-brand-accent/30 selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen text-ink font-sans relative overflow-x-hidden">
 
       {/* Hero Section: centered, consistent with Home/Services/About */}
       <section className="relative overflow-hidden min-h-[70vh] flex items-center justify-center pt-20">
@@ -35,11 +34,11 @@ export default function IndustriesContent() {
             className="flex flex-col items-center"
           >
             <p className="text-sm font-mono text-brand-accent tracking-[0.2em] uppercase mb-6">Industries</p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-navy mb-8 leading-tight tracking-tight">
               Industries{' '}
               <span className="text-gradient">We Serve</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-light max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-body leading-relaxed max-w-3xl mx-auto">
               We serve AI startups, SaaS platforms, FinTech, and healthcare and healthtech companies, delivering trust, compliance, and confidence before go-live.
             </p>
           </motion.div>
@@ -54,21 +53,11 @@ export default function IndustriesContent() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="py-24 lg:py-32"
+        className="py-16 lg:py-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {industries.map((ind, idx) => {
-
-              const gradients = [
-                "from-blue-500/20 via-transparent to-transparent",
-                "from-purple-500/20 via-transparent to-transparent",
-                "from-emerald-500/20 via-transparent to-transparent",
-                "from-amber-500/20 via-transparent to-transparent",
-                "from-rose-500/20 via-transparent to-transparent",
-                "from-cyan-500/20 via-transparent to-transparent"
-              ];
-
               return (
                 <motion.div
                   key={idx}
@@ -78,29 +67,22 @@ export default function IndustriesContent() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                 >
-                  <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 lg:p-10 backdrop-blur-md group h-full flex flex-col justify-end min-h-[420px]">
-                    {/* Background Image with Hover Zoom */}
-                    <Image
+                  <div className="glass-surface relative overflow-hidden rounded-3xl hover:shadow-card-hover transition-shadow group h-full flex flex-col">
+                    <CardMedia
                       src={`https://images.unsplash.com/${industryImages[ind.slug]}?auto=format&fit=crop&w=600&q=80`}
                       alt={ind.name}
-                      fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover opacity-50 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 ease-out z-0"
+                      className="h-44 sm:h-48"
                     />
 
-                    {/* Hover Glow */}
-                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${gradients[idx % gradients.length]} z-10`} />
+                    <div className="relative flex flex-col px-8 pb-8 pt-3 lg:px-10 lg:pb-10">
 
-                    {/* Dark Glass Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/90 to-[#030712]/40 z-10" />
-
-                    <div className="relative z-20 mt-auto flex flex-col transform group-hover:-translate-y-1 transition-transform duration-300">
-                      <h2 className="text-2xl font-bold text-white mb-3">{ind.name}</h2>
-                      <p className="text-gray-300 leading-relaxed text-sm max-w-sm transition-all duration-300 group-hover:mb-4">{ind.description}</p>
+                      <h2 className="text-2xl font-bold text-navy mb-3">{ind.name}</h2>
+                      <p className="text-body leading-relaxed text-sm max-w-sm transition-all duration-300 group-hover:mb-4">{ind.description}</p>
 
                       <div className="space-y-3 overflow-hidden transition-all duration-500 ease-out max-h-[200px] opacity-100 md:max-h-0 md:opacity-0 md:group-hover:max-h-[160px] md:group-hover:opacity-100">
                         {ind.challenges.map((challenge, i) => (
-                          <div key={i} className="flex items-center gap-3 text-sm text-gray-200">
+                          <div key={i} className="flex items-center gap-3 text-sm text-body">
                             <CheckCircle className="w-4 h-4 text-brand-accent shrink-0" />
                             <span>{challenge}</span>
                           </div>

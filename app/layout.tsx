@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Inter, Outfit, JetBrains_Mono } from 'next/font/google';
 import { Header } from '@/components/Header';
@@ -29,7 +29,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: 'Kaycore Technologies | We Test AI, and Everything AI Builds',
-    template: '%s | Kaycore Technologies',
+    template: '%s | Kaycore',
   },
   description:
     'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
@@ -49,13 +49,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Kaycore Technologies' }],
   creator: 'Kaycore Technologies',
   metadataBase: new URL('https://www.kaycore.com'),
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.kaycore.com',
     title: 'Kaycore Technologies | We Test AI, and Everything AI Builds',
     description:
       'We test AI, and everything AI builds. Founder-led AI Quality Engineering for startups and enterprises.',
@@ -65,7 +61,7 @@ export const metadata: Metadata = {
         url: '/assets/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kaycore Technologies - AI-Powered Quality Engineering',
+        alt: 'Kaycore Technologies: we test AI, and everything AI builds',
       },
     ],
   },
@@ -78,9 +74,14 @@ export const metadata: Metadata = {
     creator: '@kaycore',
   },
   robots: {
-    index: true,
-    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#F6F8FC',
 };
 
 export default function RootLayout({
@@ -91,6 +92,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://www.kaycore.com/#organization',
     name: 'Kaycore Technologies',
     url: 'https://www.kaycore.com',
     logo: 'https://www.kaycore.com/assets/logo.png',
@@ -133,16 +135,13 @@ export default function RootLayout({
     '@type': 'WebSite',
     name: 'Kaycore Technologies',
     url: 'https://www.kaycore.com',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Kaycore Technologies',
-    },
+    publisher: { '@id': 'https://www.kaycore.com/#organization' },
   };
 
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${outfit.variable} ${jetbrains.variable} antialiased flex flex-col min-h-screen bg-[#030712] text-gray-50 font-sans`}
+        className={`${inter.variable} ${outfit.variable} ${jetbrains.variable} antialiased flex flex-col min-h-screen font-sans`}
       >
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WR8N8H8VRC"

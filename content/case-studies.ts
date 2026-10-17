@@ -15,9 +15,12 @@ export interface CaseStudy {
   slug: string;
   title: string;
   summary: string;
+  seoTitle?: string; // <= 60 chars, used as the absolute <title>
   tags: string[];
   body: CaseStudySection[];
 }
+
+export const caseStudiesPublished = '2026-10-07';
 
 export const caseStudiesIntro = {
   heading: 'Selected work',
@@ -30,6 +33,7 @@ export const caseStudiesIntro = {
 /* ---------------- 1 ---------------- */
 const uiAutomation: CaseStudy = {
   slug: 'ui-automation-at-scale',
+  seoTitle: 'Playwright UI Test Automation Case Study | Kaycore',
   title: 'Building a UI suite that survives its own frontend',
   summary:
     '85 end-to-end test cases and 48 page-object classes on a multi-tenant admin platform, built to survive two frontend migrations.',
@@ -66,6 +70,7 @@ const uiAutomation: CaseStudy = {
 /* ---------------- 2 ---------------- */
 const graphqlContract: CaseStudy = {
   slug: 'graphql-contract-testing',
+  seoTitle: 'GraphQL API and Authorization Testing Case Study | Kaycore',
   title: 'API contract and authorisation testing on a federated graph',
   summary:
     '62 API test cases, a persistence read-back module called from 44 sites, and 22 silent skips turned into hard failures.',
@@ -104,6 +109,7 @@ const graphqlContract: CaseStudy = {
 /* ---------------- 3 ---------------- */
 const ciStability: CaseStudy = {
   slug: 'ci-stability-and-test-data',
+  seoTitle: 'Fixing a Red CI Pipeline: Flaky Tests Case Study | Kaycore',
   title: 'Taking over a red pipeline',
   summary:
     "12 quarantined tests restored in 20 days, leaked test data cut from 7 records per run to zero, and a suite that stopped killing other teams' pipelines.",
@@ -143,6 +149,7 @@ const ciStability: CaseStudy = {
 /* ---------------- 4 ---------------- */
 const aiWorkflow: CaseStudy = {
   slug: 'ai-augmented-qa-workflow',
+  seoTitle: 'AI-Augmented QA Workflow Case Study | Kaycore',
   title: 'An AI-augmented QA workflow',
   summary:
     'A custom agent skill, live locator verification through MCP, and an enforcement layer that blocks a commit until the self-audit is clean.',

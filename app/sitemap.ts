@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/industries',
     '/about',
     '/case-studies',
+    '/sample-quality-audit',
     '/blog',
     '/resources/llm-readiness-checklist',
     '/careers',
@@ -25,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1 : 0.8,
   }));
@@ -39,7 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((c) => ({
     url: `${baseUrl}/case-studies/${c.slug}`,
-    lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));

@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
 import ServicesContent from './ServicesContent';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'AI QA Services, Risk Audits & LLM Testing',
-  description: 'AI quality engineering for startups and enterprises: AI risk audits, LLM testing, QA for AI-built apps, custom AI QA frameworks, retainers, and healthcare AI QA.',
-  alternates: { canonical: '/services' },
-};
+  description:
+    'AI quality engineering for startups and enterprises: AI risk audits, LLM testing, QA for AI-built apps, custom AI QA frameworks, retainers and healthcare QA.',
+  path: '/services',
+});
 
 export default function ServicesPage() {
   return <ServicesContent />;

@@ -13,16 +13,16 @@ export function Footer() {
   const isKayHealth = pathname.startsWith('/kayhealth');
 
   // Theme-aware classes
-  const footerBg = isKayHealth ? 'bg-slate-50' : 'bg-[#030712]';
-  const borderColor = isKayHealth ? 'border-slate-200' : 'border-white/10';
-  const headingColor = isKayHealth ? 'text-slate-900' : 'text-white';
-  const textColor = isKayHealth ? 'text-slate-600' : 'text-gray-400';
+  const footerBg = isKayHealth ? 'bg-slate-50' : 'bg-white/50';
+  const borderColor = isKayHealth ? 'border-slate-200' : 'border-line';
+  const headingColor = isKayHealth ? 'text-slate-900' : 'text-navy';
+  const textColor = isKayHealth ? 'text-slate-600' : 'text-body';
   const hoverColor = isKayHealth ? 'hover:text-blue-600' : 'hover:text-brand-accent';
-  const healthHoverColor = isKayHealth ? 'hover:text-blue-600' : 'hover:text-blue-400';
+  const healthHoverColor = isKayHealth ? 'hover:text-blue-600' : 'hover:text-blue-600';
   const accentColor = isKayHealth ? 'text-blue-600' : 'text-brand-accent';
-  const socialBg = isKayHealth ? 'bg-slate-200 border-slate-300' : 'bg-white/5 border-white/10';
+  const socialBg = isKayHealth ? 'bg-slate-200 border-slate-300' : 'bg-soft border-line';
   const socialHover = isKayHealth ? 'hover:bg-blue-600 hover:border-blue-600 hover:text-white' : 'hover:bg-brand-accent hover:border-brand-accent hover:text-white';
-  const socialIconColor = isKayHealth ? 'text-slate-500' : 'text-gray-400';
+  const socialIconColor = isKayHealth ? 'text-slate-500' : 'text-muted';
 
   return (
     <footer className={`relative ${footerBg} border-t ${borderColor} pt-24 overflow-hidden`}>
@@ -30,7 +30,7 @@ export function Footer() {
       {!isKayHealth && (
         <>
           <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-purple-900/10 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-c1/10 rounded-full blur-[100px] pointer-events-none" />
         </>
       )}
 
@@ -41,13 +41,19 @@ export function Footer() {
         <div className={`p-8 md:p-12 mb-20 flex flex-col md:flex-row items-center justify-between gap-8 rounded-3xl ${
           isKayHealth
             ? 'bg-gradient-to-r from-blue-600 to-blue-800 shadow-xl'
-            : 'glass-card'
+            : 'bg-white/60 border border-line shadow-card'
         }`}>
           <div className="max-w-xl text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">
-              {isKayHealth ? 'Ready to transform patient care?' : 'Ready to elevate your software quality?'}
-            </h3>
-            <p className={isKayHealth ? 'text-blue-100/80' : 'text-gray-400'}>
+            {isKayHealth ? (
+              <h3 className="text-2xl md:text-3xl font-display font-bold mb-2 text-white">
+                Ready to transform patient care?
+              </h3>
+            ) : (
+              <p className="text-2xl md:text-3xl font-display font-bold mb-2 text-navy">
+                Ready to elevate your software quality?
+              </p>
+            )}
+            <p className={isKayHealth ? 'text-blue-100/80' : 'text-body'}>
               {isKayHealth ? 'Schedule a demo with our clinical AI team.' : 'Talk to the senior engineers who will do the work.'}
             </p>
           </div>
@@ -56,7 +62,7 @@ export function Footer() {
             className={`inline-flex items-center gap-2 px-8 py-4 font-semibold rounded-xl whitespace-nowrap transition-all hover:scale-[1.02] ${
               isKayHealth
                 ? 'bg-white text-blue-700 hover:bg-blue-50 shadow-lg'
-                : 'bg-brand-accent text-white hover:bg-brand-accent/90 shadow-md shadow-brand-accent/20'
+                : 'bg-navy text-white hover:bg-navy-2 shadow-md'
             }`}
           >
             {isKayHealth ? 'Schedule a Demo' : 'Talk to an Expert'}
@@ -106,9 +112,10 @@ export function Footer() {
           <div>
             <h4 className={`${headingColor} font-bold mb-6 tracking-wide`}>Services</h4>
             <ul className="space-y-4 text-sm">
-              {services.slice(0, 5).map((service) => (
+              {/* The six core services, each linking to its card. KayHealth's footer keeps its original five links. */}
+              {services.slice(0, isKayHealth ? 5 : 6).map((service) => (
                 <li key={service.id}>
-                  <Link href="/services" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
+                  <Link href={isKayHealth ? '/services' : `/services#${service.slug}`} className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                     {service.title}
                     <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                   </Link>
@@ -130,7 +137,7 @@ export function Footer() {
               <li>
                 <span className={`${textColor} opacity-50 flex items-center cursor-not-allowed select-none`}>
                   KayScribe
-                  <span className="ml-2 text-[9px] font-mono tracking-widest text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded-full border border-blue-500/20">
+                  <span className={`ml-2 text-[9px] font-mono tracking-widest px-1.5 py-0.5 rounded-full border ${isKayHealth ? 'text-blue-400 bg-blue-500/10 border-blue-500/20' : 'text-brand-accent bg-brand-accent/10 border-brand-accent/20'}`}>
                     SOON
                   </span>
                 </span>
@@ -185,6 +192,13 @@ export function Footer() {
                   Case Studies
                 </Link>
               </li>
+              {!isKayHealth && (
+                <li>
+                  <Link href="/sample-quality-audit" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
+                    Sample Quality Audit
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link href="/blog" className={`${textColor} ${hoverColor} transition-colors flex items-center group py-1.5`}>
                   Blog

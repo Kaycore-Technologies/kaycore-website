@@ -31,6 +31,7 @@ export interface Service {
   icon: LucideIcon;
   features: string[];
   color: string; // Tailwind color class for icon bg
+  sample?: { href: string; label: string }; // optional link to a sample deliverable
 }
 
 export const services: Service[] = [
@@ -79,6 +80,7 @@ export const services: Service[] = [
       'Release-readiness report before launch',
     ],
     color: 'from-sky-500/20 to-sky-600/10',
+    sample: { href: '/sample-quality-audit', label: 'See a sample audit' },
   },
   {
     id: 4,

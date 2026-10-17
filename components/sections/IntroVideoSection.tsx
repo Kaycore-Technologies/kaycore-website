@@ -69,10 +69,10 @@ export function IntroVideoSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-24 lg:py-32 relative z-10 overflow-hidden bg-gradient-to-b from-transparent to-[#02050c]"
+      className="py-16 lg:py-20 relative z-10 overflow-hidden"
     >
       {/* Background decorations */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-c2/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10">
         <SectionHeader
@@ -83,10 +83,10 @@ export function IntroVideoSection() {
         />
 
         <div className="max-w-4xl mx-auto mt-12 relative group">
-          {/* Neon outer glow */}
-          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 opacity-20 blur-xl group-hover:opacity-40 transition-all duration-700 pointer-events-none" />
+          {/* Soft outer glow */}
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-c1 via-c2 to-c2 opacity-20 blur-xl group-hover:opacity-30 transition-all duration-700 pointer-events-none" />
           
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-md">
+          <div className="glass-surface relative overflow-hidden rounded-3xl p-2">
             <video
               ref={videoRef}
               controls
@@ -95,8 +95,8 @@ export function IntroVideoSection() {
               preload="none"
               onPlay={handlePlay}
               onPause={handlePause}
-              className="w-full h-auto rounded-2xl shadow-2xl object-cover"
-              poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+              className="w-full h-auto rounded-2xl object-cover"
+              poster="/assets/videos/intro-video-poster.jpg"
               src="/assets/videos/intro-video.mp4"
             />
           </div>

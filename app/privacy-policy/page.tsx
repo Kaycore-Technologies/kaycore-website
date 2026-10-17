@@ -1,27 +1,29 @@
-import { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Kaycore Technologies',
-  description: 'Privacy Policy for Kaycore Technologies LLP. Learn how we collect, use, and protect your data.',
-};
+export const metadata = pageMetadata({
+  title: 'Privacy Policy',
+  description:
+    'Privacy Policy for Kaycore Technologies LLP. Learn how we collect, use, and protect your data.',
+  path: '/privacy-policy',
+});
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-brand-dark pt-32 pb-24">
+    <div className="min-h-screen pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-8 tracking-tight">Privacy Policy</h1>
-        <p className="text-brand-muted mb-12">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <h1 className="text-4xl md:text-5xl font-display font-bold text-navy mb-8 tracking-tight">Privacy Policy</h1>
+        <p className="text-muted mb-12">Last updated: 18 October 2026</p>
 
-        <div className="prose prose-invert prose-brand max-w-none space-y-8 text-gray-300">
+        <div className="glass-surface max-w-none space-y-8 text-body rounded-3xl p-6 sm:p-10 [&_strong]:text-navy">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">1. Introduction</h2>
+            <h2 className="text-2xl font-bold text-navy mb-4">1. Introduction</h2>
             <p className="leading-relaxed">
               Kaycore Technologies LLP ("we", "our", or "us") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website (regardless of where you visit it from) and tell you about your privacy rights and how the law protects you.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">2. The Data We Collect About You</h2>
+            <h2 className="text-2xl font-bold text-navy mb-4">2. The Data We Collect About You</h2>
             <p className="leading-relaxed mb-4">
               We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
             </p>
@@ -34,7 +36,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">3. How We Use Your Personal Data</h2>
+            <h2 className="text-2xl font-bold text-navy mb-4">3. How We Use Your Personal Data</h2>
             <p className="leading-relaxed mb-4">
               We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
             </p>
@@ -46,17 +48,28 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Data Security</h2>
+            <h2 className="text-2xl font-bold text-navy mb-4">4. Data Security</h2>
             <p className="leading-relaxed">
               We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed. In addition, we limit access to your personal data to those employees, agents, contractors and other third parties who have a business need to know.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">5. Contact Us</h2>
+            <h2 className="text-2xl font-bold text-navy mb-4">5. Spam Protection</h2>
+            <p className="leading-relaxed">
+              Our website forms use Cloudflare Turnstile to tell genuine visitors apart from automated spam. Turnstile checks limited technical information about your browser and device; it does not ask you to solve a puzzle. Cloudflare processes this information as described in its{' '}
+              <a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-brand-accent hover:text-navy underline underline-offset-2 transition-colors">
+                Turnstile Privacy Addendum
+              </a>
+              .
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-navy mb-4">6. Contact Us</h2>
             <p className="leading-relaxed">
               If you have any questions about this privacy policy or our privacy practices, please contact us at:{' '}
-              <a href="mailto:admin@kaycore.com" className="text-brand-accent hover:text-brand-cyan transition-colors">
+              <a href="mailto:admin@kaycore.com" className="text-brand-accent hover:text-navy underline underline-offset-2 transition-colors">
                 admin@kaycore.com
               </a>
             </p>

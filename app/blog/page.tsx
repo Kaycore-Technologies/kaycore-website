@@ -1,17 +1,17 @@
-import type { Metadata } from 'next';
 import BlogContent from './BlogContent';
 import { articles, articleCategories } from '@/content/articles';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: 'Blog | AI Quality Engineering Insights',
   description:
     'Data-backed guides on AI quality engineering, LLM testing, and choosing an AI testing partner, from the Kaycore engineering team.',
-  alternates: { canonical: '/blog' },
-};
+  path: '/blog',
+});
 
 export default function BlogPage() {
   const posts = [...articles]
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
     .map((a) => ({
       id: a.slug,
       title: a.title,

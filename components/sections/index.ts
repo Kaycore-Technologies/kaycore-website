@@ -6,3 +6,4 @@ export { WhyKaycore } from './WhyKaycore';
 export { ProcessSection } from './ProcessSection';
 export { CTASection } from './CTASection';
 export { IntroVideoSection } from './IntroVideoSection';
+export { SampleAuditSection } from './SampleAuditSection';

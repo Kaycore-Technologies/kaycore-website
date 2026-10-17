@@ -1,10 +1,15 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import HomeContent from './HomeContent';
 
 export const metadata: Metadata = {
-  title: 'We Test AI, and Everything AI Builds | Kaycore Technologies',
-  description:
-    'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
+  ...pageMetadata({
+    title: 'We Test AI, and Everything AI Builds | Kaycore Technologies',
+    description:
+      'Kaycore Technologies is a founder-led AI Quality Engineering firm. We test AI systems, and the websites and apps AI builds, for startups and enterprises.',
+    path: '/',
+    absoluteTitle: true,
+  }),
   keywords: [
     'AI quality engineering',
     'AI testing services',

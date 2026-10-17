@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { screenSubmission, spamNoticeHtml, spamNoticeText, SPAM_SUBJECT_TAG, type GuardFields } from '@/lib/spam-guard';
+import { sanitizeInput } from '@/lib/validation';
 
-interface LeadFormData {
+interface LeadFormData extends GuardFields {
   name: string;
   email: string;
   company?: string;
@@ -13,6 +15,22 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: NextRequest) {
   try {
     const body: LeadFormData = await request.json();
+
+    // Suspected spam is still emailed, tagged, so a real enquiry is never lost. Only floods are
+    // dropped, and they get the normal success response so bots learn nothing.
+    const verdict = await screenSubmission(request, body, {
+      route: 'lead',
+      minMs: 1500,
+      name: body.name,
+      email: body.email,
+      texts: [body.company, body.challenges],
+    });
+    if (verdict.action === 'drop') {
+      console.warn(`[spam-guard] dropped /api/lead submission: ${verdict.reason}`);
+      return NextResponse.json({ success: true, message: 'Lead received successfully' }, { status: 200 });
+    }
+    const spamReason = verdict.action === 'quarantine' ? verdict.reason : null;
+    if (spamReason) console.warn(`[spam-guard] flagged /api/lead submission: ${spamReason}`);
 
     // Validate required fields
     if (!body.name || !body.email) {
@@ -41,12 +59,24 @@ export async function POST(request: NextRequest) {
 
     try {
       // Send notification to Admin via Resend
+      // Visitor input is escaped before it goes into the HTML email, so nobody can inject
+      // links or markup into the notification.
+      const h = {
+        name: sanitizeInput(String(body.name ?? '')),
+        email: sanitizeInput(String(body.email ?? '')),
+        company: sanitizeInput(String(body.company ?? '')),
+        challenges: sanitizeInput(String(body.challenges ?? '')),
+      };
+      const oneLine = (v: unknown) => String(v ?? '').replace(/[\r\n]+/g, ' ').slice(0, 150);
+
       const { data, error } = await resend.emails.send({
         from: 'Kaycore Leads <admin@kaycore.com>',
         to: ['admin@kaycore.com'],
         replyTo: body.email,
-        subject: `[Lead] New inquiry from ${body.name}`,
-        text: `
+        subject: `${spamReason ? `${SPAM_SUBJECT_TAG} ` : ''}[Lead] New inquiry from ${oneLine(body.name)}`,
+        // The X-Spam-* headers follow the SpamAssassin convention, so any mail rule or filter can match them.
+        headers: spamReason ? { 'X-Spam-Flag': 'YES', 'X-Spam-Status': `Yes, reason=${spamReason}` } : undefined,
+        text: `${spamReason ? spamNoticeText(spamReason) : ''}
           New Quick Lead Captured
           
           Name: ${body.name}
@@ -61,26 +91,27 @@ export async function POST(request: NextRequest) {
         `,
         html: `
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+            ${spamReason ? spamNoticeHtml(spamReason) : ''}
             <h2 style="color: #030712; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">🚨 New Lead via ChatBot / Quick Form</h2>
             
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb; width: 120px;"><strong>Name:</strong></td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">${body.name}</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">${h.name}</td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>Email:</strong></td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><a href="mailto:${body.email}" style="color: #2563eb; text-decoration: none;">${body.email}</a></td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><a href="mailto:${h.email}" style="color: #2563eb; text-decoration: none;">${h.email}</a></td>
               </tr>
               <tr>
                 <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>Company:</strong></td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">${body.company || '<span style="color: #9ca3af; font-style: italic;">Not specified</span>'}</td>
+                <td style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;">${h.company || '<span style="color: #9ca3af; font-style: italic;">Not specified</span>'}</td>
               </tr>
             </table>
 
             <div style="margin-top: 30px;">
               <strong style="display: block; margin-bottom: 10px; color: #4b5563;">Message / Context:</strong>
-              <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #1e293b;">${body.challenges || '<span style="color: #9ca3af; font-style: italic;">No additional context provided.</span>'}</div>
+              <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; white-space: pre-wrap; font-size: 15px; line-height: 1.6; color: #1e293b;">${h.challenges || '<span style="color: #9ca3af; font-style: italic;">No additional context provided.</span>'}</div>
             </div>
             
             <p style="margin-top: 40px; font-size: 12px; color: #9ca3af; text-align: center; border-top: 1px solid #e5e7eb; padding-top: 20px;">

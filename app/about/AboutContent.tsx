@@ -220,7 +220,7 @@ export default function AboutContent() {
                     sizes="(max-width: 640px) 176px, 208px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/30 to-transparent pointer-events-none" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="text-navy font-bold text-2xl sm:text-3xl mb-1">Dr. Ayushi Shukla</h4>
@@ -261,7 +261,7 @@ export default function AboutContent() {
                     sizes="(max-width: 640px) 176px, 208px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/30 to-transparent pointer-events-none" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h4 className="text-navy font-bold text-2xl sm:text-3xl mb-1">Kulish Kulshrestha</h4>

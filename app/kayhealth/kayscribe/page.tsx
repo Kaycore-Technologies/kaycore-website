@@ -5,7 +5,7 @@ import KayScribeContent from './KayScribeContent';
 export const metadata: Metadata = {
   title: 'KayScribe | AI Medical Scribe: Automate Clinical Documentation',
   description:
-    'KayScribe is an AI-powered medical scribe that automates clinical documentation in real-time. Reduce physician burnout. HIPAA compliant.',
+    'KayScribe is an AI-powered medical scribe that automates clinical documentation in real-time. Reduce physician burnout.',
 };
 
 export default function KayScribePage() {

@@ -1,0 +1,22 @@
+{
+  "allow": [
+    {
+      "file": "app/security-policy/page.tsx",
+      "rule": "hipaa-compliant",
+      "count": 2,
+      "reason": "The security policy makes a HIPAA claim for Kaycore's healthcare work: the metadata description (line 6) and the section 2 heading (line 26), and line 28 goes further and names KayHealth ('For our healthcare division (KayHealth) ... we strictly adhere to HIPAA'). The page is linked from the /kayhealth footer, so it is effectively a KayHealth claim. NOT fixed in KH-25: it is the security policy, so it needs a decision from Kulish and counsel (drop '(KayHealth)' now, or a follow-up ticket). Line 28 matches no rule and is not covered by this entry."
+    },
+    {
+      "file": "components/company-data.ts",
+      "rule": "hipaa-compliant",
+      "count": 1,
+      "reason": "Industries card for Kaycore's healthcare QA service ('HIPAA-compliant QA for EHR systems', line 222), shown on /industries and used in the footer and chatbot data, not on the KayHealth pages. Needs its own ticket and a decision on the wording."
+    },
+    {
+      "file": "content/articles.tsx",
+      "rule": "soc2",
+      "count": 3,
+      "reason": "Blog article of general advice on choosing an AI testing vendor (FAQ answer lines 434-435 and a checklist item line 469). It is about what buyers should ask any vendor, not a claim that Kaycore or KayHealth holds SOC 2."
+    }
+  ]
+}

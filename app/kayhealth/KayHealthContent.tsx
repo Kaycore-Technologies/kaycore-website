@@ -5,7 +5,7 @@ import { ProductHero } from '@/components/kayhealth/ProductHero';
 import { MedicalCTA } from '@/components/kayhealth/MedicalCTA';
 import { LeadForm } from '@/components/LeadForm';
 import Link from 'next/link';
-import { ShieldCheck, Lock, FileCheck, HeartPulse, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const products = [
   {
@@ -16,13 +16,6 @@ const products = [
     media: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
     comingSoon: true,
   }
-];
-
-const complianceBadges = [
-  { icon: ShieldCheck, label: 'HIPAA Compliant' },
-  { icon: Lock, label: 'SOC 2 Type II' },
-  { icon: FileCheck, label: 'HL7 FHIR Ready' },
-  { icon: HeartPulse, label: 'FDA 21 CFR Part 11' },
 ];
 
 export default function KayHealthContent() {
@@ -53,7 +46,7 @@ export default function KayHealthContent() {
       >
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-[150px] pointer-events-none" />
         <div className="section-container relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-3xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -73,31 +66,6 @@ export default function KayHealthContent() {
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="grid grid-cols-2 gap-4"
-            >
-              {/* Stat Cards */}
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-2">2x</div>
-                <div className="text-xs font-mono tracking-wider uppercase text-slate-500">Documentation Efficiency</div>
-              </div>
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-2">70%</div>
-                <div className="text-xs font-mono tracking-wider uppercase text-slate-500">Less Burnout</div>
-              </div>
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-2">99.2%</div>
-                <div className="text-xs font-mono tracking-wider uppercase text-slate-500">Transcription Accuracy</div>
-              </div>
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center shadow-sm">
-                <div className="text-4xl font-bold text-blue-600 mb-2">&lt;3min</div>
-                <div className="text-xs font-mono tracking-wider uppercase text-slate-500">Average Note Time</div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </motion.section>
@@ -220,49 +188,13 @@ export default function KayHealthContent() {
         </div>
       </motion.section>
 
-      {/* Trust & Compliance */}
-      <motion.section 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="py-24 md:py-32 bg-white border-b border-slate-200"
-      >
-        <div className="section-container">
-          <div className="text-center mb-12">
-            <p className="text-xs font-mono text-blue-600 tracking-[0.2em] uppercase mb-4">Compliance & Security</p>
-            <h2 className="text-3xl font-display font-bold text-slate-900">
-              Enterprise-Grade <span className="text-gradient-health-light">Trust</span>
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {complianceBadges.map((badge, idx) => {
-              const Icon = badge.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.4, delay: idx * 0.1, ease: "easeOut" }}
-                  className="bg-white border border-slate-200 p-6 text-center rounded-2xl shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <Icon className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                  <span className="text-sm text-slate-700 font-medium">{badge.label}</span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </motion.section>
-
       {/* Embedded Lead Form - Clinical Theme */}
       <motion.section 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="pt-24 pb-24 lg:pb-32 relative z-10 bg-slate-50 overflow-hidden border-b border-slate-200"
+        className="pt-24 pb-24 lg:pb-32 relative z-10 bg-white overflow-hidden border-b border-slate-200"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-slate-900 tracking-tight">
